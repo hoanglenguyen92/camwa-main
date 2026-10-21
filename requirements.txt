@@ -1,0 +1,14 @@
+fastapi[standard]
+sqlalchemy
+asyncpg
+psycopg2-binary
+pydantic
+pydantic-settings
+pyjwt
+pwdlib[argon2]
+python-multipart
+openpyxl
+aiosmtplib
+email-validator
+python-dotenv
+alembic
