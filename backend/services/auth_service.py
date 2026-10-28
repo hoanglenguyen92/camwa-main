@@ -1,57 +1,31 @@
-import math
-from datetime import datetime, timezone, timedelta
-
 import jwt
 from fastapi import HTTPException
 from sqlalchemy import select, update
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from backend.core.configs import settings
-from backend.core.security import verify_password, create_access_token, create_refresh_token
+from backend.core.identity import provider as identity
+from backend.core.security import create_access_token, create_refresh_token, hash_token
 from backend.models import Iam, AcademicCoordinator
 
 
-async def login(db: AsyncSession, email: str, password: str) -> dict:
-    result = await db.execute(select(Iam).where(Iam.email == email))
-    user = result.scalars().first()
-
-    if not user:
-        raise HTTPException(status_code=404, detail="User not found")
-
-    if user.locked_until and user.locked_until > datetime.now():
-        raise HTTPException(status_code=401, detail=f"Too many failed login attempts. Your account is locked until {user.locked_until.isoformat()}")
-
-    if not verify_password(password, user.password):
-        user.failed_attempts += 1
-        user.last_attempt_at = datetime.now()
-
-        if user.failed_attempts >= 5:
-            lockout_exponent = user.failed_attempts - 4
-            lockout_minutes = math.pow(5, lockout_exponent)
-            user.locked_until = datetime.now() + timedelta(minutes=lockout_minutes)
-
-        await db.commit()
-        raise HTTPException(status_code=401, detail="Invalid password")
-
-    user.failed_attempts = 0
-    user.locked_until = None
-    await db.commit()
+async def _role_for_token(db: AsyncSession, user: Iam) -> str:
+    if user.role != "AC":
+        return user.role
+    result = await db.execute(select(AcademicCoordinator).where(AcademicCoordinator.ac_id == user.iam_id))
+    ac = result.scalars().first()
+    return ac.current_role if ac else user.role
 
 
-    role_for_token = user.role
-    if user.role == "AC":
-        ac_stmt = select(AcademicCoordinator).where(AcademicCoordinator.ac_id == user.iam_id)
-        ac_result = await db.execute(ac_stmt)
-        ac = ac_result.scalars().first()
-        if ac:
-            role_for_token = ac.current_role
+async def _issue_tokens(db: AsyncSession, user: Iam) -> dict:
+    role_for_token = await _role_for_token(db, user)
 
     access_token = create_access_token(
         {"sub": user.iam_id, "email": user.email, "role": role_for_token, "username": user.username}, user.token_version
     )
     refresh_token = create_refresh_token({"sub": user.iam_id}, user.token_version)
 
-    user.refresh_token = refresh_token
+    user.refresh_token = hash_token(refresh_token)
     await db.commit()
 
     return {
@@ -60,6 +34,26 @@ async def login(db: AsyncSession, email: str, password: str) -> dict:
         "role": role_for_token,
         "username": user.username
     }
+
+
+async def _login_uid(db: AsyncSession, uid: str) -> dict:
+    result = await db.execute(select(Iam).where(Iam.auth_uid == uid))
+    user = result.scalars().first()
+
+    if not user:
+        raise HTTPException(status_code=403, detail="No CAMWA account is linked to this identity")
+
+    return await _issue_tokens(db, user)
+
+
+async def login_with_password(db: AsyncSession, email: str, password: str) -> dict:
+    uid = await identity.sign_in_with_password(email, password)
+    return await _login_uid(db, uid)
+
+
+async def login_with_id_token(db: AsyncSession, id_token: str) -> dict:
+    uid = await identity.verify_token(id_token)
+    return await _login_uid(db, uid)
 
 
 async def refresh_access_token(db: AsyncSession, refresh_token: str) -> dict:
@@ -77,7 +71,7 @@ async def refresh_access_token(db: AsyncSession, refresh_token: str) -> dict:
 
     stmt = select(Iam).where(
         Iam.iam_id == user_id,
-        Iam.refresh_token == refresh_token,
+        Iam.refresh_token == hash_token(refresh_token),
         Iam.token_version == token_version
     )
     result = await db.execute(stmt)
@@ -86,14 +80,7 @@ async def refresh_access_token(db: AsyncSession, refresh_token: str) -> dict:
     if not user:
         raise HTTPException(status_code=401, detail="Invalid refresh token")
 
-    role_for_token = user.role
-    if user.role == "AC":
-        ac_stmt = select(AcademicCoordinator).where(AcademicCoordinator.ac_id == user.iam_id)
-        ac_result = await db.execute(ac_stmt)
-        ac = ac_result.scalars().first()
-
-        if ac:
-            role_for_token = ac.current_role
+    role_for_token = await _role_for_token(db, user)
 
     new_access = create_access_token(
         {'sub': user.iam_id, 'email': user.email, 'role': role_for_token, 'username': user.username}, user.token_version
@@ -101,11 +88,12 @@ async def refresh_access_token(db: AsyncSession, refresh_token: str) -> dict:
     return {"access_token": new_access}
 
 
-async def logout(db: AsyncSession, user_id: str) -> None:
+async def logout(db: AsyncSession, user: Iam) -> None:
     await db.execute(
-        update(Iam).where(Iam.iam_id == user_id).values(token_version = Iam.token_version + 1, refresh_token = None)
+        update(Iam).where(Iam.iam_id == user.iam_id).values(token_version = Iam.token_version + 1, refresh_token = None)
     )
     await db.commit()
+    await identity.revoke_sessions(user.auth_uid)
 
 
 async def toggle_ac_role(db: AsyncSession, user_id: str) -> dict:
@@ -138,7 +126,7 @@ async def toggle_ac_role(db: AsyncSession, user_id: str) -> dict:
 
     new_refresh = create_refresh_token({"sub": user.iam_id}, user.token_version + 1)
     await db.execute(
-        update(Iam).where(Iam.iam_id == user_id).values(refresh_token=new_refresh)
+        update(Iam).where(Iam.iam_id == user_id).values(refresh_token=hash_token(new_refresh))
     )
     await db.commit()
 

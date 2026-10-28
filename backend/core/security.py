@@ -1,31 +1,15 @@
+import hashlib
 from datetime import timedelta, datetime, timezone
-from typing import Optional
 
 import jwt
-from fastapi import Depends
-from fastapi.security import OAuth2PasswordBearer
-from pwdlib import PasswordHash
-from pwdlib.hashers.argon2 import Argon2Hasher
 from sqlalchemy import update
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from backend.core.configs import settings
 from backend.models import Iam
 
-pwd_context = PasswordHash(
-    (
-        Argon2Hasher(),
-    )
-)
-
-
-
-def verify_password(plain_password: str, hashed_password: str) -> bool:
-    return pwd_context.verify(plain_password, hashed_password)
-
-
-def get_password_hash(password: str) -> str:
-    return pwd_context.hash(password)
+def hash_token(token: str) -> str:
+    return hashlib.sha256(token.encode()).hexdigest()
 
 
 def create_access_token(data: dict, token_version: int) -> str:

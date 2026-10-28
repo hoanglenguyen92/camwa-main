@@ -9,7 +9,7 @@ from backend.core.db import Base
 class Student(Base):
     __tablename__ = "student"
 
-    student_id: Mapped[str] = mapped_column(String(20), ForeignKey("iam.username"), primary_key=True)
+    student_id: Mapped[str] = mapped_column(String(20), ForeignKey("iam.iam_id"), primary_key=True)
     name: Mapped[Optional[str]] = mapped_column(String(40))
     map_location: Mapped[Optional[str]] = mapped_column(String(20))
     program_id: Mapped[Optional[str]] = mapped_column(String(20), ForeignKey("program.program_id"))

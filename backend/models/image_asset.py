@@ -10,7 +10,7 @@ class ImageAsset(Base):
     __tablename__ = "image_assets"
 
     image_id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
-    username: Mapped[str] = mapped_column(String(45), ForeignKey("iam.username"), nullable=False)
+    iam_id: Mapped[str] = mapped_column(String(100), ForeignKey("iam.iam_id"), nullable=False)
     image_path: Mapped[str] = mapped_column(String(255), nullable=False)
     created_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now(), nullable=False)
     updated_at: Mapped[datetime] = mapped_column(
