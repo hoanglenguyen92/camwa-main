@@ -29,7 +29,7 @@ async def create_user(session: AsyncSession, data: UserCreate) -> UserResponse:
         iam_id=data.iam_id,
         username=data.username,
         email=data.email,
-        firebase_uid=uid,
+        auth_uid=uid,
         phone_number=data.phone_number,
         role=data.role.value,
     )
@@ -92,7 +92,7 @@ async def update_user(session: AsyncSession, iam_id: str, data: UserUpdate) -> U
             if existing_user.scalar():
                 raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="User with that phone number already exists")
 
-    uid, old_email, old_phone = user.firebase_uid, user.email, user.phone_number
+    uid, old_email, old_phone = user.auth_uid, user.email, user.phone_number
     password = update_dict.pop("password", None) or None
     if password or ("role" in update_dict and update_dict["role"] != user.role):
         user.token_version += 1
@@ -128,7 +128,7 @@ async def delete_user(session: AsyncSession, iam_id: str) -> None:
     user = await session.get(Iam, iam_id)
     if not user:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"User with {iam_id} not found")
-    uid = user.firebase_uid
+    uid = user.auth_uid
     await session.delete(user)
     await session.commit()
     try:
@@ -151,7 +151,7 @@ async def change_password(session: AsyncSession, iam_id: str, data: PasswordChan
     if data.new_password == data.current_password:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="New password cannot be the same as the current password")
 
-    await identity.update_user(user.firebase_uid, password=data.new_password)
+    await identity.update_user(user.auth_uid, password=data.new_password)
     await invalidate_user_tokens(session, iam_id)
 
 '''Bulk Operations for Users'''
@@ -218,7 +218,7 @@ async def _process_excel(session: AsyncSession, file_contents: bytes, role: str)
             iam_id=iam_id,
             username=username,
             email=email,
-            firebase_uid=uid,
+            auth_uid=uid,
             role=role,
         )
         session.add(new_user)

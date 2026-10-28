@@ -7,7 +7,7 @@ from backend.helpers.response_wrapper import ApiResponse
 from backend.models import Iam
 from backend.schemas.auth import (
     TokenResponse, LoginRequest, RefreshResponse, RefreshRequest, MessageResponse,
-    FirebaseLoginRequest, ForgotPasswordRequest,
+    TokenLoginRequest, ForgotPasswordRequest,
 )
 from backend.services import auth_service
 
@@ -24,8 +24,8 @@ async def login(payload: LoginRequest, db: AsyncSessionDep):
     )
 
 
-@router.post("/firebase-login", response_model=ApiResponse[TokenResponse], status_code=status.HTTP_200_OK)
-async def firebase_login(payload: FirebaseLoginRequest, db: AsyncSessionDep):
+@router.post("/token-login", response_model=ApiResponse[TokenResponse], status_code=status.HTTP_200_OK)
+async def token_login(payload: TokenLoginRequest, db: AsyncSessionDep):
     """Exchange an identity provider token (e.g. from phone OTP sign-in) for JWT tokens"""
     token = await auth_service.login_with_id_token(db, payload.id_token)
     return ApiResponse(

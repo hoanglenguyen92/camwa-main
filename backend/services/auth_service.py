@@ -37,11 +37,11 @@ async def _issue_tokens(db: AsyncSession, user: Iam) -> dict:
 
 
 async def _login_uid(db: AsyncSession, uid: str) -> dict:
-    result = await db.execute(select(Iam).where(Iam.firebase_uid == uid))
+    result = await db.execute(select(Iam).where(Iam.auth_uid == uid))
     user = result.scalars().first()
 
     if not user:
-        raise HTTPException(status_code=403, detail="No CAMWA account is linked to this Firebase user")
+        raise HTTPException(status_code=403, detail="No CAMWA account is linked to this identity")
 
     return await _issue_tokens(db, user)
 
@@ -93,7 +93,7 @@ async def logout(db: AsyncSession, user: Iam) -> None:
         update(Iam).where(Iam.iam_id == user.iam_id).values(token_version = Iam.token_version + 1, refresh_token = None)
     )
     await db.commit()
-    await identity.revoke_sessions(user.firebase_uid)
+    await identity.revoke_sessions(user.auth_uid)
 
 
 async def toggle_ac_role(db: AsyncSession, user_id: str) -> dict:

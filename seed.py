@@ -54,7 +54,7 @@ async def seed():
                     iam_id=admin_id,
                     username="admin",
                     email=admin_email,
-                    firebase_uid=admin_uid,
+                    auth_uid=admin_uid,
                     role="ADMIN",
                     token_version=1,
                 )

@@ -4,7 +4,7 @@ class LoginRequest(BaseModel):
     email: EmailStr
     password: str
 
-class FirebaseLoginRequest(BaseModel):
+class TokenLoginRequest(BaseModel):
     id_token: str
 
 class ForgotPasswordRequest(BaseModel):
