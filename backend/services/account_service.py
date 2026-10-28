@@ -92,11 +92,13 @@ async def update_user(session: AsyncSession, iam_id: str, data: UserUpdate) -> U
             if existing_user.scalar():
                 raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="User with that phone number already exists")
 
-    password = update_dict.pop("password", None)
+    password = update_dict.pop("password", None) or None
+    if password or ("role" in update_dict and update_dict["role"] != user.role):
+        user.token_version += 1
     await firebase.update_user(
         user.firebase_uid,
         email=update_dict.get("email"),
-        password=password or None,
+        password=password,
         phone_number=update_dict.get("phone_number"),
         clear_phone_number="phone_number" in update_dict and update_dict["phone_number"] is None,
     )
@@ -105,6 +107,8 @@ async def update_user(session: AsyncSession, iam_id: str, data: UserUpdate) -> U
         setattr(user, field, value)
 
     await session.commit()
+    if password:
+        await firebase.revoke_refresh_tokens(user.firebase_uid)
     await session.refresh(user)
     return UserResponse.model_validate(user)
 

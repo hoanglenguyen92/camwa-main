@@ -51,7 +51,7 @@ async def import_lecturers(session: AsyncSessionDep, file: UploadFile = File(...
 
 
 @router.get("/", response_model=ApiResponse[List[UserResponse]])
-async def get_all_users(session: AsyncSessionDep, _: CurrentUser):
+async def get_all_users(session: AsyncSessionDep, _: AdminOrFA):
     users = await account_service.get_all_users(session)
     return ApiResponse(
         message="Users retrieved successfully",
@@ -60,7 +60,13 @@ async def get_all_users(session: AsyncSessionDep, _: CurrentUser):
 
 
 @router.get("/{iam_id}", response_model=ApiResponse[UserResponse])
-async def get_user_by_id(iam_id: str, session: AsyncSessionDep, _: CurrentUser):
+async def get_user_by_id(iam_id: str, session: AsyncSessionDep, user: CurrentUser):
+    if user.role not in ("ADMIN", "FA") and user.iam_id != iam_id:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="You are not authorized to view this user.",
+        )
+
     user = await account_service.get_user_by_id(session, iam_id)
     return ApiResponse(
         message="User retrieved successfully",
@@ -74,6 +80,12 @@ async def update_user(data: UserUpdate, iam_id: str, session: AsyncSessionDep, u
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
             detail="You are not authorized to update this user.",
+        )
+
+    if user.role != "ADMIN" and (data.role is not None or data.password is not None):
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Only admins can change role or set a password; use change-password",
         )
 
     update = await account_service.update_user(session, iam_id, data)
