@@ -1,0 +1,14 @@
+{
+  "name": "camwa-frontend",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "openapi:export": "cd .. && python -m scripts.export_openapi",
+    "openapi:generate": "openapi-ts",
+    "gen:api": "npm run openapi:export && npm run openapi:generate"
+  },
+  "devDependencies": {
+    "@hey-api/openapi-ts": "0.99.0",
+    "typescript": "5.9.3"
+  }
+}

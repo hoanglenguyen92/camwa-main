@@ -65,3 +65,32 @@ Phone login works only for users whose `phone_number` was set on their account (
 3. Set `AUTH_PROVIDER=<name>` and the provider's settings in `.env`.
 4. Run `python -m scripts.link_identities --relink`. It relinks every `iam` row to the new provider by email, or creates a user without a password. It is safe to rerun.
 5. Users set a password with `POST /api/auth/forgot-password`, unless you imported their password hashes into the new provider.
+
+## TypeScript API client
+
+The backend's OpenAPI schema drives a generated TypeScript client in `frontend/src/generated/`. The generator is [Hey API](https://heyapi.dev) (`@hey-api/openapi-ts`). Each endpoint becomes a typed function named after its router tag and handler, for example `authenticationLogin` or `studentGetStudentById`.
+
+Regenerate the client after you change a route or schema. Activate the backend venv first, because the export step runs `python`:
+
+```bash
+cd frontend
+npm install
+npm run gen:api
+```
+
+`gen:api` runs two steps. You can also run them separately:
+
+1. `npm run openapi:export` runs `python -m scripts.export_openapi` and writes `frontend/openapi.json`. It needs no `.env`, database, or identity credentials.
+2. `npm run openapi:generate` reads `openapi.json` and rewrites `src/generated/`.
+
+Commit `openapi.json` and `src/generated/` together with the backend change, so the diff shows the API change. Do not edit files in `src/generated/` by hand. The next run overwrites them.
+
+Set the base URL once in the frontend app:
+
+```ts
+import { client } from './generated/client.gen';
+
+client.setConfig({ baseUrl: 'http://localhost:8000' });
+```
+
+The client uses the `fetch`, `URLSearchParams.entries`, and iterable DOM types. A future `tsconfig.json` needs `"lib": ["ES2022", "DOM", "DOM.Iterable"]`.
