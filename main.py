@@ -1,6 +1,7 @@
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
+from fastapi.routing import APIRoute
 
 from backend.core.db import engine, init_db
 from backend.routes import auth, account, intake, semester, student, program, module, module_registration, \
@@ -13,9 +14,16 @@ async def lifespan(_app: FastAPI):
     yield
     await engine.dispose()
 
+def operation_id(route: APIRoute) -> str:
+    # Stable, readable names for the generated TypeScript client; the tag keeps them unique across routers.
+    tag = route.tags[0].lower().replace(" ", "_") if route.tags else ""
+    return f"{tag}_{route.name}" if tag else route.name
+
+
 app = FastAPI(
     title="CAMWA FastAPI Backend",
     lifespan=lifespan,
+    generate_unique_id_function=operation_id,
 )
 
 
