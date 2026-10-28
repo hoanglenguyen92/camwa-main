@@ -1,3 +1,5 @@
+from typing import Literal
+
 from pydantic import Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
@@ -33,8 +35,8 @@ class Settings(BaseSettings):
     USE_CREDENTIALS: bool = True
     EMAIL_RETRY_ATTEMPTS: int = 3
 
-    FIREBASE_SERVICE_ACCOUNT_PATH: str = ""
-    FIREBASE_WEB_API_KEY: str = ""
+    AUTH_PROVIDER: Literal["firebase"] = "firebase"
+
 
 
 settings = Settings()

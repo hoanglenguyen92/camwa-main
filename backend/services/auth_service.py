@@ -4,7 +4,7 @@ from sqlalchemy import select, update
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from backend.core.configs import settings
-from backend.core import firebase
+from backend.core.identity import provider as identity
 from backend.core.security import create_access_token, create_refresh_token, hash_token
 from backend.models import Iam, AcademicCoordinator
 
@@ -47,12 +47,12 @@ async def _login_uid(db: AsyncSession, uid: str) -> dict:
 
 
 async def login_with_password(db: AsyncSession, email: str, password: str) -> dict:
-    uid = await firebase.sign_in_with_password(email, password)
+    uid = await identity.sign_in_with_password(email, password)
     return await _login_uid(db, uid)
 
 
 async def login_with_id_token(db: AsyncSession, id_token: str) -> dict:
-    uid = await firebase.verify_id_token(id_token)
+    uid = await identity.verify_token(id_token)
     return await _login_uid(db, uid)
 
 
@@ -93,7 +93,7 @@ async def logout(db: AsyncSession, user: Iam) -> None:
         update(Iam).where(Iam.iam_id == user.iam_id).values(token_version = Iam.token_version + 1, refresh_token = None)
     )
     await db.commit()
-    await firebase.revoke_refresh_tokens(user.firebase_uid)
+    await identity.revoke_sessions(user.firebase_uid)
 
 
 async def toggle_ac_role(db: AsyncSession, user_id: str) -> dict:

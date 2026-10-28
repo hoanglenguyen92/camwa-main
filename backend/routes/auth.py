@@ -1,6 +1,6 @@
 from fastapi import APIRouter, status, Depends
 
-from backend.core import firebase
+from backend.core.identity import provider as identity
 from backend.core.db import AsyncSessionDep
 from backend.core.deps import get_current_user, CurrentUser
 from backend.helpers.response_wrapper import ApiResponse
@@ -26,7 +26,7 @@ async def login(payload: LoginRequest, db: AsyncSessionDep):
 
 @router.post("/firebase-login", response_model=ApiResponse[TokenResponse], status_code=status.HTTP_200_OK)
 async def firebase_login(payload: FirebaseLoginRequest, db: AsyncSessionDep):
-    """Exchange a Firebase ID token (e.g. from phone OTP sign-in) for JWT tokens"""
+    """Exchange an identity provider token (e.g. from phone OTP sign-in) for JWT tokens"""
     token = await auth_service.login_with_id_token(db, payload.id_token)
     return ApiResponse(
         message="Login successful",
@@ -36,8 +36,8 @@ async def firebase_login(payload: FirebaseLoginRequest, db: AsyncSessionDep):
 
 @router.post("/forgot-password", response_model=ApiResponse[None])
 async def forgot_password(payload: ForgotPasswordRequest):
-    """Send a Firebase password reset email"""
-    await firebase.send_password_reset_email(payload.email)
+    """Send a password reset email"""
+    await identity.send_password_reset_email(payload.email)
     return ApiResponse(message="If the account exists, a reset email was sent")
 
 
