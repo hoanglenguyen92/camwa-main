@@ -15,9 +15,9 @@ async def lifespan(_app: FastAPI):
     await engine.dispose()
 
 def operation_id(route: APIRoute) -> str:
-    # Stable, readable names for the generated TypeScript client; the tag keeps them unique across routers.
-    tag = route.tags[0].lower().replace(" ", "_") if route.tags else ""
-    return f"{tag}_{route.name}" if tag else route.name
+    # "<Tag>.<handler>" becomes <Tag>Controller.<handler>() in the generated TypeScript client.
+    tag = route.tags[0].replace(" ", "") if route.tags else "Api"
+    return f"{tag}.{route.name}"
 
 
 app = FastAPI(

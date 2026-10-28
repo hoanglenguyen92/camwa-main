@@ -68,7 +68,7 @@ Phone login works only for users whose `phone_number` was set on their account (
 
 ## TypeScript API client
 
-The backend's OpenAPI schema drives a generated TypeScript client in `frontend/src/generated/`. The generator is [Hey API](https://heyapi.dev) (`@hey-api/openapi-ts`). Each endpoint becomes a typed function named after its router tag and handler, for example `authenticationLogin` or `studentGetStudentById`.
+The backend's OpenAPI schema drives a generated TypeScript client in `frontend/src/generated/`. The generator is [Hey API](https://heyapi.dev) (`@hey-api/openapi-ts`). Each backend controller becomes a class, and each of its endpoints becomes a typed static method named after the handler. For example, `StudentController.getStudentById(...)` calls `GET /api/student/{student_id}`. The backend's operation IDs (`<Tag>.<handler>`, set in `main.py`) drive this grouping.
 
 Regenerate the client after you change a route or schema. Activate the backend venv first, because the export step runs `python`:
 
@@ -91,6 +91,20 @@ Set the base URL once in the frontend app:
 import { client } from './generated/client.gen';
 
 client.setConfig({ baseUrl: 'http://localhost:8000' });
+```
+
+Call endpoints through their controller:
+
+```ts
+import { AuthenticationController, StudentController } from './generated';
+
+const { data: tokens } = await AuthenticationController.login({
+  body: { email: 'admin@example.com', password: '...' },
+});
+
+const { data: student } = await StudentController.getStudentById({
+  path: { student_id: '10421002' },
+});
 ```
 
 The client uses the `fetch`, `URLSearchParams.entries`, and iterable DOM types. A future `tsconfig.json` needs `"lib": ["ES2022", "DOM", "DOM.Iterable"]`.

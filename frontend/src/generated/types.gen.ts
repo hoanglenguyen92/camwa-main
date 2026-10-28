@@ -858,86 +858,6 @@ export type AttendanceUpdate = {
 };
 
 /**
- * Body_account_import_lecturers
- */
-export type BodyAccountImportLecturers = {
-    /**
-     * File
-     */
-    file: Blob | File;
-};
-
-/**
- * Body_account_import_students
- */
-export type BodyAccountImportStudents = {
-    /**
-     * File
-     */
-    file: Blob | File;
-};
-
-/**
- * Body_attendance_import_attendance_from_excel
- */
-export type BodyAttendanceImportAttendanceFromExcel = {
-    /**
-     * File
-     */
-    file: Blob | File;
-};
-
-/**
- * Body_lecturer_import_lecturers
- */
-export type BodyLecturerImportLecturers = {
-    /**
-     * File
-     */
-    file: Blob | File;
-};
-
-/**
- * Body_module_delete_modules_from_excel
- */
-export type BodyModuleDeleteModulesFromExcel = {
-    /**
-     * File
-     */
-    file: Blob | File;
-};
-
-/**
- * Body_module_import_module
- */
-export type BodyModuleImportModule = {
-    /**
-     * File
-     */
-    file: Blob | File;
-};
-
-/**
- * Body_module_registrations_import_module_registrations
- */
-export type BodyModuleRegistrationsImportModuleRegistrations = {
-    /**
-     * File
-     */
-    file: Blob | File;
-};
-
-/**
- * Body_student_import_students
- */
-export type BodyStudentImportStudents = {
-    /**
-     * File
-     */
-    file: Blob | File;
-};
-
-/**
  * CameraPathUpdate
  */
 export type CameraPathUpdate = {
@@ -1766,6 +1686,86 @@ export type ValidationError = {
     };
 };
 
+/**
+ * Body_Module.delete_modules_from_excel
+ */
+export type DeleteModulesFromExcel = {
+    /**
+     * File
+     */
+    file: Blob | File;
+};
+
+/**
+ * Body_Account.import_lecturers
+ */
+export type FastapiCompatV2BodyAccountImportLecturers = {
+    /**
+     * File
+     */
+    file: Blob | File;
+};
+
+/**
+ * Body_Account.import_students
+ */
+export type FastapiCompatV2BodyAccountImportStudents = {
+    /**
+     * File
+     */
+    file: Blob | File;
+};
+
+/**
+ * Body_Lecturer.import_lecturers
+ */
+export type FastapiCompatV2BodyLecturerImportLecturers = {
+    /**
+     * File
+     */
+    file: Blob | File;
+};
+
+/**
+ * Body_Student.import_students
+ */
+export type FastapiCompatV2BodyStudentImportStudents = {
+    /**
+     * File
+     */
+    file: Blob | File;
+};
+
+/**
+ * Body_Attendance.import_attendance_from_excel
+ */
+export type ImportAttendanceFromExcel = {
+    /**
+     * File
+     */
+    file: Blob | File;
+};
+
+/**
+ * Body_Module.import_module
+ */
+export type ImportModule = {
+    /**
+     * File
+     */
+    file: Blob | File;
+};
+
+/**
+ * Body_ModuleRegistrations.import_module_registrations
+ */
+export type ImportModuleRegistrations = {
+    /**
+     * File
+     */
+    file: Blob | File;
+};
+
 export type AccountCreateUserData = {
     body: UserCreate;
     path?: never;
@@ -1792,7 +1792,7 @@ export type AccountCreateUserResponses = {
 export type AccountCreateUserResponse = AccountCreateUserResponses[keyof AccountCreateUserResponses];
 
 export type AccountImportStudentsData = {
-    body: BodyAccountImportStudents;
+    body: FastapiCompatV2BodyAccountImportStudents;
     path?: never;
     query?: never;
     url: '/api/account/students/create-from-excel';
@@ -1817,7 +1817,7 @@ export type AccountImportStudentsResponses = {
 export type AccountImportStudentsResponse = AccountImportStudentsResponses[keyof AccountImportStudentsResponses];
 
 export type AccountImportLecturersData = {
-    body: BodyAccountImportLecturers;
+    body: FastapiCompatV2BodyAccountImportLecturers;
     path?: never;
     query?: never;
     url: '/api/account/lecturers/create-from-excel';
@@ -2425,7 +2425,7 @@ export type StudentCreateStudentImageResponses = {
 export type StudentCreateStudentImageResponse = StudentCreateStudentImageResponses[keyof StudentCreateStudentImageResponses];
 
 export type StudentImportStudentsData = {
-    body: BodyStudentImportStudents;
+    body: FastapiCompatV2BodyStudentImportStudents;
     path?: never;
     query?: never;
     url: '/api/student/create-from-excel';
@@ -3044,7 +3044,7 @@ export type ModuleCreateModuleResponses = {
 export type ModuleCreateModuleResponse = ModuleCreateModuleResponses[keyof ModuleCreateModuleResponses];
 
 export type ModuleDeleteModulesFromExcelData = {
-    body: BodyModuleDeleteModulesFromExcel;
+    body: DeleteModulesFromExcel;
     path?: never;
     query?: never;
     url: '/api/module/delete-from-excel';
@@ -3069,7 +3069,7 @@ export type ModuleDeleteModulesFromExcelResponses = {
 export type ModuleDeleteModulesFromExcelResponse = ModuleDeleteModulesFromExcelResponses[keyof ModuleDeleteModulesFromExcelResponses];
 
 export type ModuleImportModuleData = {
-    body: BodyModuleImportModule;
+    body: ImportModule;
     path?: never;
     query?: never;
     url: '/api/module/create-from-excel';
@@ -3402,7 +3402,7 @@ export type LecturerCreateLecturerResponses = {
 export type LecturerCreateLecturerResponse = LecturerCreateLecturerResponses[keyof LecturerCreateLecturerResponses];
 
 export type LecturerImportLecturersData = {
-    body: BodyLecturerImportLecturers;
+    body: FastapiCompatV2BodyLecturerImportLecturers;
     path?: never;
     query?: never;
     url: '/api/lecturer/create-from-excel';
@@ -3558,7 +3558,7 @@ export type ModuleRegistrationsCreateModuleRegistrationResponses = {
 export type ModuleRegistrationsCreateModuleRegistrationResponse = ModuleRegistrationsCreateModuleRegistrationResponses[keyof ModuleRegistrationsCreateModuleRegistrationResponses];
 
 export type ModuleRegistrationsImportModuleRegistrationsData = {
-    body: BodyModuleRegistrationsImportModuleRegistrations;
+    body: ImportModuleRegistrations;
     path?: never;
     query?: never;
     url: '/api/module-registrations/create-from-excel';
@@ -4029,7 +4029,7 @@ export type AttendanceRequestCorrectionResponses = {
 export type AttendanceRequestCorrectionResponse = AttendanceRequestCorrectionResponses[keyof AttendanceRequestCorrectionResponses];
 
 export type AttendanceImportAttendanceFromExcelData = {
-    body: BodyAttendanceImportAttendanceFromExcel;
+    body: ImportAttendanceFromExcel;
     path?: never;
     query?: never;
     url: '/api/attendance/create-from-excel';
@@ -4491,14 +4491,14 @@ export type AttendanceDeleteAttendanceRequestResponses = {
 
 export type AttendanceDeleteAttendanceRequestResponse = AttendanceDeleteAttendanceRequestResponses[keyof AttendanceDeleteAttendanceRequestResponses];
 
-export type RootData = {
+export type ApiRootData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/api';
 };
 
-export type RootResponses = {
+export type ApiRootResponses = {
     /**
      * Successful Response
      */

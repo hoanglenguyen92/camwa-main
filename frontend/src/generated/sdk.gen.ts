@@ -2,7 +2,7 @@
 
 import { type Client, type ClientMeta, formDataBodySerializer, type Options as Options2, type RequestResult, type TDataShape } from './client';
 import { client } from './client.gen';
-import type { AccountChangePasswordData, AccountChangePasswordErrors, AccountChangePasswordResponses, AccountCreateUserData, AccountCreateUserErrors, AccountCreateUserResponses, AccountDeleteUserData, AccountDeleteUserErrors, AccountDeleteUserResponses, AccountGetAllUsersData, AccountGetAllUsersResponses, AccountGetUserByIdData, AccountGetUserByIdErrors, AccountGetUserByIdResponses, AccountImportLecturersData, AccountImportLecturersErrors, AccountImportLecturersResponses, AccountImportStudentsData, AccountImportStudentsErrors, AccountImportStudentsResponses, AccountUpdateUserData, AccountUpdateUserErrors, AccountUpdateUserResponses, AttendanceCheckExamEligibilityData, AttendanceCheckExamEligibilityErrors, AttendanceCheckExamEligibilityResponses, AttendanceDeleteAttendanceData, AttendanceDeleteAttendanceErrors, AttendanceDeleteAttendanceRequestData, AttendanceDeleteAttendanceRequestErrors, AttendanceDeleteAttendanceRequestResponses, AttendanceDeleteAttendanceResponses, AttendanceExportExamEligibilityData, AttendanceExportExamEligibilityForLecturerData, AttendanceExportExamEligibilityForLecturerErrors, AttendanceExportExamEligibilityForLecturerResponses, AttendanceExportExamEligibilityResponses, AttendanceGetAttendanceRequestsData, AttendanceGetAttendanceRequestsErrors, AttendanceGetAttendanceRequestsResponses, AttendanceGetExamEligibilityData, AttendanceGetExamEligibilityErrors, AttendanceGetExamEligibilityResponses, AttendanceGetRequestsByModuleData, AttendanceGetRequestsByModuleErrors, AttendanceGetRequestsByModuleResponses, AttendanceGetRequestsByStudentData, AttendanceGetRequestsByStudentErrors, AttendanceGetRequestsByStudentResponses, AttendanceHandleCorrectionData, AttendanceHandleCorrectionErrors, AttendanceHandleCorrectionResponses, AttendanceImportAttendanceFromExcelData, AttendanceImportAttendanceFromExcelErrors, AttendanceImportAttendanceFromExcelResponses, AttendanceRequestCorrectionData, AttendanceRequestCorrectionErrors, AttendanceRequestCorrectionResponses, AttendanceSubmitAttendanceData, AttendanceSubmitAttendanceErrors, AttendanceSubmitAttendanceResponses, AttendanceUpdateAttendanceData, AttendanceUpdateAttendanceErrors, AttendanceUpdateAttendanceResponses, AttendanceUpdateExamEligibilityForAllModulesData, AttendanceUpdateExamEligibilityForAllModulesResponses, AttendanceUpdateExamEligibilityForLecturerData, AttendanceUpdateExamEligibilityForLecturerErrors, AttendanceUpdateExamEligibilityForLecturerResponses, AttendanceUpdateExamEligibilityForModuleData, AttendanceUpdateExamEligibilityForModuleErrors, AttendanceUpdateExamEligibilityForModuleResponses, AttendanceViewAttendanceData, AttendanceViewAttendanceErrors, AttendanceViewAttendanceResponses, AuthenticationForgotPasswordData, AuthenticationForgotPasswordErrors, AuthenticationForgotPasswordResponses, AuthenticationLoginData, AuthenticationLoginErrors, AuthenticationLoginResponses, AuthenticationLogoutData, AuthenticationLogoutResponses, AuthenticationRefreshTokenData, AuthenticationRefreshTokenErrors, AuthenticationRefreshTokenResponses, AuthenticationTokenLoginData, AuthenticationTokenLoginErrors, AuthenticationTokenLoginResponses, DashboardDashboardStatsData, DashboardDashboardStatsResponses, FacilityFacultyCreateFacultyData, FacilityFacultyCreateFacultyErrors, FacilityFacultyCreateFacultyResponses, FacilityFacultyDeleteFacultyData, FacilityFacultyDeleteFacultyErrors, FacilityFacultyDeleteFacultyResponses, FacilityFacultyGetAllFacultiesData, FacilityFacultyGetAllFacultiesResponses, FacilityFacultyGetFacultyData, FacilityFacultyGetFacultyErrors, FacilityFacultyGetFacultyResponses, FacilityFacultyUpdateFacultyData, FacilityFacultyUpdateFacultyErrors, FacilityFacultyUpdateFacultyResponses, IntakeCreateIntakeData, IntakeCreateIntakeErrors, IntakeCreateIntakeResponses, IntakeDeleteIntakeData, IntakeDeleteIntakeErrors, IntakeDeleteIntakeResponses, IntakeGetAllIntakesData, IntakeGetAllIntakesResponses, IntakeGetIntakeByYearData, IntakeGetIntakeByYearErrors, IntakeGetIntakeByYearResponses, IntakeUpdateIntakeData, IntakeUpdateIntakeErrors, IntakeUpdateIntakeResponses, LecturerCreateLecturerData, LecturerCreateLecturerErrors, LecturerCreateLecturerResponses, LecturerDeleteLecturerData, LecturerDeleteLecturerErrors, LecturerDeleteLecturerResponses, LecturerGetAllLecturersData, LecturerGetAllLecturersResponses, LecturerGetLecturerByIdData, LecturerGetLecturerByIdErrors, LecturerGetLecturerByIdResponses, LecturerImportLecturersData, LecturerImportLecturersErrors, LecturerImportLecturersResponses, LecturerUpdateLecturerData, LecturerUpdateLecturerErrors, LecturerUpdateLecturerResponses, ModuleCreateModuleData, ModuleCreateModuleErrors, ModuleCreateModuleResponses, ModuleDeleteModuleData, ModuleDeleteModuleErrors, ModuleDeleteModuleResponses, ModuleDeleteModulesFromExcelData, ModuleDeleteModulesFromExcelErrors, ModuleDeleteModulesFromExcelResponses, ModuleGetCameraPathData, ModuleGetCameraPathErrors, ModuleGetCameraPathResponses, ModuleImportModuleData, ModuleImportModuleErrors, ModuleImportModuleResponses, ModuleRegistrationsCreateModuleRegistrationData, ModuleRegistrationsCreateModuleRegistrationErrors, ModuleRegistrationsCreateModuleRegistrationResponses, ModuleRegistrationsDeleteModuleRegistrationData, ModuleRegistrationsDeleteModuleRegistrationErrors, ModuleRegistrationsDeleteModuleRegistrationResponses, ModuleRegistrationsGetAllModuleRegistrationsData, ModuleRegistrationsGetAllModuleRegistrationsResponses, ModuleRegistrationsGetAllModulesWithAttendanceData, ModuleRegistrationsGetAllModulesWithAttendanceResponses, ModuleRegistrationsGetByLecturerData, ModuleRegistrationsGetByLecturerErrors, ModuleRegistrationsGetByLecturerResponses, ModuleRegistrationsGetByModuleData, ModuleRegistrationsGetByModuleErrors, ModuleRegistrationsGetByModuleResponses, ModuleRegistrationsGetByStudentData, ModuleRegistrationsGetByStudentErrors, ModuleRegistrationsGetByStudentResponses, ModuleRegistrationsGetModuleRegistrationByIdData, ModuleRegistrationsGetModuleRegistrationByIdErrors, ModuleRegistrationsGetModuleRegistrationByIdResponses, ModuleRegistrationsGetMyModulesLecturerOnlyData, ModuleRegistrationsGetMyModulesLecturerOnlyResponses, ModuleRegistrationsGetMyModulesStudentsAttendanceLecturerOnlyData, ModuleRegistrationsGetMyModulesStudentsAttendanceLecturerOnlyErrors, ModuleRegistrationsGetMyModulesStudentsAttendanceLecturerOnlyResponses, ModuleRegistrationsGetMyRegistrationsStudentOnlyData, ModuleRegistrationsGetMyRegistrationsStudentOnlyResponses, ModuleRegistrationsImportModuleRegistrationsData, ModuleRegistrationsImportModuleRegistrationsErrors, ModuleRegistrationsImportModuleRegistrationsResponses, ModuleRegistrationsUpdateModuleRegistrationData, ModuleRegistrationsUpdateModuleRegistrationErrors, ModuleRegistrationsUpdateModuleRegistrationResponses, ModuleSetCameraPathData, ModuleSetCameraPathErrors, ModuleSetCameraPathResponses, ModuleUpdateModuleData, ModuleUpdateModuleErrors, ModuleUpdateModuleResponses, ModuleViewModulesData, ModuleViewModulesResponses, NotificationDeleteNotificationData, NotificationDeleteNotificationErrors, NotificationDeleteNotificationResponses, NotificationGetAllNotificationsData, NotificationGetAllNotificationsErrors, NotificationGetAllNotificationsResponses, NotificationGetUnreadCountData, NotificationGetUnreadCountResponses, NotificationMarkAllNotificationsAsReadData, NotificationMarkAllNotificationsAsReadResponses, NotificationMarkNotificationAsReadData, NotificationMarkNotificationAsReadErrors, NotificationMarkNotificationAsReadResponses, ProgramAssignLecturerToProgramData, ProgramAssignLecturerToProgramErrors, ProgramAssignLecturerToProgramResponses, ProgramAssignModuleToProgramData, ProgramAssignModuleToProgramErrors, ProgramAssignModuleToProgramResponses, ProgramAssignStudentToProgramData, ProgramAssignStudentToProgramErrors, ProgramAssignStudentToProgramResponses, ProgramCreateProgramData, ProgramCreateProgramErrors, ProgramCreateProgramResponses, ProgramDeleteProgramData, ProgramDeleteProgramErrors, ProgramDeleteProgramResponses, ProgramFindProgramByIdData, ProgramFindProgramByIdErrors, ProgramFindProgramByIdResponses, ProgramGetAllProgramsData, ProgramGetAllProgramsResponses, ProgramUpdateProgramData, ProgramUpdateProgramErrors, ProgramUpdateProgramResponses, ProgramViewLecturersInProgramData, ProgramViewLecturersInProgramErrors, ProgramViewLecturersInProgramResponses, ProgramViewModulesInProgramData, ProgramViewModulesInProgramErrors, ProgramViewModulesInProgramResponses, ProgramViewStudentsInProgramData, ProgramViewStudentsInProgramErrors, ProgramViewStudentsInProgramResponses, RootData, RootResponses, SemesterCreateSemesterData, SemesterCreateSemesterErrors, SemesterCreateSemesterResponses, SemesterDeleteSemesterData, SemesterDeleteSemesterErrors, SemesterDeleteSemesterResponses, SemesterGetAllSemesterData, SemesterGetAllSemesterResponses, SemesterGetCurrentSemesterData, SemesterGetCurrentSemesterResponses, SemesterGetSemesterByIdData, SemesterGetSemesterByIdErrors, SemesterGetSemesterByIdResponses, SemesterUpdateSemesterData, SemesterUpdateSemesterErrors, SemesterUpdateSemesterResponses, StudentCreateStudentData, StudentCreateStudentErrors, StudentCreateStudentImageData, StudentCreateStudentImageErrors, StudentCreateStudentImageResponses, StudentCreateStudentResponses, StudentDeleteStudentData, StudentDeleteStudentErrors, StudentDeleteStudentResponses, StudentGetAllStudentsData, StudentGetAllStudentsResponses, StudentGetMyExamEligibilityData, StudentGetMyExamEligibilityResponses, StudentGetMyImagesData, StudentGetMyImagesResponses, StudentGetMyModulesWithAttendanceData, StudentGetMyModulesWithAttendanceResponses, StudentGetStudentByIdData, StudentGetStudentByIdErrors, StudentGetStudentByIdResponses, StudentGetStudentExamEligibilityData, StudentGetStudentExamEligibilityErrors, StudentGetStudentExamEligibilityResponses, StudentGetStudentImageInfoData, StudentGetStudentImageInfoErrors, StudentGetStudentImageInfoResponses, StudentGetStudentModulesWithAttendanceData, StudentGetStudentModulesWithAttendanceErrors, StudentGetStudentModulesWithAttendanceResponses, StudentImportStudentsData, StudentImportStudentsErrors, StudentImportStudentsResponses, StudentUpdateStudentData, StudentUpdateStudentErrors, StudentUpdateStudentResponses } from './types.gen';
+import type { AccountChangePasswordData, AccountChangePasswordErrors, AccountChangePasswordResponses, AccountCreateUserData, AccountCreateUserErrors, AccountCreateUserResponses, AccountDeleteUserData, AccountDeleteUserErrors, AccountDeleteUserResponses, AccountGetAllUsersData, AccountGetAllUsersResponses, AccountGetUserByIdData, AccountGetUserByIdErrors, AccountGetUserByIdResponses, AccountImportLecturersData, AccountImportLecturersErrors, AccountImportLecturersResponses, AccountImportStudentsData, AccountImportStudentsErrors, AccountImportStudentsResponses, AccountUpdateUserData, AccountUpdateUserErrors, AccountUpdateUserResponses, ApiRootData, ApiRootResponses, AttendanceCheckExamEligibilityData, AttendanceCheckExamEligibilityErrors, AttendanceCheckExamEligibilityResponses, AttendanceDeleteAttendanceData, AttendanceDeleteAttendanceErrors, AttendanceDeleteAttendanceRequestData, AttendanceDeleteAttendanceRequestErrors, AttendanceDeleteAttendanceRequestResponses, AttendanceDeleteAttendanceResponses, AttendanceExportExamEligibilityData, AttendanceExportExamEligibilityForLecturerData, AttendanceExportExamEligibilityForLecturerErrors, AttendanceExportExamEligibilityForLecturerResponses, AttendanceExportExamEligibilityResponses, AttendanceGetAttendanceRequestsData, AttendanceGetAttendanceRequestsErrors, AttendanceGetAttendanceRequestsResponses, AttendanceGetExamEligibilityData, AttendanceGetExamEligibilityErrors, AttendanceGetExamEligibilityResponses, AttendanceGetRequestsByModuleData, AttendanceGetRequestsByModuleErrors, AttendanceGetRequestsByModuleResponses, AttendanceGetRequestsByStudentData, AttendanceGetRequestsByStudentErrors, AttendanceGetRequestsByStudentResponses, AttendanceHandleCorrectionData, AttendanceHandleCorrectionErrors, AttendanceHandleCorrectionResponses, AttendanceImportAttendanceFromExcelData, AttendanceImportAttendanceFromExcelErrors, AttendanceImportAttendanceFromExcelResponses, AttendanceRequestCorrectionData, AttendanceRequestCorrectionErrors, AttendanceRequestCorrectionResponses, AttendanceSubmitAttendanceData, AttendanceSubmitAttendanceErrors, AttendanceSubmitAttendanceResponses, AttendanceUpdateAttendanceData, AttendanceUpdateAttendanceErrors, AttendanceUpdateAttendanceResponses, AttendanceUpdateExamEligibilityForAllModulesData, AttendanceUpdateExamEligibilityForAllModulesResponses, AttendanceUpdateExamEligibilityForLecturerData, AttendanceUpdateExamEligibilityForLecturerErrors, AttendanceUpdateExamEligibilityForLecturerResponses, AttendanceUpdateExamEligibilityForModuleData, AttendanceUpdateExamEligibilityForModuleErrors, AttendanceUpdateExamEligibilityForModuleResponses, AttendanceViewAttendanceData, AttendanceViewAttendanceErrors, AttendanceViewAttendanceResponses, AuthenticationForgotPasswordData, AuthenticationForgotPasswordErrors, AuthenticationForgotPasswordResponses, AuthenticationLoginData, AuthenticationLoginErrors, AuthenticationLoginResponses, AuthenticationLogoutData, AuthenticationLogoutResponses, AuthenticationRefreshTokenData, AuthenticationRefreshTokenErrors, AuthenticationRefreshTokenResponses, AuthenticationTokenLoginData, AuthenticationTokenLoginErrors, AuthenticationTokenLoginResponses, DashboardDashboardStatsData, DashboardDashboardStatsResponses, FacilityFacultyCreateFacultyData, FacilityFacultyCreateFacultyErrors, FacilityFacultyCreateFacultyResponses, FacilityFacultyDeleteFacultyData, FacilityFacultyDeleteFacultyErrors, FacilityFacultyDeleteFacultyResponses, FacilityFacultyGetAllFacultiesData, FacilityFacultyGetAllFacultiesResponses, FacilityFacultyGetFacultyData, FacilityFacultyGetFacultyErrors, FacilityFacultyGetFacultyResponses, FacilityFacultyUpdateFacultyData, FacilityFacultyUpdateFacultyErrors, FacilityFacultyUpdateFacultyResponses, IntakeCreateIntakeData, IntakeCreateIntakeErrors, IntakeCreateIntakeResponses, IntakeDeleteIntakeData, IntakeDeleteIntakeErrors, IntakeDeleteIntakeResponses, IntakeGetAllIntakesData, IntakeGetAllIntakesResponses, IntakeGetIntakeByYearData, IntakeGetIntakeByYearErrors, IntakeGetIntakeByYearResponses, IntakeUpdateIntakeData, IntakeUpdateIntakeErrors, IntakeUpdateIntakeResponses, LecturerCreateLecturerData, LecturerCreateLecturerErrors, LecturerCreateLecturerResponses, LecturerDeleteLecturerData, LecturerDeleteLecturerErrors, LecturerDeleteLecturerResponses, LecturerGetAllLecturersData, LecturerGetAllLecturersResponses, LecturerGetLecturerByIdData, LecturerGetLecturerByIdErrors, LecturerGetLecturerByIdResponses, LecturerImportLecturersData, LecturerImportLecturersErrors, LecturerImportLecturersResponses, LecturerUpdateLecturerData, LecturerUpdateLecturerErrors, LecturerUpdateLecturerResponses, ModuleCreateModuleData, ModuleCreateModuleErrors, ModuleCreateModuleResponses, ModuleDeleteModuleData, ModuleDeleteModuleErrors, ModuleDeleteModuleResponses, ModuleDeleteModulesFromExcelData, ModuleDeleteModulesFromExcelErrors, ModuleDeleteModulesFromExcelResponses, ModuleGetCameraPathData, ModuleGetCameraPathErrors, ModuleGetCameraPathResponses, ModuleImportModuleData, ModuleImportModuleErrors, ModuleImportModuleResponses, ModuleRegistrationsCreateModuleRegistrationData, ModuleRegistrationsCreateModuleRegistrationErrors, ModuleRegistrationsCreateModuleRegistrationResponses, ModuleRegistrationsDeleteModuleRegistrationData, ModuleRegistrationsDeleteModuleRegistrationErrors, ModuleRegistrationsDeleteModuleRegistrationResponses, ModuleRegistrationsGetAllModuleRegistrationsData, ModuleRegistrationsGetAllModuleRegistrationsResponses, ModuleRegistrationsGetAllModulesWithAttendanceData, ModuleRegistrationsGetAllModulesWithAttendanceResponses, ModuleRegistrationsGetByLecturerData, ModuleRegistrationsGetByLecturerErrors, ModuleRegistrationsGetByLecturerResponses, ModuleRegistrationsGetByModuleData, ModuleRegistrationsGetByModuleErrors, ModuleRegistrationsGetByModuleResponses, ModuleRegistrationsGetByStudentData, ModuleRegistrationsGetByStudentErrors, ModuleRegistrationsGetByStudentResponses, ModuleRegistrationsGetModuleRegistrationByIdData, ModuleRegistrationsGetModuleRegistrationByIdErrors, ModuleRegistrationsGetModuleRegistrationByIdResponses, ModuleRegistrationsGetMyModulesLecturerOnlyData, ModuleRegistrationsGetMyModulesLecturerOnlyResponses, ModuleRegistrationsGetMyModulesStudentsAttendanceLecturerOnlyData, ModuleRegistrationsGetMyModulesStudentsAttendanceLecturerOnlyErrors, ModuleRegistrationsGetMyModulesStudentsAttendanceLecturerOnlyResponses, ModuleRegistrationsGetMyRegistrationsStudentOnlyData, ModuleRegistrationsGetMyRegistrationsStudentOnlyResponses, ModuleRegistrationsImportModuleRegistrationsData, ModuleRegistrationsImportModuleRegistrationsErrors, ModuleRegistrationsImportModuleRegistrationsResponses, ModuleRegistrationsUpdateModuleRegistrationData, ModuleRegistrationsUpdateModuleRegistrationErrors, ModuleRegistrationsUpdateModuleRegistrationResponses, ModuleSetCameraPathData, ModuleSetCameraPathErrors, ModuleSetCameraPathResponses, ModuleUpdateModuleData, ModuleUpdateModuleErrors, ModuleUpdateModuleResponses, ModuleViewModulesData, ModuleViewModulesResponses, NotificationDeleteNotificationData, NotificationDeleteNotificationErrors, NotificationDeleteNotificationResponses, NotificationGetAllNotificationsData, NotificationGetAllNotificationsErrors, NotificationGetAllNotificationsResponses, NotificationGetUnreadCountData, NotificationGetUnreadCountResponses, NotificationMarkAllNotificationsAsReadData, NotificationMarkAllNotificationsAsReadResponses, NotificationMarkNotificationAsReadData, NotificationMarkNotificationAsReadErrors, NotificationMarkNotificationAsReadResponses, ProgramAssignLecturerToProgramData, ProgramAssignLecturerToProgramErrors, ProgramAssignLecturerToProgramResponses, ProgramAssignModuleToProgramData, ProgramAssignModuleToProgramErrors, ProgramAssignModuleToProgramResponses, ProgramAssignStudentToProgramData, ProgramAssignStudentToProgramErrors, ProgramAssignStudentToProgramResponses, ProgramCreateProgramData, ProgramCreateProgramErrors, ProgramCreateProgramResponses, ProgramDeleteProgramData, ProgramDeleteProgramErrors, ProgramDeleteProgramResponses, ProgramFindProgramByIdData, ProgramFindProgramByIdErrors, ProgramFindProgramByIdResponses, ProgramGetAllProgramsData, ProgramGetAllProgramsResponses, ProgramUpdateProgramData, ProgramUpdateProgramErrors, ProgramUpdateProgramResponses, ProgramViewLecturersInProgramData, ProgramViewLecturersInProgramErrors, ProgramViewLecturersInProgramResponses, ProgramViewModulesInProgramData, ProgramViewModulesInProgramErrors, ProgramViewModulesInProgramResponses, ProgramViewStudentsInProgramData, ProgramViewStudentsInProgramErrors, ProgramViewStudentsInProgramResponses, SemesterCreateSemesterData, SemesterCreateSemesterErrors, SemesterCreateSemesterResponses, SemesterDeleteSemesterData, SemesterDeleteSemesterErrors, SemesterDeleteSemesterResponses, SemesterGetAllSemesterData, SemesterGetAllSemesterResponses, SemesterGetCurrentSemesterData, SemesterGetCurrentSemesterResponses, SemesterGetSemesterByIdData, SemesterGetSemesterByIdErrors, SemesterGetSemesterByIdResponses, SemesterUpdateSemesterData, SemesterUpdateSemesterErrors, SemesterUpdateSemesterResponses, StudentCreateStudentData, StudentCreateStudentErrors, StudentCreateStudentImageData, StudentCreateStudentImageErrors, StudentCreateStudentImageResponses, StudentCreateStudentResponses, StudentDeleteStudentData, StudentDeleteStudentErrors, StudentDeleteStudentResponses, StudentGetAllStudentsData, StudentGetAllStudentsResponses, StudentGetMyExamEligibilityData, StudentGetMyExamEligibilityResponses, StudentGetMyImagesData, StudentGetMyImagesResponses, StudentGetMyModulesWithAttendanceData, StudentGetMyModulesWithAttendanceResponses, StudentGetStudentByIdData, StudentGetStudentByIdErrors, StudentGetStudentByIdResponses, StudentGetStudentExamEligibilityData, StudentGetStudentExamEligibilityErrors, StudentGetStudentExamEligibilityResponses, StudentGetStudentImageInfoData, StudentGetStudentImageInfoErrors, StudentGetStudentImageInfoResponses, StudentGetStudentModulesWithAttendanceData, StudentGetStudentModulesWithAttendanceErrors, StudentGetStudentModulesWithAttendanceResponses, StudentImportStudentsData, StudentImportStudentsErrors, StudentImportStudentsResponses, StudentUpdateStudentData, StudentUpdateStudentErrors, StudentUpdateStudentResponses } from './types.gen';
 
 export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends boolean = boolean, TResponse = unknown> = Options2<TData, ThrowOnError, TResponse> & {
     /**
@@ -18,1065 +18,1303 @@ export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends 
     meta?: keyof ClientMeta extends never ? Record<string, unknown> : ClientMeta;
 };
 
-/**
- * Create User
- */
-export const accountCreateUser = <ThrowOnError extends boolean = false>(options: Options<AccountCreateUserData, ThrowOnError>): RequestResult<AccountCreateUserResponses, AccountCreateUserErrors, ThrowOnError> => (options.client ?? client).post<AccountCreateUserResponses, AccountCreateUserErrors, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/account/create',
-    ...options,
-    headers: {
-        'Content-Type': 'application/json',
-        ...options.headers
+export class AccountController {
+    /**
+     * Create User
+     */
+    public static createUser<ThrowOnError extends boolean = false>(options: Options<AccountCreateUserData, ThrowOnError>): RequestResult<AccountCreateUserResponses, AccountCreateUserErrors, ThrowOnError> {
+        return (options.client ?? client).post<AccountCreateUserResponses, AccountCreateUserErrors, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/account/create',
+            ...options,
+            headers: {
+                'Content-Type': 'application/json',
+                ...options.headers
+            }
+        });
     }
-});
-
-/**
- * Import Students
- */
-export const accountImportStudents = <ThrowOnError extends boolean = false>(options: Options<AccountImportStudentsData, ThrowOnError>): RequestResult<AccountImportStudentsResponses, AccountImportStudentsErrors, ThrowOnError> => (options.client ?? client).post<AccountImportStudentsResponses, AccountImportStudentsErrors, ThrowOnError>({
-    ...formDataBodySerializer,
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/account/students/create-from-excel',
-    ...options,
-    headers: {
-        'Content-Type': null,
-        ...options.headers
+    
+    /**
+     * Import Students
+     */
+    public static importStudents<ThrowOnError extends boolean = false>(options: Options<AccountImportStudentsData, ThrowOnError>): RequestResult<AccountImportStudentsResponses, AccountImportStudentsErrors, ThrowOnError> {
+        return (options.client ?? client).post<AccountImportStudentsResponses, AccountImportStudentsErrors, ThrowOnError>({
+            ...formDataBodySerializer,
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/account/students/create-from-excel',
+            ...options,
+            headers: {
+                'Content-Type': null,
+                ...options.headers
+            }
+        });
     }
-});
-
-/**
- * Import Lecturers
- */
-export const accountImportLecturers = <ThrowOnError extends boolean = false>(options: Options<AccountImportLecturersData, ThrowOnError>): RequestResult<AccountImportLecturersResponses, AccountImportLecturersErrors, ThrowOnError> => (options.client ?? client).post<AccountImportLecturersResponses, AccountImportLecturersErrors, ThrowOnError>({
-    ...formDataBodySerializer,
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/account/lecturers/create-from-excel',
-    ...options,
-    headers: {
-        'Content-Type': null,
-        ...options.headers
+    
+    /**
+     * Import Lecturers
+     */
+    public static importLecturers<ThrowOnError extends boolean = false>(options: Options<AccountImportLecturersData, ThrowOnError>): RequestResult<AccountImportLecturersResponses, AccountImportLecturersErrors, ThrowOnError> {
+        return (options.client ?? client).post<AccountImportLecturersResponses, AccountImportLecturersErrors, ThrowOnError>({
+            ...formDataBodySerializer,
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/account/lecturers/create-from-excel',
+            ...options,
+            headers: {
+                'Content-Type': null,
+                ...options.headers
+            }
+        });
     }
-});
-
-/**
- * Get All Users
- */
-export const accountGetAllUsers = <ThrowOnError extends boolean = false>(options?: Options<AccountGetAllUsersData, ThrowOnError>): RequestResult<AccountGetAllUsersResponses, unknown, ThrowOnError> => (options?.client ?? client).get<AccountGetAllUsersResponses, unknown, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/account/',
-    ...options
-});
-
-/**
- * Delete User
- */
-export const accountDeleteUser = <ThrowOnError extends boolean = false>(options: Options<AccountDeleteUserData, ThrowOnError>): RequestResult<AccountDeleteUserResponses, AccountDeleteUserErrors, ThrowOnError> => (options.client ?? client).delete<AccountDeleteUserResponses, AccountDeleteUserErrors, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/account/{iam_id}',
-    ...options
-});
-
-/**
- * Get User By Id
- */
-export const accountGetUserById = <ThrowOnError extends boolean = false>(options: Options<AccountGetUserByIdData, ThrowOnError>): RequestResult<AccountGetUserByIdResponses, AccountGetUserByIdErrors, ThrowOnError> => (options.client ?? client).get<AccountGetUserByIdResponses, AccountGetUserByIdErrors, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/account/{iam_id}',
-    ...options
-});
-
-/**
- * Update User
- */
-export const accountUpdateUser = <ThrowOnError extends boolean = false>(options: Options<AccountUpdateUserData, ThrowOnError>): RequestResult<AccountUpdateUserResponses, AccountUpdateUserErrors, ThrowOnError> => (options.client ?? client).put<AccountUpdateUserResponses, AccountUpdateUserErrors, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/account/{iam_id}',
-    ...options,
-    headers: {
-        'Content-Type': 'application/json',
-        ...options.headers
+    
+    /**
+     * Get All Users
+     */
+    public static getAllUsers<ThrowOnError extends boolean = false>(options?: Options<AccountGetAllUsersData, ThrowOnError>): RequestResult<AccountGetAllUsersResponses, unknown, ThrowOnError> {
+        return (options?.client ?? client).get<AccountGetAllUsersResponses, unknown, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/account/',
+            ...options
+        });
     }
-});
-
-/**
- * Change Password
- */
-export const accountChangePassword = <ThrowOnError extends boolean = false>(options: Options<AccountChangePasswordData, ThrowOnError>): RequestResult<AccountChangePasswordResponses, AccountChangePasswordErrors, ThrowOnError> => (options.client ?? client).put<AccountChangePasswordResponses, AccountChangePasswordErrors, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/account/{iam_id}/change-password',
-    ...options,
-    headers: {
-        'Content-Type': 'application/json',
-        ...options.headers
+    
+    /**
+     * Delete User
+     */
+    public static deleteUser<ThrowOnError extends boolean = false>(options: Options<AccountDeleteUserData, ThrowOnError>): RequestResult<AccountDeleteUserResponses, AccountDeleteUserErrors, ThrowOnError> {
+        return (options.client ?? client).delete<AccountDeleteUserResponses, AccountDeleteUserErrors, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/account/{iam_id}',
+            ...options
+        });
     }
-});
-
-/**
- * Login
- *
- * Authenticate user and return JWT tokens
- */
-export const authenticationLogin = <ThrowOnError extends boolean = false>(options: Options<AuthenticationLoginData, ThrowOnError>): RequestResult<AuthenticationLoginResponses, AuthenticationLoginErrors, ThrowOnError> => (options.client ?? client).post<AuthenticationLoginResponses, AuthenticationLoginErrors, ThrowOnError>({
-    url: '/api/auth/login',
-    ...options,
-    headers: {
-        'Content-Type': 'application/json',
-        ...options.headers
+    
+    /**
+     * Get User By Id
+     */
+    public static getUserById<ThrowOnError extends boolean = false>(options: Options<AccountGetUserByIdData, ThrowOnError>): RequestResult<AccountGetUserByIdResponses, AccountGetUserByIdErrors, ThrowOnError> {
+        return (options.client ?? client).get<AccountGetUserByIdResponses, AccountGetUserByIdErrors, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/account/{iam_id}',
+            ...options
+        });
     }
-});
-
-/**
- * Token Login
- *
- * Exchange an identity provider token (e.g. from phone OTP sign-in) for JWT tokens
- */
-export const authenticationTokenLogin = <ThrowOnError extends boolean = false>(options: Options<AuthenticationTokenLoginData, ThrowOnError>): RequestResult<AuthenticationTokenLoginResponses, AuthenticationTokenLoginErrors, ThrowOnError> => (options.client ?? client).post<AuthenticationTokenLoginResponses, AuthenticationTokenLoginErrors, ThrowOnError>({
-    url: '/api/auth/token-login',
-    ...options,
-    headers: {
-        'Content-Type': 'application/json',
-        ...options.headers
+    
+    /**
+     * Update User
+     */
+    public static updateUser<ThrowOnError extends boolean = false>(options: Options<AccountUpdateUserData, ThrowOnError>): RequestResult<AccountUpdateUserResponses, AccountUpdateUserErrors, ThrowOnError> {
+        return (options.client ?? client).put<AccountUpdateUserResponses, AccountUpdateUserErrors, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/account/{iam_id}',
+            ...options,
+            headers: {
+                'Content-Type': 'application/json',
+                ...options.headers
+            }
+        });
     }
-});
-
-/**
- * Forgot Password
- *
- * Send a password reset email
- */
-export const authenticationForgotPassword = <ThrowOnError extends boolean = false>(options: Options<AuthenticationForgotPasswordData, ThrowOnError>): RequestResult<AuthenticationForgotPasswordResponses, AuthenticationForgotPasswordErrors, ThrowOnError> => (options.client ?? client).post<AuthenticationForgotPasswordResponses, AuthenticationForgotPasswordErrors, ThrowOnError>({
-    url: '/api/auth/forgot-password',
-    ...options,
-    headers: {
-        'Content-Type': 'application/json',
-        ...options.headers
+    
+    /**
+     * Change Password
+     */
+    public static changePassword<ThrowOnError extends boolean = false>(options: Options<AccountChangePasswordData, ThrowOnError>): RequestResult<AccountChangePasswordResponses, AccountChangePasswordErrors, ThrowOnError> {
+        return (options.client ?? client).put<AccountChangePasswordResponses, AccountChangePasswordErrors, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/account/{iam_id}/change-password',
+            ...options,
+            headers: {
+                'Content-Type': 'application/json',
+                ...options.headers
+            }
+        });
     }
-});
+}
 
-/**
- * Refresh Token
- *
- * Exchange valid refresh token for new access token
- */
-export const authenticationRefreshToken = <ThrowOnError extends boolean = false>(options: Options<AuthenticationRefreshTokenData, ThrowOnError>): RequestResult<AuthenticationRefreshTokenResponses, AuthenticationRefreshTokenErrors, ThrowOnError> => (options.client ?? client).post<AuthenticationRefreshTokenResponses, AuthenticationRefreshTokenErrors, ThrowOnError>({
-    url: '/api/auth/refresh-token',
-    ...options,
-    headers: {
-        'Content-Type': 'application/json',
-        ...options.headers
+export class AuthenticationController {
+    /**
+     * Login
+     *
+     * Authenticate user and return JWT tokens
+     */
+    public static login<ThrowOnError extends boolean = false>(options: Options<AuthenticationLoginData, ThrowOnError>): RequestResult<AuthenticationLoginResponses, AuthenticationLoginErrors, ThrowOnError> {
+        return (options.client ?? client).post<AuthenticationLoginResponses, AuthenticationLoginErrors, ThrowOnError>({
+            url: '/api/auth/login',
+            ...options,
+            headers: {
+                'Content-Type': 'application/json',
+                ...options.headers
+            }
+        });
     }
-});
-
-/**
- * Logout
- *
- * Invalidate tokens and clear refresh token
- */
-export const authenticationLogout = <ThrowOnError extends boolean = false>(options?: Options<AuthenticationLogoutData, ThrowOnError>): RequestResult<AuthenticationLogoutResponses, unknown, ThrowOnError> => (options?.client ?? client).post<AuthenticationLogoutResponses, unknown, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/auth/logout',
-    ...options
-});
-
-/**
- * Get All Intakes
- */
-export const intakeGetAllIntakes = <ThrowOnError extends boolean = false>(options?: Options<IntakeGetAllIntakesData, ThrowOnError>): RequestResult<IntakeGetAllIntakesResponses, unknown, ThrowOnError> => (options?.client ?? client).get<IntakeGetAllIntakesResponses, unknown, ThrowOnError>({ url: '/api/intake/', ...options });
-
-/**
- * Create Intake
- */
-export const intakeCreateIntake = <ThrowOnError extends boolean = false>(options: Options<IntakeCreateIntakeData, ThrowOnError>): RequestResult<IntakeCreateIntakeResponses, IntakeCreateIntakeErrors, ThrowOnError> => (options.client ?? client).post<IntakeCreateIntakeResponses, IntakeCreateIntakeErrors, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/intake/',
-    ...options,
-    headers: {
-        'Content-Type': 'application/json',
-        ...options.headers
+    
+    /**
+     * Token Login
+     *
+     * Exchange an identity provider token (e.g. from phone OTP sign-in) for JWT tokens
+     */
+    public static tokenLogin<ThrowOnError extends boolean = false>(options: Options<AuthenticationTokenLoginData, ThrowOnError>): RequestResult<AuthenticationTokenLoginResponses, AuthenticationTokenLoginErrors, ThrowOnError> {
+        return (options.client ?? client).post<AuthenticationTokenLoginResponses, AuthenticationTokenLoginErrors, ThrowOnError>({
+            url: '/api/auth/token-login',
+            ...options,
+            headers: {
+                'Content-Type': 'application/json',
+                ...options.headers
+            }
+        });
     }
-});
-
-/**
- * Delete Intake
- */
-export const intakeDeleteIntake = <ThrowOnError extends boolean = false>(options: Options<IntakeDeleteIntakeData, ThrowOnError>): RequestResult<IntakeDeleteIntakeResponses, IntakeDeleteIntakeErrors, ThrowOnError> => (options.client ?? client).delete<IntakeDeleteIntakeResponses, IntakeDeleteIntakeErrors, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/intake/{year}',
-    ...options
-});
-
-/**
- * Get Intake By Year
- */
-export const intakeGetIntakeByYear = <ThrowOnError extends boolean = false>(options: Options<IntakeGetIntakeByYearData, ThrowOnError>): RequestResult<IntakeGetIntakeByYearResponses, IntakeGetIntakeByYearErrors, ThrowOnError> => (options.client ?? client).get<IntakeGetIntakeByYearResponses, IntakeGetIntakeByYearErrors, ThrowOnError>({ url: '/api/intake/{year}', ...options });
-
-/**
- * Update Intake
- */
-export const intakeUpdateIntake = <ThrowOnError extends boolean = false>(options: Options<IntakeUpdateIntakeData, ThrowOnError>): RequestResult<IntakeUpdateIntakeResponses, IntakeUpdateIntakeErrors, ThrowOnError> => (options.client ?? client).put<IntakeUpdateIntakeResponses, IntakeUpdateIntakeErrors, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/intake/{year}',
-    ...options,
-    headers: {
-        'Content-Type': 'application/json',
-        ...options.headers
+    
+    /**
+     * Forgot Password
+     *
+     * Send a password reset email
+     */
+    public static forgotPassword<ThrowOnError extends boolean = false>(options: Options<AuthenticationForgotPasswordData, ThrowOnError>): RequestResult<AuthenticationForgotPasswordResponses, AuthenticationForgotPasswordErrors, ThrowOnError> {
+        return (options.client ?? client).post<AuthenticationForgotPasswordResponses, AuthenticationForgotPasswordErrors, ThrowOnError>({
+            url: '/api/auth/forgot-password',
+            ...options,
+            headers: {
+                'Content-Type': 'application/json',
+                ...options.headers
+            }
+        });
     }
-});
-
-/**
- * Get All Semester
- */
-export const semesterGetAllSemester = <ThrowOnError extends boolean = false>(options?: Options<SemesterGetAllSemesterData, ThrowOnError>): RequestResult<SemesterGetAllSemesterResponses, unknown, ThrowOnError> => (options?.client ?? client).get<SemesterGetAllSemesterResponses, unknown, ThrowOnError>({ url: '/api/semester/', ...options });
-
-/**
- * Create Semester
- */
-export const semesterCreateSemester = <ThrowOnError extends boolean = false>(options: Options<SemesterCreateSemesterData, ThrowOnError>): RequestResult<SemesterCreateSemesterResponses, SemesterCreateSemesterErrors, ThrowOnError> => (options.client ?? client).post<SemesterCreateSemesterResponses, SemesterCreateSemesterErrors, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/semester/',
-    ...options,
-    headers: {
-        'Content-Type': 'application/json',
-        ...options.headers
+    
+    /**
+     * Refresh Token
+     *
+     * Exchange valid refresh token for new access token
+     */
+    public static refreshToken<ThrowOnError extends boolean = false>(options: Options<AuthenticationRefreshTokenData, ThrowOnError>): RequestResult<AuthenticationRefreshTokenResponses, AuthenticationRefreshTokenErrors, ThrowOnError> {
+        return (options.client ?? client).post<AuthenticationRefreshTokenResponses, AuthenticationRefreshTokenErrors, ThrowOnError>({
+            url: '/api/auth/refresh-token',
+            ...options,
+            headers: {
+                'Content-Type': 'application/json',
+                ...options.headers
+            }
+        });
     }
-});
-
-/**
- * Get Current Semester
- */
-export const semesterGetCurrentSemester = <ThrowOnError extends boolean = false>(options?: Options<SemesterGetCurrentSemesterData, ThrowOnError>): RequestResult<SemesterGetCurrentSemesterResponses, unknown, ThrowOnError> => (options?.client ?? client).get<SemesterGetCurrentSemesterResponses, unknown, ThrowOnError>({ url: '/api/semester/current', ...options });
-
-/**
- * Delete Semester
- */
-export const semesterDeleteSemester = <ThrowOnError extends boolean = false>(options: Options<SemesterDeleteSemesterData, ThrowOnError>): RequestResult<SemesterDeleteSemesterResponses, SemesterDeleteSemesterErrors, ThrowOnError> => (options.client ?? client).delete<SemesterDeleteSemesterResponses, SemesterDeleteSemesterErrors, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/semester/{sem_id}',
-    ...options
-});
-
-/**
- * Get Semester By Id
- */
-export const semesterGetSemesterById = <ThrowOnError extends boolean = false>(options: Options<SemesterGetSemesterByIdData, ThrowOnError>): RequestResult<SemesterGetSemesterByIdResponses, SemesterGetSemesterByIdErrors, ThrowOnError> => (options.client ?? client).get<SemesterGetSemesterByIdResponses, SemesterGetSemesterByIdErrors, ThrowOnError>({ url: '/api/semester/{sem_id}', ...options });
-
-/**
- * Update Semester
- */
-export const semesterUpdateSemester = <ThrowOnError extends boolean = false>(options: Options<SemesterUpdateSemesterData, ThrowOnError>): RequestResult<SemesterUpdateSemesterResponses, SemesterUpdateSemesterErrors, ThrowOnError> => (options.client ?? client).put<SemesterUpdateSemesterResponses, SemesterUpdateSemesterErrors, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/semester/{sem_id}',
-    ...options,
-    headers: {
-        'Content-Type': 'application/json',
-        ...options.headers
+    
+    /**
+     * Logout
+     *
+     * Invalidate tokens and clear refresh token
+     */
+    public static logout<ThrowOnError extends boolean = false>(options?: Options<AuthenticationLogoutData, ThrowOnError>): RequestResult<AuthenticationLogoutResponses, unknown, ThrowOnError> {
+        return (options?.client ?? client).post<AuthenticationLogoutResponses, unknown, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/auth/logout',
+            ...options
+        });
     }
-});
+}
 
-/**
- * Create Student
- */
-export const studentCreateStudent = <ThrowOnError extends boolean = false>(options: Options<StudentCreateStudentData, ThrowOnError>): RequestResult<StudentCreateStudentResponses, StudentCreateStudentErrors, ThrowOnError> => (options.client ?? client).post<StudentCreateStudentResponses, StudentCreateStudentErrors, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/student/create',
-    ...options,
-    headers: {
-        'Content-Type': 'application/json',
-        ...options.headers
+export class IntakeController {
+    /**
+     * Get All Intakes
+     */
+    public static getAllIntakes<ThrowOnError extends boolean = false>(options?: Options<IntakeGetAllIntakesData, ThrowOnError>): RequestResult<IntakeGetAllIntakesResponses, unknown, ThrowOnError> {
+        return (options?.client ?? client).get<IntakeGetAllIntakesResponses, unknown, ThrowOnError>({ url: '/api/intake/', ...options });
     }
-});
-
-/**
- * Create Student Image
- */
-export const studentCreateStudentImage = <ThrowOnError extends boolean = false>(options: Options<StudentCreateStudentImageData, ThrowOnError>): RequestResult<StudentCreateStudentImageResponses, StudentCreateStudentImageErrors, ThrowOnError> => (options.client ?? client).post<StudentCreateStudentImageResponses, StudentCreateStudentImageErrors, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/student/{student_id}/images',
-    ...options,
-    headers: {
-        'Content-Type': 'application/json',
-        ...options.headers
+    
+    /**
+     * Create Intake
+     */
+    public static createIntake<ThrowOnError extends boolean = false>(options: Options<IntakeCreateIntakeData, ThrowOnError>): RequestResult<IntakeCreateIntakeResponses, IntakeCreateIntakeErrors, ThrowOnError> {
+        return (options.client ?? client).post<IntakeCreateIntakeResponses, IntakeCreateIntakeErrors, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/intake/',
+            ...options,
+            headers: {
+                'Content-Type': 'application/json',
+                ...options.headers
+            }
+        });
     }
-});
-
-/**
- * Import Students
- */
-export const studentImportStudents = <ThrowOnError extends boolean = false>(options: Options<StudentImportStudentsData, ThrowOnError>): RequestResult<StudentImportStudentsResponses, StudentImportStudentsErrors, ThrowOnError> => (options.client ?? client).post<StudentImportStudentsResponses, StudentImportStudentsErrors, ThrowOnError>({
-    ...formDataBodySerializer,
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/student/create-from-excel',
-    ...options,
-    headers: {
-        'Content-Type': null,
-        ...options.headers
+    
+    /**
+     * Delete Intake
+     */
+    public static deleteIntake<ThrowOnError extends boolean = false>(options: Options<IntakeDeleteIntakeData, ThrowOnError>): RequestResult<IntakeDeleteIntakeResponses, IntakeDeleteIntakeErrors, ThrowOnError> {
+        return (options.client ?? client).delete<IntakeDeleteIntakeResponses, IntakeDeleteIntakeErrors, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/intake/{year}',
+            ...options
+        });
     }
-});
-
-/**
- * Get All Students
- */
-export const studentGetAllStudents = <ThrowOnError extends boolean = false>(options?: Options<StudentGetAllStudentsData, ThrowOnError>): RequestResult<StudentGetAllStudentsResponses, unknown, ThrowOnError> => (options?.client ?? client).get<StudentGetAllStudentsResponses, unknown, ThrowOnError>({ url: '/api/student/all', ...options });
-
-/**
- * Delete Student
- */
-export const studentDeleteStudent = <ThrowOnError extends boolean = false>(options: Options<StudentDeleteStudentData, ThrowOnError>): RequestResult<StudentDeleteStudentResponses, StudentDeleteStudentErrors, ThrowOnError> => (options.client ?? client).delete<StudentDeleteStudentResponses, StudentDeleteStudentErrors, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/student/{student_id}',
-    ...options
-});
-
-/**
- * Get Student By Id
- */
-export const studentGetStudentById = <ThrowOnError extends boolean = false>(options: Options<StudentGetStudentByIdData, ThrowOnError>): RequestResult<StudentGetStudentByIdResponses, StudentGetStudentByIdErrors, ThrowOnError> => (options.client ?? client).get<StudentGetStudentByIdResponses, StudentGetStudentByIdErrors, ThrowOnError>({ url: '/api/student/{student_id}', ...options });
-
-/**
- * Update Student
- */
-export const studentUpdateStudent = <ThrowOnError extends boolean = false>(options: Options<StudentUpdateStudentData, ThrowOnError>): RequestResult<StudentUpdateStudentResponses, StudentUpdateStudentErrors, ThrowOnError> => (options.client ?? client).put<StudentUpdateStudentResponses, StudentUpdateStudentErrors, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/student/{student_id}',
-    ...options,
-    headers: {
-        'Content-Type': 'application/json',
-        ...options.headers
+    
+    /**
+     * Get Intake By Year
+     */
+    public static getIntakeByYear<ThrowOnError extends boolean = false>(options: Options<IntakeGetIntakeByYearData, ThrowOnError>): RequestResult<IntakeGetIntakeByYearResponses, IntakeGetIntakeByYearErrors, ThrowOnError> {
+        return (options.client ?? client).get<IntakeGetIntakeByYearResponses, IntakeGetIntakeByYearErrors, ThrowOnError>({ url: '/api/intake/{year}', ...options });
     }
-});
-
-/**
- * Get My Modules With Attendance
- */
-export const studentGetMyModulesWithAttendance = <ThrowOnError extends boolean = false>(options?: Options<StudentGetMyModulesWithAttendanceData, ThrowOnError>): RequestResult<StudentGetMyModulesWithAttendanceResponses, unknown, ThrowOnError> => (options?.client ?? client).get<StudentGetMyModulesWithAttendanceResponses, unknown, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/student/my/modules-with-attendance',
-    ...options
-});
-
-/**
- * Get My Exam Eligibility
- */
-export const studentGetMyExamEligibility = <ThrowOnError extends boolean = false>(options?: Options<StudentGetMyExamEligibilityData, ThrowOnError>): RequestResult<StudentGetMyExamEligibilityResponses, unknown, ThrowOnError> => (options?.client ?? client).get<StudentGetMyExamEligibilityResponses, unknown, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/student/my/exam-eligibility-status',
-    ...options
-});
-
-/**
- * Get My Images
- */
-export const studentGetMyImages = <ThrowOnError extends boolean = false>(options?: Options<StudentGetMyImagesData, ThrowOnError>): RequestResult<StudentGetMyImagesResponses, unknown, ThrowOnError> => (options?.client ?? client).get<StudentGetMyImagesResponses, unknown, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/student/my/images',
-    ...options
-});
-
-/**
- * Get Student Modules With Attendance
- */
-export const studentGetStudentModulesWithAttendance = <ThrowOnError extends boolean = false>(options: Options<StudentGetStudentModulesWithAttendanceData, ThrowOnError>): RequestResult<StudentGetStudentModulesWithAttendanceResponses, StudentGetStudentModulesWithAttendanceErrors, ThrowOnError> => (options.client ?? client).get<StudentGetStudentModulesWithAttendanceResponses, StudentGetStudentModulesWithAttendanceErrors, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/student/{student_id}/modules-with-attendance',
-    ...options
-});
-
-/**
- * Get Student Exam Eligibility
- */
-export const studentGetStudentExamEligibility = <ThrowOnError extends boolean = false>(options: Options<StudentGetStudentExamEligibilityData, ThrowOnError>): RequestResult<StudentGetStudentExamEligibilityResponses, StudentGetStudentExamEligibilityErrors, ThrowOnError> => (options.client ?? client).get<StudentGetStudentExamEligibilityResponses, StudentGetStudentExamEligibilityErrors, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/student/{student_id}/exam-eligibility-status',
-    ...options
-});
-
-/**
- * Get Student Image Info
- */
-export const studentGetStudentImageInfo = <ThrowOnError extends boolean = false>(options: Options<StudentGetStudentImageInfoData, ThrowOnError>): RequestResult<StudentGetStudentImageInfoResponses, StudentGetStudentImageInfoErrors, ThrowOnError> => (options.client ?? client).get<StudentGetStudentImageInfoResponses, StudentGetStudentImageInfoErrors, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/student/{student_id}/images/{image_id}/info',
-    ...options
-});
-
-/**
- * Get All Programs
- */
-export const programGetAllPrograms = <ThrowOnError extends boolean = false>(options?: Options<ProgramGetAllProgramsData, ThrowOnError>): RequestResult<ProgramGetAllProgramsResponses, unknown, ThrowOnError> => (options?.client ?? client).get<ProgramGetAllProgramsResponses, unknown, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/program/',
-    ...options
-});
-
-/**
- * Create Program
- */
-export const programCreateProgram = <ThrowOnError extends boolean = false>(options: Options<ProgramCreateProgramData, ThrowOnError>): RequestResult<ProgramCreateProgramResponses, ProgramCreateProgramErrors, ThrowOnError> => (options.client ?? client).post<ProgramCreateProgramResponses, ProgramCreateProgramErrors, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/program/',
-    ...options,
-    headers: {
-        'Content-Type': 'application/json',
-        ...options.headers
+    
+    /**
+     * Update Intake
+     */
+    public static updateIntake<ThrowOnError extends boolean = false>(options: Options<IntakeUpdateIntakeData, ThrowOnError>): RequestResult<IntakeUpdateIntakeResponses, IntakeUpdateIntakeErrors, ThrowOnError> {
+        return (options.client ?? client).put<IntakeUpdateIntakeResponses, IntakeUpdateIntakeErrors, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/intake/{year}',
+            ...options,
+            headers: {
+                'Content-Type': 'application/json',
+                ...options.headers
+            }
+        });
     }
-});
+}
 
-/**
- * Assign Student To Program
- */
-export const programAssignStudentToProgram = <ThrowOnError extends boolean = false>(options: Options<ProgramAssignStudentToProgramData, ThrowOnError>): RequestResult<ProgramAssignStudentToProgramResponses, ProgramAssignStudentToProgramErrors, ThrowOnError> => (options.client ?? client).post<ProgramAssignStudentToProgramResponses, ProgramAssignStudentToProgramErrors, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/program/{program_id}/students/{student_id}',
-    ...options
-});
-
-/**
- * Assign Lecturer To Program
- */
-export const programAssignLecturerToProgram = <ThrowOnError extends boolean = false>(options: Options<ProgramAssignLecturerToProgramData, ThrowOnError>): RequestResult<ProgramAssignLecturerToProgramResponses, ProgramAssignLecturerToProgramErrors, ThrowOnError> => (options.client ?? client).post<ProgramAssignLecturerToProgramResponses, ProgramAssignLecturerToProgramErrors, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/program/{program_id}/lecturers/{lecturer_id}',
-    ...options
-});
-
-/**
- * Assign Module To Program
- */
-export const programAssignModuleToProgram = <ThrowOnError extends boolean = false>(options: Options<ProgramAssignModuleToProgramData, ThrowOnError>): RequestResult<ProgramAssignModuleToProgramResponses, ProgramAssignModuleToProgramErrors, ThrowOnError> => (options.client ?? client).post<ProgramAssignModuleToProgramResponses, ProgramAssignModuleToProgramErrors, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/program/{program_id}/modules/{module_id}',
-    ...options
-});
-
-/**
- * Delete Program
- */
-export const programDeleteProgram = <ThrowOnError extends boolean = false>(options: Options<ProgramDeleteProgramData, ThrowOnError>): RequestResult<ProgramDeleteProgramResponses, ProgramDeleteProgramErrors, ThrowOnError> => (options.client ?? client).delete<ProgramDeleteProgramResponses, ProgramDeleteProgramErrors, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/program/{program_id}',
-    ...options
-});
-
-/**
- * Find Program By Id
- */
-export const programFindProgramById = <ThrowOnError extends boolean = false>(options: Options<ProgramFindProgramByIdData, ThrowOnError>): RequestResult<ProgramFindProgramByIdResponses, ProgramFindProgramByIdErrors, ThrowOnError> => (options.client ?? client).get<ProgramFindProgramByIdResponses, ProgramFindProgramByIdErrors, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/program/{program_id}',
-    ...options
-});
-
-/**
- * Update Program
- */
-export const programUpdateProgram = <ThrowOnError extends boolean = false>(options: Options<ProgramUpdateProgramData, ThrowOnError>): RequestResult<ProgramUpdateProgramResponses, ProgramUpdateProgramErrors, ThrowOnError> => (options.client ?? client).put<ProgramUpdateProgramResponses, ProgramUpdateProgramErrors, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/program/{program_id}',
-    ...options,
-    headers: {
-        'Content-Type': 'application/json',
-        ...options.headers
+export class SemesterController {
+    /**
+     * Get All Semester
+     */
+    public static getAllSemester<ThrowOnError extends boolean = false>(options?: Options<SemesterGetAllSemesterData, ThrowOnError>): RequestResult<SemesterGetAllSemesterResponses, unknown, ThrowOnError> {
+        return (options?.client ?? client).get<SemesterGetAllSemesterResponses, unknown, ThrowOnError>({ url: '/api/semester/', ...options });
     }
-});
-
-/**
- * View Modules In Program
- */
-export const programViewModulesInProgram = <ThrowOnError extends boolean = false>(options: Options<ProgramViewModulesInProgramData, ThrowOnError>): RequestResult<ProgramViewModulesInProgramResponses, ProgramViewModulesInProgramErrors, ThrowOnError> => (options.client ?? client).get<ProgramViewModulesInProgramResponses, ProgramViewModulesInProgramErrors, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/program/{program_id}/modules',
-    ...options
-});
-
-/**
- * View Lecturers In Program
- */
-export const programViewLecturersInProgram = <ThrowOnError extends boolean = false>(options: Options<ProgramViewLecturersInProgramData, ThrowOnError>): RequestResult<ProgramViewLecturersInProgramResponses, ProgramViewLecturersInProgramErrors, ThrowOnError> => (options.client ?? client).get<ProgramViewLecturersInProgramResponses, ProgramViewLecturersInProgramErrors, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/program/{program_id}/lecturers',
-    ...options
-});
-
-/**
- * View Students In Program
- */
-export const programViewStudentsInProgram = <ThrowOnError extends boolean = false>(options: Options<ProgramViewStudentsInProgramData, ThrowOnError>): RequestResult<ProgramViewStudentsInProgramResponses, ProgramViewStudentsInProgramErrors, ThrowOnError> => (options.client ?? client).get<ProgramViewStudentsInProgramResponses, ProgramViewStudentsInProgramErrors, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/program/{program_id}/students',
-    ...options
-});
-
-/**
- * Create Module
- */
-export const moduleCreateModule = <ThrowOnError extends boolean = false>(options: Options<ModuleCreateModuleData, ThrowOnError>): RequestResult<ModuleCreateModuleResponses, ModuleCreateModuleErrors, ThrowOnError> => (options.client ?? client).post<ModuleCreateModuleResponses, ModuleCreateModuleErrors, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/module/create',
-    ...options,
-    headers: {
-        'Content-Type': 'application/json',
-        ...options.headers
+    
+    /**
+     * Create Semester
+     */
+    public static createSemester<ThrowOnError extends boolean = false>(options: Options<SemesterCreateSemesterData, ThrowOnError>): RequestResult<SemesterCreateSemesterResponses, SemesterCreateSemesterErrors, ThrowOnError> {
+        return (options.client ?? client).post<SemesterCreateSemesterResponses, SemesterCreateSemesterErrors, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/semester/',
+            ...options,
+            headers: {
+                'Content-Type': 'application/json',
+                ...options.headers
+            }
+        });
     }
-});
-
-/**
- * Delete Modules From Excel
- */
-export const moduleDeleteModulesFromExcel = <ThrowOnError extends boolean = false>(options: Options<ModuleDeleteModulesFromExcelData, ThrowOnError>): RequestResult<ModuleDeleteModulesFromExcelResponses, ModuleDeleteModulesFromExcelErrors, ThrowOnError> => (options.client ?? client).post<ModuleDeleteModulesFromExcelResponses, ModuleDeleteModulesFromExcelErrors, ThrowOnError>({
-    ...formDataBodySerializer,
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/module/delete-from-excel',
-    ...options,
-    headers: {
-        'Content-Type': null,
-        ...options.headers
+    
+    /**
+     * Get Current Semester
+     */
+    public static getCurrentSemester<ThrowOnError extends boolean = false>(options?: Options<SemesterGetCurrentSemesterData, ThrowOnError>): RequestResult<SemesterGetCurrentSemesterResponses, unknown, ThrowOnError> {
+        return (options?.client ?? client).get<SemesterGetCurrentSemesterResponses, unknown, ThrowOnError>({ url: '/api/semester/current', ...options });
     }
-});
-
-/**
- * Import Module
- */
-export const moduleImportModule = <ThrowOnError extends boolean = false>(options: Options<ModuleImportModuleData, ThrowOnError>): RequestResult<ModuleImportModuleResponses, ModuleImportModuleErrors, ThrowOnError> => (options.client ?? client).post<ModuleImportModuleResponses, ModuleImportModuleErrors, ThrowOnError>({
-    ...formDataBodySerializer,
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/module/create-from-excel',
-    ...options,
-    headers: {
-        'Content-Type': null,
-        ...options.headers
+    
+    /**
+     * Delete Semester
+     */
+    public static deleteSemester<ThrowOnError extends boolean = false>(options: Options<SemesterDeleteSemesterData, ThrowOnError>): RequestResult<SemesterDeleteSemesterResponses, SemesterDeleteSemesterErrors, ThrowOnError> {
+        return (options.client ?? client).delete<SemesterDeleteSemesterResponses, SemesterDeleteSemesterErrors, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/semester/{sem_id}',
+            ...options
+        });
     }
-});
-
-/**
- * View Modules
- */
-export const moduleViewModules = <ThrowOnError extends boolean = false>(options?: Options<ModuleViewModulesData, ThrowOnError>): RequestResult<ModuleViewModulesResponses, unknown, ThrowOnError> => (options?.client ?? client).get<ModuleViewModulesResponses, unknown, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/module/view',
-    ...options
-});
-
-/**
- * Get Camera Path
- */
-export const moduleGetCameraPath = <ThrowOnError extends boolean = false>(options: Options<ModuleGetCameraPathData, ThrowOnError>): RequestResult<ModuleGetCameraPathResponses, ModuleGetCameraPathErrors, ThrowOnError> => (options.client ?? client).get<ModuleGetCameraPathResponses, ModuleGetCameraPathErrors, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/module/camera-path/{module_id}',
-    ...options
-});
-
-/**
- * Set Camera Path
- */
-export const moduleSetCameraPath = <ThrowOnError extends boolean = false>(options: Options<ModuleSetCameraPathData, ThrowOnError>): RequestResult<ModuleSetCameraPathResponses, ModuleSetCameraPathErrors, ThrowOnError> => (options.client ?? client).put<ModuleSetCameraPathResponses, ModuleSetCameraPathErrors, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/module/set-camera-path/{module_id}',
-    ...options,
-    headers: {
-        'Content-Type': 'application/json',
-        ...options.headers
+    
+    /**
+     * Get Semester By Id
+     */
+    public static getSemesterById<ThrowOnError extends boolean = false>(options: Options<SemesterGetSemesterByIdData, ThrowOnError>): RequestResult<SemesterGetSemesterByIdResponses, SemesterGetSemesterByIdErrors, ThrowOnError> {
+        return (options.client ?? client).get<SemesterGetSemesterByIdResponses, SemesterGetSemesterByIdErrors, ThrowOnError>({ url: '/api/semester/{sem_id}', ...options });
     }
-});
-
-/**
- * Update Module
- */
-export const moduleUpdateModule = <ThrowOnError extends boolean = false>(options: Options<ModuleUpdateModuleData, ThrowOnError>): RequestResult<ModuleUpdateModuleResponses, ModuleUpdateModuleErrors, ThrowOnError> => (options.client ?? client).put<ModuleUpdateModuleResponses, ModuleUpdateModuleErrors, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/module/update/{module_id}',
-    ...options,
-    headers: {
-        'Content-Type': 'application/json',
-        ...options.headers
+    
+    /**
+     * Update Semester
+     */
+    public static updateSemester<ThrowOnError extends boolean = false>(options: Options<SemesterUpdateSemesterData, ThrowOnError>): RequestResult<SemesterUpdateSemesterResponses, SemesterUpdateSemesterErrors, ThrowOnError> {
+        return (options.client ?? client).put<SemesterUpdateSemesterResponses, SemesterUpdateSemesterErrors, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/semester/{sem_id}',
+            ...options,
+            headers: {
+                'Content-Type': 'application/json',
+                ...options.headers
+            }
+        });
     }
-});
+}
 
-/**
- * Delete Module
- */
-export const moduleDeleteModule = <ThrowOnError extends boolean = false>(options: Options<ModuleDeleteModuleData, ThrowOnError>): RequestResult<ModuleDeleteModuleResponses, ModuleDeleteModuleErrors, ThrowOnError> => (options.client ?? client).delete<ModuleDeleteModuleResponses, ModuleDeleteModuleErrors, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/module/delete/{module_id}',
-    ...options
-});
-
-/**
- * Get All Faculties
- */
-export const facilityFacultyGetAllFaculties = <ThrowOnError extends boolean = false>(options?: Options<FacilityFacultyGetAllFacultiesData, ThrowOnError>): RequestResult<FacilityFacultyGetAllFacultiesResponses, unknown, ThrowOnError> => (options?.client ?? client).get<FacilityFacultyGetAllFacultiesResponses, unknown, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/facility-faculty/',
-    ...options
-});
-
-/**
- * Create Faculty
- */
-export const facilityFacultyCreateFaculty = <ThrowOnError extends boolean = false>(options: Options<FacilityFacultyCreateFacultyData, ThrowOnError>): RequestResult<FacilityFacultyCreateFacultyResponses, FacilityFacultyCreateFacultyErrors, ThrowOnError> => (options.client ?? client).post<FacilityFacultyCreateFacultyResponses, FacilityFacultyCreateFacultyErrors, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/facility-faculty/',
-    ...options,
-    headers: {
-        'Content-Type': 'application/json',
-        ...options.headers
+export class StudentController {
+    /**
+     * Create Student
+     */
+    public static createStudent<ThrowOnError extends boolean = false>(options: Options<StudentCreateStudentData, ThrowOnError>): RequestResult<StudentCreateStudentResponses, StudentCreateStudentErrors, ThrowOnError> {
+        return (options.client ?? client).post<StudentCreateStudentResponses, StudentCreateStudentErrors, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/student/create',
+            ...options,
+            headers: {
+                'Content-Type': 'application/json',
+                ...options.headers
+            }
+        });
     }
-});
-
-/**
- * Delete Faculty
- */
-export const facilityFacultyDeleteFaculty = <ThrowOnError extends boolean = false>(options: Options<FacilityFacultyDeleteFacultyData, ThrowOnError>): RequestResult<FacilityFacultyDeleteFacultyResponses, FacilityFacultyDeleteFacultyErrors, ThrowOnError> => (options.client ?? client).delete<FacilityFacultyDeleteFacultyResponses, FacilityFacultyDeleteFacultyErrors, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/facility-faculty/{staff_id}',
-    ...options
-});
-
-/**
- * Get Faculty
- */
-export const facilityFacultyGetFaculty = <ThrowOnError extends boolean = false>(options: Options<FacilityFacultyGetFacultyData, ThrowOnError>): RequestResult<FacilityFacultyGetFacultyResponses, FacilityFacultyGetFacultyErrors, ThrowOnError> => (options.client ?? client).get<FacilityFacultyGetFacultyResponses, FacilityFacultyGetFacultyErrors, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/facility-faculty/{staff_id}',
-    ...options
-});
-
-/**
- * Update Faculty
- */
-export const facilityFacultyUpdateFaculty = <ThrowOnError extends boolean = false>(options: Options<FacilityFacultyUpdateFacultyData, ThrowOnError>): RequestResult<FacilityFacultyUpdateFacultyResponses, FacilityFacultyUpdateFacultyErrors, ThrowOnError> => (options.client ?? client).put<FacilityFacultyUpdateFacultyResponses, FacilityFacultyUpdateFacultyErrors, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/facility-faculty/{staff_id}',
-    ...options,
-    headers: {
-        'Content-Type': 'application/json',
-        ...options.headers
+    
+    /**
+     * Create Student Image
+     */
+    public static createStudentImage<ThrowOnError extends boolean = false>(options: Options<StudentCreateStudentImageData, ThrowOnError>): RequestResult<StudentCreateStudentImageResponses, StudentCreateStudentImageErrors, ThrowOnError> {
+        return (options.client ?? client).post<StudentCreateStudentImageResponses, StudentCreateStudentImageErrors, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/student/{student_id}/images',
+            ...options,
+            headers: {
+                'Content-Type': 'application/json',
+                ...options.headers
+            }
+        });
     }
-});
-
-/**
- * Get All Lecturers
- */
-export const lecturerGetAllLecturers = <ThrowOnError extends boolean = false>(options?: Options<LecturerGetAllLecturersData, ThrowOnError>): RequestResult<LecturerGetAllLecturersResponses, unknown, ThrowOnError> => (options?.client ?? client).get<LecturerGetAllLecturersResponses, unknown, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/lecturer/',
-    ...options
-});
-
-/**
- * Create Lecturer
- */
-export const lecturerCreateLecturer = <ThrowOnError extends boolean = false>(options: Options<LecturerCreateLecturerData, ThrowOnError>): RequestResult<LecturerCreateLecturerResponses, LecturerCreateLecturerErrors, ThrowOnError> => (options.client ?? client).post<LecturerCreateLecturerResponses, LecturerCreateLecturerErrors, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/lecturer/',
-    ...options,
-    headers: {
-        'Content-Type': 'application/json',
-        ...options.headers
+    
+    /**
+     * Import Students
+     */
+    public static importStudents<ThrowOnError extends boolean = false>(options: Options<StudentImportStudentsData, ThrowOnError>): RequestResult<StudentImportStudentsResponses, StudentImportStudentsErrors, ThrowOnError> {
+        return (options.client ?? client).post<StudentImportStudentsResponses, StudentImportStudentsErrors, ThrowOnError>({
+            ...formDataBodySerializer,
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/student/create-from-excel',
+            ...options,
+            headers: {
+                'Content-Type': null,
+                ...options.headers
+            }
+        });
     }
-});
-
-/**
- * Import Lecturers
- */
-export const lecturerImportLecturers = <ThrowOnError extends boolean = false>(options: Options<LecturerImportLecturersData, ThrowOnError>): RequestResult<LecturerImportLecturersResponses, LecturerImportLecturersErrors, ThrowOnError> => (options.client ?? client).post<LecturerImportLecturersResponses, LecturerImportLecturersErrors, ThrowOnError>({
-    ...formDataBodySerializer,
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/lecturer/create-from-excel',
-    ...options,
-    headers: {
-        'Content-Type': null,
-        ...options.headers
+    
+    /**
+     * Get All Students
+     */
+    public static getAllStudents<ThrowOnError extends boolean = false>(options?: Options<StudentGetAllStudentsData, ThrowOnError>): RequestResult<StudentGetAllStudentsResponses, unknown, ThrowOnError> {
+        return (options?.client ?? client).get<StudentGetAllStudentsResponses, unknown, ThrowOnError>({ url: '/api/student/all', ...options });
     }
-});
-
-/**
- * Delete Lecturer
- */
-export const lecturerDeleteLecturer = <ThrowOnError extends boolean = false>(options: Options<LecturerDeleteLecturerData, ThrowOnError>): RequestResult<LecturerDeleteLecturerResponses, LecturerDeleteLecturerErrors, ThrowOnError> => (options.client ?? client).delete<LecturerDeleteLecturerResponses, LecturerDeleteLecturerErrors, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/lecturer/{lecturer_id}',
-    ...options
-});
-
-/**
- * Get Lecturer By Id
- */
-export const lecturerGetLecturerById = <ThrowOnError extends boolean = false>(options: Options<LecturerGetLecturerByIdData, ThrowOnError>): RequestResult<LecturerGetLecturerByIdResponses, LecturerGetLecturerByIdErrors, ThrowOnError> => (options.client ?? client).get<LecturerGetLecturerByIdResponses, LecturerGetLecturerByIdErrors, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/lecturer/{lecturer_id}',
-    ...options
-});
-
-/**
- * Update Lecturer
- */
-export const lecturerUpdateLecturer = <ThrowOnError extends boolean = false>(options: Options<LecturerUpdateLecturerData, ThrowOnError>): RequestResult<LecturerUpdateLecturerResponses, LecturerUpdateLecturerErrors, ThrowOnError> => (options.client ?? client).put<LecturerUpdateLecturerResponses, LecturerUpdateLecturerErrors, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/lecturer/{lecturer_id}',
-    ...options,
-    headers: {
-        'Content-Type': 'application/json',
-        ...options.headers
+    
+    /**
+     * Delete Student
+     */
+    public static deleteStudent<ThrowOnError extends boolean = false>(options: Options<StudentDeleteStudentData, ThrowOnError>): RequestResult<StudentDeleteStudentResponses, StudentDeleteStudentErrors, ThrowOnError> {
+        return (options.client ?? client).delete<StudentDeleteStudentResponses, StudentDeleteStudentErrors, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/student/{student_id}',
+            ...options
+        });
     }
-});
-
-/**
- * Get All Module Registrations
- */
-export const moduleRegistrationsGetAllModuleRegistrations = <ThrowOnError extends boolean = false>(options?: Options<ModuleRegistrationsGetAllModuleRegistrationsData, ThrowOnError>): RequestResult<ModuleRegistrationsGetAllModuleRegistrationsResponses, unknown, ThrowOnError> => (options?.client ?? client).get<ModuleRegistrationsGetAllModuleRegistrationsResponses, unknown, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/module-registrations/',
-    ...options
-});
-
-/**
- * Create Module Registration
- */
-export const moduleRegistrationsCreateModuleRegistration = <ThrowOnError extends boolean = false>(options: Options<ModuleRegistrationsCreateModuleRegistrationData, ThrowOnError>): RequestResult<ModuleRegistrationsCreateModuleRegistrationResponses, ModuleRegistrationsCreateModuleRegistrationErrors, ThrowOnError> => (options.client ?? client).post<ModuleRegistrationsCreateModuleRegistrationResponses, ModuleRegistrationsCreateModuleRegistrationErrors, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/module-registrations/',
-    ...options,
-    headers: {
-        'Content-Type': 'application/json',
-        ...options.headers
+    
+    /**
+     * Get Student By Id
+     */
+    public static getStudentById<ThrowOnError extends boolean = false>(options: Options<StudentGetStudentByIdData, ThrowOnError>): RequestResult<StudentGetStudentByIdResponses, StudentGetStudentByIdErrors, ThrowOnError> {
+        return (options.client ?? client).get<StudentGetStudentByIdResponses, StudentGetStudentByIdErrors, ThrowOnError>({ url: '/api/student/{student_id}', ...options });
     }
-});
-
-/**
- * Import Module Registrations
- */
-export const moduleRegistrationsImportModuleRegistrations = <ThrowOnError extends boolean = false>(options: Options<ModuleRegistrationsImportModuleRegistrationsData, ThrowOnError>): RequestResult<ModuleRegistrationsImportModuleRegistrationsResponses, ModuleRegistrationsImportModuleRegistrationsErrors, ThrowOnError> => (options.client ?? client).post<ModuleRegistrationsImportModuleRegistrationsResponses, ModuleRegistrationsImportModuleRegistrationsErrors, ThrowOnError>({
-    ...formDataBodySerializer,
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/module-registrations/create-from-excel',
-    ...options,
-    headers: {
-        'Content-Type': null,
-        ...options.headers
+    
+    /**
+     * Update Student
+     */
+    public static updateStudent<ThrowOnError extends boolean = false>(options: Options<StudentUpdateStudentData, ThrowOnError>): RequestResult<StudentUpdateStudentResponses, StudentUpdateStudentErrors, ThrowOnError> {
+        return (options.client ?? client).put<StudentUpdateStudentResponses, StudentUpdateStudentErrors, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/student/{student_id}',
+            ...options,
+            headers: {
+                'Content-Type': 'application/json',
+                ...options.headers
+            }
+        });
     }
-});
-
-/**
- * Get By Student
- */
-export const moduleRegistrationsGetByStudent = <ThrowOnError extends boolean = false>(options: Options<ModuleRegistrationsGetByStudentData, ThrowOnError>): RequestResult<ModuleRegistrationsGetByStudentResponses, ModuleRegistrationsGetByStudentErrors, ThrowOnError> => (options.client ?? client).get<ModuleRegistrationsGetByStudentResponses, ModuleRegistrationsGetByStudentErrors, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/module-registrations/student/{student_id}',
-    ...options
-});
-
-/**
- * Get By Module
- */
-export const moduleRegistrationsGetByModule = <ThrowOnError extends boolean = false>(options: Options<ModuleRegistrationsGetByModuleData, ThrowOnError>): RequestResult<ModuleRegistrationsGetByModuleResponses, ModuleRegistrationsGetByModuleErrors, ThrowOnError> => (options.client ?? client).get<ModuleRegistrationsGetByModuleResponses, ModuleRegistrationsGetByModuleErrors, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/module-registrations/module/{module_id}',
-    ...options
-});
-
-/**
- * Get By Lecturer
- */
-export const moduleRegistrationsGetByLecturer = <ThrowOnError extends boolean = false>(options: Options<ModuleRegistrationsGetByLecturerData, ThrowOnError>): RequestResult<ModuleRegistrationsGetByLecturerResponses, ModuleRegistrationsGetByLecturerErrors, ThrowOnError> => (options.client ?? client).get<ModuleRegistrationsGetByLecturerResponses, ModuleRegistrationsGetByLecturerErrors, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/module-registrations/lecturer/{lecturer_id}',
-    ...options
-});
-
-/**
- * Get My Modules Lecturer Only
- */
-export const moduleRegistrationsGetMyModulesLecturerOnly = <ThrowOnError extends boolean = false>(options?: Options<ModuleRegistrationsGetMyModulesLecturerOnlyData, ThrowOnError>): RequestResult<ModuleRegistrationsGetMyModulesLecturerOnlyResponses, unknown, ThrowOnError> => (options?.client ?? client).get<ModuleRegistrationsGetMyModulesLecturerOnlyResponses, unknown, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/module-registrations/my-modules',
-    ...options
-});
-
-/**
- * Get My Registrations Student Only
- */
-export const moduleRegistrationsGetMyRegistrationsStudentOnly = <ThrowOnError extends boolean = false>(options?: Options<ModuleRegistrationsGetMyRegistrationsStudentOnlyData, ThrowOnError>): RequestResult<ModuleRegistrationsGetMyRegistrationsStudentOnlyResponses, unknown, ThrowOnError> => (options?.client ?? client).get<ModuleRegistrationsGetMyRegistrationsStudentOnlyResponses, unknown, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/module-registrations/my-registrations',
-    ...options
-});
-
-/**
- * Get All Modules With Attendance
- */
-export const moduleRegistrationsGetAllModulesWithAttendance = <ThrowOnError extends boolean = false>(options?: Options<ModuleRegistrationsGetAllModulesWithAttendanceData, ThrowOnError>): RequestResult<ModuleRegistrationsGetAllModulesWithAttendanceResponses, unknown, ThrowOnError> => (options?.client ?? client).get<ModuleRegistrationsGetAllModulesWithAttendanceResponses, unknown, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/module-registrations/all-modules-with-attendance',
-    ...options
-});
-
-/**
- * Get My Modules Students Attendance Lecturer Only
- */
-export const moduleRegistrationsGetMyModulesStudentsAttendanceLecturerOnly = <ThrowOnError extends boolean = false>(options?: Options<ModuleRegistrationsGetMyModulesStudentsAttendanceLecturerOnlyData, ThrowOnError>): RequestResult<ModuleRegistrationsGetMyModulesStudentsAttendanceLecturerOnlyResponses, ModuleRegistrationsGetMyModulesStudentsAttendanceLecturerOnlyErrors, ThrowOnError> => (options?.client ?? client).get<ModuleRegistrationsGetMyModulesStudentsAttendanceLecturerOnlyResponses, ModuleRegistrationsGetMyModulesStudentsAttendanceLecturerOnlyErrors, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/module-registrations/my-modules/students-attendance',
-    ...options
-});
-
-/**
- * Delete Module Registration
- */
-export const moduleRegistrationsDeleteModuleRegistration = <ThrowOnError extends boolean = false>(options: Options<ModuleRegistrationsDeleteModuleRegistrationData, ThrowOnError>): RequestResult<ModuleRegistrationsDeleteModuleRegistrationResponses, ModuleRegistrationsDeleteModuleRegistrationErrors, ThrowOnError> => (options.client ?? client).delete<ModuleRegistrationsDeleteModuleRegistrationResponses, ModuleRegistrationsDeleteModuleRegistrationErrors, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/module-registrations/{module_reg_id}',
-    ...options
-});
-
-/**
- * Get Module Registration By Id
- */
-export const moduleRegistrationsGetModuleRegistrationById = <ThrowOnError extends boolean = false>(options: Options<ModuleRegistrationsGetModuleRegistrationByIdData, ThrowOnError>): RequestResult<ModuleRegistrationsGetModuleRegistrationByIdResponses, ModuleRegistrationsGetModuleRegistrationByIdErrors, ThrowOnError> => (options.client ?? client).get<ModuleRegistrationsGetModuleRegistrationByIdResponses, ModuleRegistrationsGetModuleRegistrationByIdErrors, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/module-registrations/{module_reg_id}',
-    ...options
-});
-
-/**
- * Update Module Registration
- */
-export const moduleRegistrationsUpdateModuleRegistration = <ThrowOnError extends boolean = false>(options: Options<ModuleRegistrationsUpdateModuleRegistrationData, ThrowOnError>): RequestResult<ModuleRegistrationsUpdateModuleRegistrationResponses, ModuleRegistrationsUpdateModuleRegistrationErrors, ThrowOnError> => (options.client ?? client).put<ModuleRegistrationsUpdateModuleRegistrationResponses, ModuleRegistrationsUpdateModuleRegistrationErrors, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/module-registrations/{module_reg_id}',
-    ...options,
-    headers: {
-        'Content-Type': 'application/json',
-        ...options.headers
+    
+    /**
+     * Get My Modules With Attendance
+     */
+    public static getMyModulesWithAttendance<ThrowOnError extends boolean = false>(options?: Options<StudentGetMyModulesWithAttendanceData, ThrowOnError>): RequestResult<StudentGetMyModulesWithAttendanceResponses, unknown, ThrowOnError> {
+        return (options?.client ?? client).get<StudentGetMyModulesWithAttendanceResponses, unknown, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/student/my/modules-with-attendance',
+            ...options
+        });
     }
-});
-
-/**
- * Get All Notifications
- */
-export const notificationGetAllNotifications = <ThrowOnError extends boolean = false>(options?: Options<NotificationGetAllNotificationsData, ThrowOnError>): RequestResult<NotificationGetAllNotificationsResponses, NotificationGetAllNotificationsErrors, ThrowOnError> => (options?.client ?? client).get<NotificationGetAllNotificationsResponses, NotificationGetAllNotificationsErrors, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/notification/',
-    ...options
-});
-
-/**
- * Get Unread Count
- */
-export const notificationGetUnreadCount = <ThrowOnError extends boolean = false>(options?: Options<NotificationGetUnreadCountData, ThrowOnError>): RequestResult<NotificationGetUnreadCountResponses, unknown, ThrowOnError> => (options?.client ?? client).get<NotificationGetUnreadCountResponses, unknown, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/notification/unread-count',
-    ...options
-});
-
-/**
- * Mark Notification As Read
- */
-export const notificationMarkNotificationAsRead = <ThrowOnError extends boolean = false>(options: Options<NotificationMarkNotificationAsReadData, ThrowOnError>): RequestResult<NotificationMarkNotificationAsReadResponses, NotificationMarkNotificationAsReadErrors, ThrowOnError> => (options.client ?? client).put<NotificationMarkNotificationAsReadResponses, NotificationMarkNotificationAsReadErrors, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/notification/{notification_id}/read',
-    ...options
-});
-
-/**
- * Mark All Notifications As Read
- */
-export const notificationMarkAllNotificationsAsRead = <ThrowOnError extends boolean = false>(options?: Options<NotificationMarkAllNotificationsAsReadData, ThrowOnError>): RequestResult<NotificationMarkAllNotificationsAsReadResponses, unknown, ThrowOnError> => (options?.client ?? client).put<NotificationMarkAllNotificationsAsReadResponses, unknown, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/notification/mark-all-read',
-    ...options
-});
-
-/**
- * Delete Notification
- */
-export const notificationDeleteNotification = <ThrowOnError extends boolean = false>(options: Options<NotificationDeleteNotificationData, ThrowOnError>): RequestResult<NotificationDeleteNotificationResponses, NotificationDeleteNotificationErrors, ThrowOnError> => (options.client ?? client).delete<NotificationDeleteNotificationResponses, NotificationDeleteNotificationErrors, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/notification/{notification_id}',
-    ...options
-});
-
-/**
- * Dashboard Stats
- */
-export const dashboardDashboardStats = <ThrowOnError extends boolean = false>(options?: Options<DashboardDashboardStatsData, ThrowOnError>): RequestResult<DashboardDashboardStatsResponses, unknown, ThrowOnError> => (options?.client ?? client).get<DashboardDashboardStatsResponses, unknown, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/dashboard/stats',
-    ...options
-});
-
-/**
- * Submit Attendance
- */
-export const attendanceSubmitAttendance = <ThrowOnError extends boolean = false>(options: Options<AttendanceSubmitAttendanceData, ThrowOnError>): RequestResult<AttendanceSubmitAttendanceResponses, AttendanceSubmitAttendanceErrors, ThrowOnError> => (options.client ?? client).post<AttendanceSubmitAttendanceResponses, AttendanceSubmitAttendanceErrors, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/attendance/create',
-    ...options,
-    headers: {
-        'Content-Type': 'application/json',
-        ...options.headers
+    
+    /**
+     * Get My Exam Eligibility
+     */
+    public static getMyExamEligibility<ThrowOnError extends boolean = false>(options?: Options<StudentGetMyExamEligibilityData, ThrowOnError>): RequestResult<StudentGetMyExamEligibilityResponses, unknown, ThrowOnError> {
+        return (options?.client ?? client).get<StudentGetMyExamEligibilityResponses, unknown, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/student/my/exam-eligibility-status',
+            ...options
+        });
     }
-});
-
-/**
- * Request Correction
- */
-export const attendanceRequestCorrection = <ThrowOnError extends boolean = false>(options: Options<AttendanceRequestCorrectionData, ThrowOnError>): RequestResult<AttendanceRequestCorrectionResponses, AttendanceRequestCorrectionErrors, ThrowOnError> => (options.client ?? client).post<AttendanceRequestCorrectionResponses, AttendanceRequestCorrectionErrors, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/attendance/request-correction',
-    ...options,
-    headers: {
-        'Content-Type': 'application/json',
-        ...options.headers
+    
+    /**
+     * Get My Images
+     */
+    public static getMyImages<ThrowOnError extends boolean = false>(options?: Options<StudentGetMyImagesData, ThrowOnError>): RequestResult<StudentGetMyImagesResponses, unknown, ThrowOnError> {
+        return (options?.client ?? client).get<StudentGetMyImagesResponses, unknown, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/student/my/images',
+            ...options
+        });
     }
-});
-
-/**
- * Import Attendance From Excel
- */
-export const attendanceImportAttendanceFromExcel = <ThrowOnError extends boolean = false>(options: Options<AttendanceImportAttendanceFromExcelData, ThrowOnError>): RequestResult<AttendanceImportAttendanceFromExcelResponses, AttendanceImportAttendanceFromExcelErrors, ThrowOnError> => (options.client ?? client).post<AttendanceImportAttendanceFromExcelResponses, AttendanceImportAttendanceFromExcelErrors, ThrowOnError>({
-    ...formDataBodySerializer,
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/attendance/create-from-excel',
-    ...options,
-    headers: {
-        'Content-Type': null,
-        ...options.headers
+    
+    /**
+     * Get Student Modules With Attendance
+     */
+    public static getStudentModulesWithAttendance<ThrowOnError extends boolean = false>(options: Options<StudentGetStudentModulesWithAttendanceData, ThrowOnError>): RequestResult<StudentGetStudentModulesWithAttendanceResponses, StudentGetStudentModulesWithAttendanceErrors, ThrowOnError> {
+        return (options.client ?? client).get<StudentGetStudentModulesWithAttendanceResponses, StudentGetStudentModulesWithAttendanceErrors, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/student/{student_id}/modules-with-attendance',
+            ...options
+        });
     }
-});
-
-/**
- * Update Exam Eligibility For Module
- */
-export const attendanceUpdateExamEligibilityForModule = <ThrowOnError extends boolean = false>(options: Options<AttendanceUpdateExamEligibilityForModuleData, ThrowOnError>): RequestResult<AttendanceUpdateExamEligibilityForModuleResponses, AttendanceUpdateExamEligibilityForModuleErrors, ThrowOnError> => (options.client ?? client).post<AttendanceUpdateExamEligibilityForModuleResponses, AttendanceUpdateExamEligibilityForModuleErrors, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/attendance/exam-eligibility/module/{module_id}',
-    ...options
-});
-
-/**
- * Update Exam Eligibility For All Modules
- */
-export const attendanceUpdateExamEligibilityForAllModules = <ThrowOnError extends boolean = false>(options?: Options<AttendanceUpdateExamEligibilityForAllModulesData, ThrowOnError>): RequestResult<AttendanceUpdateExamEligibilityForAllModulesResponses, unknown, ThrowOnError> => (options?.client ?? client).post<AttendanceUpdateExamEligibilityForAllModulesResponses, unknown, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/attendance/exam-eligibility/update-all-modules',
-    ...options
-});
-
-/**
- * Update Exam Eligibility For Lecturer
- */
-export const attendanceUpdateExamEligibilityForLecturer = <ThrowOnError extends boolean = false>(options: Options<AttendanceUpdateExamEligibilityForLecturerData, ThrowOnError>): RequestResult<AttendanceUpdateExamEligibilityForLecturerResponses, AttendanceUpdateExamEligibilityForLecturerErrors, ThrowOnError> => (options.client ?? client).post<AttendanceUpdateExamEligibilityForLecturerResponses, AttendanceUpdateExamEligibilityForLecturerErrors, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/attendance/exam-eligibility/lecturer/{lecturer_id}/update',
-    ...options
-});
-
-/**
- * Export Exam Eligibility For Lecturer
- */
-export const attendanceExportExamEligibilityForLecturer = <ThrowOnError extends boolean = false>(options: Options<AttendanceExportExamEligibilityForLecturerData, ThrowOnError>): RequestResult<AttendanceExportExamEligibilityForLecturerResponses, AttendanceExportExamEligibilityForLecturerErrors, ThrowOnError> => (options.client ?? client).post<AttendanceExportExamEligibilityForLecturerResponses, AttendanceExportExamEligibilityForLecturerErrors, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/attendance/exam-eligibility/lecturer/{lecturer_id}/export',
-    ...options
-});
-
-/**
- * Export Exam Eligibility
- */
-export const attendanceExportExamEligibility = <ThrowOnError extends boolean = false>(options?: Options<AttendanceExportExamEligibilityData, ThrowOnError>): RequestResult<AttendanceExportExamEligibilityResponses, unknown, ThrowOnError> => (options?.client ?? client).post<AttendanceExportExamEligibilityResponses, unknown, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/attendance/exam-eligibility/export',
-    ...options
-});
-
-/**
- * View Attendance
- */
-export const attendanceViewAttendance = <ThrowOnError extends boolean = false>(options?: Options<AttendanceViewAttendanceData, ThrowOnError>): RequestResult<AttendanceViewAttendanceResponses, AttendanceViewAttendanceErrors, ThrowOnError> => (options?.client ?? client).get<AttendanceViewAttendanceResponses, AttendanceViewAttendanceErrors, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/attendance/view',
-    ...options
-});
-
-/**
- * Get Attendance Requests
- */
-export const attendanceGetAttendanceRequests = <ThrowOnError extends boolean = false>(options?: Options<AttendanceGetAttendanceRequestsData, ThrowOnError>): RequestResult<AttendanceGetAttendanceRequestsResponses, AttendanceGetAttendanceRequestsErrors, ThrowOnError> => (options?.client ?? client).get<AttendanceGetAttendanceRequestsResponses, AttendanceGetAttendanceRequestsErrors, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/attendance/requests',
-    ...options
-});
-
-/**
- * Get Requests By Student
- */
-export const attendanceGetRequestsByStudent = <ThrowOnError extends boolean = false>(options: Options<AttendanceGetRequestsByStudentData, ThrowOnError>): RequestResult<AttendanceGetRequestsByStudentResponses, AttendanceGetRequestsByStudentErrors, ThrowOnError> => (options.client ?? client).get<AttendanceGetRequestsByStudentResponses, AttendanceGetRequestsByStudentErrors, ThrowOnError>({ url: '/api/attendance/requests/student/{student_id}', ...options });
-
-/**
- * Get Requests By Module
- */
-export const attendanceGetRequestsByModule = <ThrowOnError extends boolean = false>(options: Options<AttendanceGetRequestsByModuleData, ThrowOnError>): RequestResult<AttendanceGetRequestsByModuleResponses, AttendanceGetRequestsByModuleErrors, ThrowOnError> => (options.client ?? client).get<AttendanceGetRequestsByModuleResponses, AttendanceGetRequestsByModuleErrors, ThrowOnError>({ url: '/api/attendance/requests/module/{module_id}', ...options });
-
-/**
- * Get Exam Eligibility
- */
-export const attendanceGetExamEligibility = <ThrowOnError extends boolean = false>(options?: Options<AttendanceGetExamEligibilityData, ThrowOnError>): RequestResult<AttendanceGetExamEligibilityResponses, AttendanceGetExamEligibilityErrors, ThrowOnError> => (options?.client ?? client).get<AttendanceGetExamEligibilityResponses, AttendanceGetExamEligibilityErrors, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/attendance/exam-eligibility',
-    ...options
-});
-
-/**
- * Check Exam Eligibility
- */
-export const attendanceCheckExamEligibility = <ThrowOnError extends boolean = false>(options: Options<AttendanceCheckExamEligibilityData, ThrowOnError>): RequestResult<AttendanceCheckExamEligibilityResponses, AttendanceCheckExamEligibilityErrors, ThrowOnError> => (options.client ?? client).get<AttendanceCheckExamEligibilityResponses, AttendanceCheckExamEligibilityErrors, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/attendance/exam-eligibility/check',
-    ...options
-});
-
-/**
- * Handle Correction
- */
-export const attendanceHandleCorrection = <ThrowOnError extends boolean = false>(options: Options<AttendanceHandleCorrectionData, ThrowOnError>): RequestResult<AttendanceHandleCorrectionResponses, AttendanceHandleCorrectionErrors, ThrowOnError> => (options.client ?? client).put<AttendanceHandleCorrectionResponses, AttendanceHandleCorrectionErrors, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/attendance/correction/{request_id}',
-    ...options,
-    headers: {
-        'Content-Type': 'application/json',
-        ...options.headers
+    
+    /**
+     * Get Student Exam Eligibility
+     */
+    public static getStudentExamEligibility<ThrowOnError extends boolean = false>(options: Options<StudentGetStudentExamEligibilityData, ThrowOnError>): RequestResult<StudentGetStudentExamEligibilityResponses, StudentGetStudentExamEligibilityErrors, ThrowOnError> {
+        return (options.client ?? client).get<StudentGetStudentExamEligibilityResponses, StudentGetStudentExamEligibilityErrors, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/student/{student_id}/exam-eligibility-status',
+            ...options
+        });
     }
-});
-
-/**
- * Delete Attendance
- */
-export const attendanceDeleteAttendance = <ThrowOnError extends boolean = false>(options: Options<AttendanceDeleteAttendanceData, ThrowOnError>): RequestResult<AttendanceDeleteAttendanceResponses, AttendanceDeleteAttendanceErrors, ThrowOnError> => (options.client ?? client).delete<AttendanceDeleteAttendanceResponses, AttendanceDeleteAttendanceErrors, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/attendance/{attendance_id}',
-    ...options
-});
-
-/**
- * Update Attendance
- */
-export const attendanceUpdateAttendance = <ThrowOnError extends boolean = false>(options: Options<AttendanceUpdateAttendanceData, ThrowOnError>): RequestResult<AttendanceUpdateAttendanceResponses, AttendanceUpdateAttendanceErrors, ThrowOnError> => (options.client ?? client).put<AttendanceUpdateAttendanceResponses, AttendanceUpdateAttendanceErrors, ThrowOnError>({
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/api/attendance/{attendance_id}',
-    ...options,
-    headers: {
-        'Content-Type': 'application/json',
-        ...options.headers
+    
+    /**
+     * Get Student Image Info
+     */
+    public static getStudentImageInfo<ThrowOnError extends boolean = false>(options: Options<StudentGetStudentImageInfoData, ThrowOnError>): RequestResult<StudentGetStudentImageInfoResponses, StudentGetStudentImageInfoErrors, ThrowOnError> {
+        return (options.client ?? client).get<StudentGetStudentImageInfoResponses, StudentGetStudentImageInfoErrors, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/student/{student_id}/images/{image_id}/info',
+            ...options
+        });
     }
-});
+}
 
-/**
- * Delete Attendance Request
- */
-export const attendanceDeleteAttendanceRequest = <ThrowOnError extends boolean = false>(options: Options<AttendanceDeleteAttendanceRequestData, ThrowOnError>): RequestResult<AttendanceDeleteAttendanceRequestResponses, AttendanceDeleteAttendanceRequestErrors, ThrowOnError> => (options.client ?? client).delete<AttendanceDeleteAttendanceRequestResponses, AttendanceDeleteAttendanceRequestErrors, ThrowOnError>({ url: '/api/attendance/requests/{request_id}', ...options });
+export class ProgramController {
+    /**
+     * Get All Programs
+     */
+    public static getAllPrograms<ThrowOnError extends boolean = false>(options?: Options<ProgramGetAllProgramsData, ThrowOnError>): RequestResult<ProgramGetAllProgramsResponses, unknown, ThrowOnError> {
+        return (options?.client ?? client).get<ProgramGetAllProgramsResponses, unknown, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/program/',
+            ...options
+        });
+    }
+    
+    /**
+     * Create Program
+     */
+    public static createProgram<ThrowOnError extends boolean = false>(options: Options<ProgramCreateProgramData, ThrowOnError>): RequestResult<ProgramCreateProgramResponses, ProgramCreateProgramErrors, ThrowOnError> {
+        return (options.client ?? client).post<ProgramCreateProgramResponses, ProgramCreateProgramErrors, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/program/',
+            ...options,
+            headers: {
+                'Content-Type': 'application/json',
+                ...options.headers
+            }
+        });
+    }
+    
+    /**
+     * Assign Student To Program
+     */
+    public static assignStudentToProgram<ThrowOnError extends boolean = false>(options: Options<ProgramAssignStudentToProgramData, ThrowOnError>): RequestResult<ProgramAssignStudentToProgramResponses, ProgramAssignStudentToProgramErrors, ThrowOnError> {
+        return (options.client ?? client).post<ProgramAssignStudentToProgramResponses, ProgramAssignStudentToProgramErrors, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/program/{program_id}/students/{student_id}',
+            ...options
+        });
+    }
+    
+    /**
+     * Assign Lecturer To Program
+     */
+    public static assignLecturerToProgram<ThrowOnError extends boolean = false>(options: Options<ProgramAssignLecturerToProgramData, ThrowOnError>): RequestResult<ProgramAssignLecturerToProgramResponses, ProgramAssignLecturerToProgramErrors, ThrowOnError> {
+        return (options.client ?? client).post<ProgramAssignLecturerToProgramResponses, ProgramAssignLecturerToProgramErrors, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/program/{program_id}/lecturers/{lecturer_id}',
+            ...options
+        });
+    }
+    
+    /**
+     * Assign Module To Program
+     */
+    public static assignModuleToProgram<ThrowOnError extends boolean = false>(options: Options<ProgramAssignModuleToProgramData, ThrowOnError>): RequestResult<ProgramAssignModuleToProgramResponses, ProgramAssignModuleToProgramErrors, ThrowOnError> {
+        return (options.client ?? client).post<ProgramAssignModuleToProgramResponses, ProgramAssignModuleToProgramErrors, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/program/{program_id}/modules/{module_id}',
+            ...options
+        });
+    }
+    
+    /**
+     * Delete Program
+     */
+    public static deleteProgram<ThrowOnError extends boolean = false>(options: Options<ProgramDeleteProgramData, ThrowOnError>): RequestResult<ProgramDeleteProgramResponses, ProgramDeleteProgramErrors, ThrowOnError> {
+        return (options.client ?? client).delete<ProgramDeleteProgramResponses, ProgramDeleteProgramErrors, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/program/{program_id}',
+            ...options
+        });
+    }
+    
+    /**
+     * Find Program By Id
+     */
+    public static findProgramById<ThrowOnError extends boolean = false>(options: Options<ProgramFindProgramByIdData, ThrowOnError>): RequestResult<ProgramFindProgramByIdResponses, ProgramFindProgramByIdErrors, ThrowOnError> {
+        return (options.client ?? client).get<ProgramFindProgramByIdResponses, ProgramFindProgramByIdErrors, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/program/{program_id}',
+            ...options
+        });
+    }
+    
+    /**
+     * Update Program
+     */
+    public static updateProgram<ThrowOnError extends boolean = false>(options: Options<ProgramUpdateProgramData, ThrowOnError>): RequestResult<ProgramUpdateProgramResponses, ProgramUpdateProgramErrors, ThrowOnError> {
+        return (options.client ?? client).put<ProgramUpdateProgramResponses, ProgramUpdateProgramErrors, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/program/{program_id}',
+            ...options,
+            headers: {
+                'Content-Type': 'application/json',
+                ...options.headers
+            }
+        });
+    }
+    
+    /**
+     * View Modules In Program
+     */
+    public static viewModulesInProgram<ThrowOnError extends boolean = false>(options: Options<ProgramViewModulesInProgramData, ThrowOnError>): RequestResult<ProgramViewModulesInProgramResponses, ProgramViewModulesInProgramErrors, ThrowOnError> {
+        return (options.client ?? client).get<ProgramViewModulesInProgramResponses, ProgramViewModulesInProgramErrors, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/program/{program_id}/modules',
+            ...options
+        });
+    }
+    
+    /**
+     * View Lecturers In Program
+     */
+    public static viewLecturersInProgram<ThrowOnError extends boolean = false>(options: Options<ProgramViewLecturersInProgramData, ThrowOnError>): RequestResult<ProgramViewLecturersInProgramResponses, ProgramViewLecturersInProgramErrors, ThrowOnError> {
+        return (options.client ?? client).get<ProgramViewLecturersInProgramResponses, ProgramViewLecturersInProgramErrors, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/program/{program_id}/lecturers',
+            ...options
+        });
+    }
+    
+    /**
+     * View Students In Program
+     */
+    public static viewStudentsInProgram<ThrowOnError extends boolean = false>(options: Options<ProgramViewStudentsInProgramData, ThrowOnError>): RequestResult<ProgramViewStudentsInProgramResponses, ProgramViewStudentsInProgramErrors, ThrowOnError> {
+        return (options.client ?? client).get<ProgramViewStudentsInProgramResponses, ProgramViewStudentsInProgramErrors, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/program/{program_id}/students',
+            ...options
+        });
+    }
+}
 
-/**
- * Root
- */
-export const root = <ThrowOnError extends boolean = false>(options?: Options<RootData, ThrowOnError>): RequestResult<RootResponses, unknown, ThrowOnError> => (options?.client ?? client).get<RootResponses, unknown, ThrowOnError>({ url: '/api', ...options });
+export class ModuleController {
+    /**
+     * Create Module
+     */
+    public static createModule<ThrowOnError extends boolean = false>(options: Options<ModuleCreateModuleData, ThrowOnError>): RequestResult<ModuleCreateModuleResponses, ModuleCreateModuleErrors, ThrowOnError> {
+        return (options.client ?? client).post<ModuleCreateModuleResponses, ModuleCreateModuleErrors, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/module/create',
+            ...options,
+            headers: {
+                'Content-Type': 'application/json',
+                ...options.headers
+            }
+        });
+    }
+    
+    /**
+     * Delete Modules From Excel
+     */
+    public static deleteModulesFromExcel<ThrowOnError extends boolean = false>(options: Options<ModuleDeleteModulesFromExcelData, ThrowOnError>): RequestResult<ModuleDeleteModulesFromExcelResponses, ModuleDeleteModulesFromExcelErrors, ThrowOnError> {
+        return (options.client ?? client).post<ModuleDeleteModulesFromExcelResponses, ModuleDeleteModulesFromExcelErrors, ThrowOnError>({
+            ...formDataBodySerializer,
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/module/delete-from-excel',
+            ...options,
+            headers: {
+                'Content-Type': null,
+                ...options.headers
+            }
+        });
+    }
+    
+    /**
+     * Import Module
+     */
+    public static importModule<ThrowOnError extends boolean = false>(options: Options<ModuleImportModuleData, ThrowOnError>): RequestResult<ModuleImportModuleResponses, ModuleImportModuleErrors, ThrowOnError> {
+        return (options.client ?? client).post<ModuleImportModuleResponses, ModuleImportModuleErrors, ThrowOnError>({
+            ...formDataBodySerializer,
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/module/create-from-excel',
+            ...options,
+            headers: {
+                'Content-Type': null,
+                ...options.headers
+            }
+        });
+    }
+    
+    /**
+     * View Modules
+     */
+    public static viewModules<ThrowOnError extends boolean = false>(options?: Options<ModuleViewModulesData, ThrowOnError>): RequestResult<ModuleViewModulesResponses, unknown, ThrowOnError> {
+        return (options?.client ?? client).get<ModuleViewModulesResponses, unknown, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/module/view',
+            ...options
+        });
+    }
+    
+    /**
+     * Get Camera Path
+     */
+    public static getCameraPath<ThrowOnError extends boolean = false>(options: Options<ModuleGetCameraPathData, ThrowOnError>): RequestResult<ModuleGetCameraPathResponses, ModuleGetCameraPathErrors, ThrowOnError> {
+        return (options.client ?? client).get<ModuleGetCameraPathResponses, ModuleGetCameraPathErrors, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/module/camera-path/{module_id}',
+            ...options
+        });
+    }
+    
+    /**
+     * Set Camera Path
+     */
+    public static setCameraPath<ThrowOnError extends boolean = false>(options: Options<ModuleSetCameraPathData, ThrowOnError>): RequestResult<ModuleSetCameraPathResponses, ModuleSetCameraPathErrors, ThrowOnError> {
+        return (options.client ?? client).put<ModuleSetCameraPathResponses, ModuleSetCameraPathErrors, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/module/set-camera-path/{module_id}',
+            ...options,
+            headers: {
+                'Content-Type': 'application/json',
+                ...options.headers
+            }
+        });
+    }
+    
+    /**
+     * Update Module
+     */
+    public static updateModule<ThrowOnError extends boolean = false>(options: Options<ModuleUpdateModuleData, ThrowOnError>): RequestResult<ModuleUpdateModuleResponses, ModuleUpdateModuleErrors, ThrowOnError> {
+        return (options.client ?? client).put<ModuleUpdateModuleResponses, ModuleUpdateModuleErrors, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/module/update/{module_id}',
+            ...options,
+            headers: {
+                'Content-Type': 'application/json',
+                ...options.headers
+            }
+        });
+    }
+    
+    /**
+     * Delete Module
+     */
+    public static deleteModule<ThrowOnError extends boolean = false>(options: Options<ModuleDeleteModuleData, ThrowOnError>): RequestResult<ModuleDeleteModuleResponses, ModuleDeleteModuleErrors, ThrowOnError> {
+        return (options.client ?? client).delete<ModuleDeleteModuleResponses, ModuleDeleteModuleErrors, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/module/delete/{module_id}',
+            ...options
+        });
+    }
+}
+
+export class FacilityFacultyController {
+    /**
+     * Get All Faculties
+     */
+    public static getAllFaculties<ThrowOnError extends boolean = false>(options?: Options<FacilityFacultyGetAllFacultiesData, ThrowOnError>): RequestResult<FacilityFacultyGetAllFacultiesResponses, unknown, ThrowOnError> {
+        return (options?.client ?? client).get<FacilityFacultyGetAllFacultiesResponses, unknown, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/facility-faculty/',
+            ...options
+        });
+    }
+    
+    /**
+     * Create Faculty
+     */
+    public static createFaculty<ThrowOnError extends boolean = false>(options: Options<FacilityFacultyCreateFacultyData, ThrowOnError>): RequestResult<FacilityFacultyCreateFacultyResponses, FacilityFacultyCreateFacultyErrors, ThrowOnError> {
+        return (options.client ?? client).post<FacilityFacultyCreateFacultyResponses, FacilityFacultyCreateFacultyErrors, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/facility-faculty/',
+            ...options,
+            headers: {
+                'Content-Type': 'application/json',
+                ...options.headers
+            }
+        });
+    }
+    
+    /**
+     * Delete Faculty
+     */
+    public static deleteFaculty<ThrowOnError extends boolean = false>(options: Options<FacilityFacultyDeleteFacultyData, ThrowOnError>): RequestResult<FacilityFacultyDeleteFacultyResponses, FacilityFacultyDeleteFacultyErrors, ThrowOnError> {
+        return (options.client ?? client).delete<FacilityFacultyDeleteFacultyResponses, FacilityFacultyDeleteFacultyErrors, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/facility-faculty/{staff_id}',
+            ...options
+        });
+    }
+    
+    /**
+     * Get Faculty
+     */
+    public static getFaculty<ThrowOnError extends boolean = false>(options: Options<FacilityFacultyGetFacultyData, ThrowOnError>): RequestResult<FacilityFacultyGetFacultyResponses, FacilityFacultyGetFacultyErrors, ThrowOnError> {
+        return (options.client ?? client).get<FacilityFacultyGetFacultyResponses, FacilityFacultyGetFacultyErrors, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/facility-faculty/{staff_id}',
+            ...options
+        });
+    }
+    
+    /**
+     * Update Faculty
+     */
+    public static updateFaculty<ThrowOnError extends boolean = false>(options: Options<FacilityFacultyUpdateFacultyData, ThrowOnError>): RequestResult<FacilityFacultyUpdateFacultyResponses, FacilityFacultyUpdateFacultyErrors, ThrowOnError> {
+        return (options.client ?? client).put<FacilityFacultyUpdateFacultyResponses, FacilityFacultyUpdateFacultyErrors, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/facility-faculty/{staff_id}',
+            ...options,
+            headers: {
+                'Content-Type': 'application/json',
+                ...options.headers
+            }
+        });
+    }
+}
+
+export class LecturerController {
+    /**
+     * Get All Lecturers
+     */
+    public static getAllLecturers<ThrowOnError extends boolean = false>(options?: Options<LecturerGetAllLecturersData, ThrowOnError>): RequestResult<LecturerGetAllLecturersResponses, unknown, ThrowOnError> {
+        return (options?.client ?? client).get<LecturerGetAllLecturersResponses, unknown, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/lecturer/',
+            ...options
+        });
+    }
+    
+    /**
+     * Create Lecturer
+     */
+    public static createLecturer<ThrowOnError extends boolean = false>(options: Options<LecturerCreateLecturerData, ThrowOnError>): RequestResult<LecturerCreateLecturerResponses, LecturerCreateLecturerErrors, ThrowOnError> {
+        return (options.client ?? client).post<LecturerCreateLecturerResponses, LecturerCreateLecturerErrors, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/lecturer/',
+            ...options,
+            headers: {
+                'Content-Type': 'application/json',
+                ...options.headers
+            }
+        });
+    }
+    
+    /**
+     * Import Lecturers
+     */
+    public static importLecturers<ThrowOnError extends boolean = false>(options: Options<LecturerImportLecturersData, ThrowOnError>): RequestResult<LecturerImportLecturersResponses, LecturerImportLecturersErrors, ThrowOnError> {
+        return (options.client ?? client).post<LecturerImportLecturersResponses, LecturerImportLecturersErrors, ThrowOnError>({
+            ...formDataBodySerializer,
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/lecturer/create-from-excel',
+            ...options,
+            headers: {
+                'Content-Type': null,
+                ...options.headers
+            }
+        });
+    }
+    
+    /**
+     * Delete Lecturer
+     */
+    public static deleteLecturer<ThrowOnError extends boolean = false>(options: Options<LecturerDeleteLecturerData, ThrowOnError>): RequestResult<LecturerDeleteLecturerResponses, LecturerDeleteLecturerErrors, ThrowOnError> {
+        return (options.client ?? client).delete<LecturerDeleteLecturerResponses, LecturerDeleteLecturerErrors, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/lecturer/{lecturer_id}',
+            ...options
+        });
+    }
+    
+    /**
+     * Get Lecturer By Id
+     */
+    public static getLecturerById<ThrowOnError extends boolean = false>(options: Options<LecturerGetLecturerByIdData, ThrowOnError>): RequestResult<LecturerGetLecturerByIdResponses, LecturerGetLecturerByIdErrors, ThrowOnError> {
+        return (options.client ?? client).get<LecturerGetLecturerByIdResponses, LecturerGetLecturerByIdErrors, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/lecturer/{lecturer_id}',
+            ...options
+        });
+    }
+    
+    /**
+     * Update Lecturer
+     */
+    public static updateLecturer<ThrowOnError extends boolean = false>(options: Options<LecturerUpdateLecturerData, ThrowOnError>): RequestResult<LecturerUpdateLecturerResponses, LecturerUpdateLecturerErrors, ThrowOnError> {
+        return (options.client ?? client).put<LecturerUpdateLecturerResponses, LecturerUpdateLecturerErrors, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/lecturer/{lecturer_id}',
+            ...options,
+            headers: {
+                'Content-Type': 'application/json',
+                ...options.headers
+            }
+        });
+    }
+}
+
+export class ModuleRegistrationsController {
+    /**
+     * Get All Module Registrations
+     */
+    public static getAllModuleRegistrations<ThrowOnError extends boolean = false>(options?: Options<ModuleRegistrationsGetAllModuleRegistrationsData, ThrowOnError>): RequestResult<ModuleRegistrationsGetAllModuleRegistrationsResponses, unknown, ThrowOnError> {
+        return (options?.client ?? client).get<ModuleRegistrationsGetAllModuleRegistrationsResponses, unknown, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/module-registrations/',
+            ...options
+        });
+    }
+    
+    /**
+     * Create Module Registration
+     */
+    public static createModuleRegistration<ThrowOnError extends boolean = false>(options: Options<ModuleRegistrationsCreateModuleRegistrationData, ThrowOnError>): RequestResult<ModuleRegistrationsCreateModuleRegistrationResponses, ModuleRegistrationsCreateModuleRegistrationErrors, ThrowOnError> {
+        return (options.client ?? client).post<ModuleRegistrationsCreateModuleRegistrationResponses, ModuleRegistrationsCreateModuleRegistrationErrors, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/module-registrations/',
+            ...options,
+            headers: {
+                'Content-Type': 'application/json',
+                ...options.headers
+            }
+        });
+    }
+    
+    /**
+     * Import Module Registrations
+     */
+    public static importModuleRegistrations<ThrowOnError extends boolean = false>(options: Options<ModuleRegistrationsImportModuleRegistrationsData, ThrowOnError>): RequestResult<ModuleRegistrationsImportModuleRegistrationsResponses, ModuleRegistrationsImportModuleRegistrationsErrors, ThrowOnError> {
+        return (options.client ?? client).post<ModuleRegistrationsImportModuleRegistrationsResponses, ModuleRegistrationsImportModuleRegistrationsErrors, ThrowOnError>({
+            ...formDataBodySerializer,
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/module-registrations/create-from-excel',
+            ...options,
+            headers: {
+                'Content-Type': null,
+                ...options.headers
+            }
+        });
+    }
+    
+    /**
+     * Get By Student
+     */
+    public static getByStudent<ThrowOnError extends boolean = false>(options: Options<ModuleRegistrationsGetByStudentData, ThrowOnError>): RequestResult<ModuleRegistrationsGetByStudentResponses, ModuleRegistrationsGetByStudentErrors, ThrowOnError> {
+        return (options.client ?? client).get<ModuleRegistrationsGetByStudentResponses, ModuleRegistrationsGetByStudentErrors, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/module-registrations/student/{student_id}',
+            ...options
+        });
+    }
+    
+    /**
+     * Get By Module
+     */
+    public static getByModule<ThrowOnError extends boolean = false>(options: Options<ModuleRegistrationsGetByModuleData, ThrowOnError>): RequestResult<ModuleRegistrationsGetByModuleResponses, ModuleRegistrationsGetByModuleErrors, ThrowOnError> {
+        return (options.client ?? client).get<ModuleRegistrationsGetByModuleResponses, ModuleRegistrationsGetByModuleErrors, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/module-registrations/module/{module_id}',
+            ...options
+        });
+    }
+    
+    /**
+     * Get By Lecturer
+     */
+    public static getByLecturer<ThrowOnError extends boolean = false>(options: Options<ModuleRegistrationsGetByLecturerData, ThrowOnError>): RequestResult<ModuleRegistrationsGetByLecturerResponses, ModuleRegistrationsGetByLecturerErrors, ThrowOnError> {
+        return (options.client ?? client).get<ModuleRegistrationsGetByLecturerResponses, ModuleRegistrationsGetByLecturerErrors, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/module-registrations/lecturer/{lecturer_id}',
+            ...options
+        });
+    }
+    
+    /**
+     * Get My Modules Lecturer Only
+     */
+    public static getMyModulesLecturerOnly<ThrowOnError extends boolean = false>(options?: Options<ModuleRegistrationsGetMyModulesLecturerOnlyData, ThrowOnError>): RequestResult<ModuleRegistrationsGetMyModulesLecturerOnlyResponses, unknown, ThrowOnError> {
+        return (options?.client ?? client).get<ModuleRegistrationsGetMyModulesLecturerOnlyResponses, unknown, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/module-registrations/my-modules',
+            ...options
+        });
+    }
+    
+    /**
+     * Get My Registrations Student Only
+     */
+    public static getMyRegistrationsStudentOnly<ThrowOnError extends boolean = false>(options?: Options<ModuleRegistrationsGetMyRegistrationsStudentOnlyData, ThrowOnError>): RequestResult<ModuleRegistrationsGetMyRegistrationsStudentOnlyResponses, unknown, ThrowOnError> {
+        return (options?.client ?? client).get<ModuleRegistrationsGetMyRegistrationsStudentOnlyResponses, unknown, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/module-registrations/my-registrations',
+            ...options
+        });
+    }
+    
+    /**
+     * Get All Modules With Attendance
+     */
+    public static getAllModulesWithAttendance<ThrowOnError extends boolean = false>(options?: Options<ModuleRegistrationsGetAllModulesWithAttendanceData, ThrowOnError>): RequestResult<ModuleRegistrationsGetAllModulesWithAttendanceResponses, unknown, ThrowOnError> {
+        return (options?.client ?? client).get<ModuleRegistrationsGetAllModulesWithAttendanceResponses, unknown, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/module-registrations/all-modules-with-attendance',
+            ...options
+        });
+    }
+    
+    /**
+     * Get My Modules Students Attendance Lecturer Only
+     */
+    public static getMyModulesStudentsAttendanceLecturerOnly<ThrowOnError extends boolean = false>(options?: Options<ModuleRegistrationsGetMyModulesStudentsAttendanceLecturerOnlyData, ThrowOnError>): RequestResult<ModuleRegistrationsGetMyModulesStudentsAttendanceLecturerOnlyResponses, ModuleRegistrationsGetMyModulesStudentsAttendanceLecturerOnlyErrors, ThrowOnError> {
+        return (options?.client ?? client).get<ModuleRegistrationsGetMyModulesStudentsAttendanceLecturerOnlyResponses, ModuleRegistrationsGetMyModulesStudentsAttendanceLecturerOnlyErrors, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/module-registrations/my-modules/students-attendance',
+            ...options
+        });
+    }
+    
+    /**
+     * Delete Module Registration
+     */
+    public static deleteModuleRegistration<ThrowOnError extends boolean = false>(options: Options<ModuleRegistrationsDeleteModuleRegistrationData, ThrowOnError>): RequestResult<ModuleRegistrationsDeleteModuleRegistrationResponses, ModuleRegistrationsDeleteModuleRegistrationErrors, ThrowOnError> {
+        return (options.client ?? client).delete<ModuleRegistrationsDeleteModuleRegistrationResponses, ModuleRegistrationsDeleteModuleRegistrationErrors, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/module-registrations/{module_reg_id}',
+            ...options
+        });
+    }
+    
+    /**
+     * Get Module Registration By Id
+     */
+    public static getModuleRegistrationById<ThrowOnError extends boolean = false>(options: Options<ModuleRegistrationsGetModuleRegistrationByIdData, ThrowOnError>): RequestResult<ModuleRegistrationsGetModuleRegistrationByIdResponses, ModuleRegistrationsGetModuleRegistrationByIdErrors, ThrowOnError> {
+        return (options.client ?? client).get<ModuleRegistrationsGetModuleRegistrationByIdResponses, ModuleRegistrationsGetModuleRegistrationByIdErrors, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/module-registrations/{module_reg_id}',
+            ...options
+        });
+    }
+    
+    /**
+     * Update Module Registration
+     */
+    public static updateModuleRegistration<ThrowOnError extends boolean = false>(options: Options<ModuleRegistrationsUpdateModuleRegistrationData, ThrowOnError>): RequestResult<ModuleRegistrationsUpdateModuleRegistrationResponses, ModuleRegistrationsUpdateModuleRegistrationErrors, ThrowOnError> {
+        return (options.client ?? client).put<ModuleRegistrationsUpdateModuleRegistrationResponses, ModuleRegistrationsUpdateModuleRegistrationErrors, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/module-registrations/{module_reg_id}',
+            ...options,
+            headers: {
+                'Content-Type': 'application/json',
+                ...options.headers
+            }
+        });
+    }
+}
+
+export class NotificationController {
+    /**
+     * Get All Notifications
+     */
+    public static getAllNotifications<ThrowOnError extends boolean = false>(options?: Options<NotificationGetAllNotificationsData, ThrowOnError>): RequestResult<NotificationGetAllNotificationsResponses, NotificationGetAllNotificationsErrors, ThrowOnError> {
+        return (options?.client ?? client).get<NotificationGetAllNotificationsResponses, NotificationGetAllNotificationsErrors, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/notification/',
+            ...options
+        });
+    }
+    
+    /**
+     * Get Unread Count
+     */
+    public static getUnreadCount<ThrowOnError extends boolean = false>(options?: Options<NotificationGetUnreadCountData, ThrowOnError>): RequestResult<NotificationGetUnreadCountResponses, unknown, ThrowOnError> {
+        return (options?.client ?? client).get<NotificationGetUnreadCountResponses, unknown, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/notification/unread-count',
+            ...options
+        });
+    }
+    
+    /**
+     * Mark Notification As Read
+     */
+    public static markNotificationAsRead<ThrowOnError extends boolean = false>(options: Options<NotificationMarkNotificationAsReadData, ThrowOnError>): RequestResult<NotificationMarkNotificationAsReadResponses, NotificationMarkNotificationAsReadErrors, ThrowOnError> {
+        return (options.client ?? client).put<NotificationMarkNotificationAsReadResponses, NotificationMarkNotificationAsReadErrors, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/notification/{notification_id}/read',
+            ...options
+        });
+    }
+    
+    /**
+     * Mark All Notifications As Read
+     */
+    public static markAllNotificationsAsRead<ThrowOnError extends boolean = false>(options?: Options<NotificationMarkAllNotificationsAsReadData, ThrowOnError>): RequestResult<NotificationMarkAllNotificationsAsReadResponses, unknown, ThrowOnError> {
+        return (options?.client ?? client).put<NotificationMarkAllNotificationsAsReadResponses, unknown, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/notification/mark-all-read',
+            ...options
+        });
+    }
+    
+    /**
+     * Delete Notification
+     */
+    public static deleteNotification<ThrowOnError extends boolean = false>(options: Options<NotificationDeleteNotificationData, ThrowOnError>): RequestResult<NotificationDeleteNotificationResponses, NotificationDeleteNotificationErrors, ThrowOnError> {
+        return (options.client ?? client).delete<NotificationDeleteNotificationResponses, NotificationDeleteNotificationErrors, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/notification/{notification_id}',
+            ...options
+        });
+    }
+}
+
+export class DashboardController {
+    /**
+     * Dashboard Stats
+     */
+    public static dashboardStats<ThrowOnError extends boolean = false>(options?: Options<DashboardDashboardStatsData, ThrowOnError>): RequestResult<DashboardDashboardStatsResponses, unknown, ThrowOnError> {
+        return (options?.client ?? client).get<DashboardDashboardStatsResponses, unknown, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/dashboard/stats',
+            ...options
+        });
+    }
+}
+
+export class AttendanceController {
+    /**
+     * Submit Attendance
+     */
+    public static submitAttendance<ThrowOnError extends boolean = false>(options: Options<AttendanceSubmitAttendanceData, ThrowOnError>): RequestResult<AttendanceSubmitAttendanceResponses, AttendanceSubmitAttendanceErrors, ThrowOnError> {
+        return (options.client ?? client).post<AttendanceSubmitAttendanceResponses, AttendanceSubmitAttendanceErrors, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/attendance/create',
+            ...options,
+            headers: {
+                'Content-Type': 'application/json',
+                ...options.headers
+            }
+        });
+    }
+    
+    /**
+     * Request Correction
+     */
+    public static requestCorrection<ThrowOnError extends boolean = false>(options: Options<AttendanceRequestCorrectionData, ThrowOnError>): RequestResult<AttendanceRequestCorrectionResponses, AttendanceRequestCorrectionErrors, ThrowOnError> {
+        return (options.client ?? client).post<AttendanceRequestCorrectionResponses, AttendanceRequestCorrectionErrors, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/attendance/request-correction',
+            ...options,
+            headers: {
+                'Content-Type': 'application/json',
+                ...options.headers
+            }
+        });
+    }
+    
+    /**
+     * Import Attendance From Excel
+     */
+    public static importAttendanceFromExcel<ThrowOnError extends boolean = false>(options: Options<AttendanceImportAttendanceFromExcelData, ThrowOnError>): RequestResult<AttendanceImportAttendanceFromExcelResponses, AttendanceImportAttendanceFromExcelErrors, ThrowOnError> {
+        return (options.client ?? client).post<AttendanceImportAttendanceFromExcelResponses, AttendanceImportAttendanceFromExcelErrors, ThrowOnError>({
+            ...formDataBodySerializer,
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/attendance/create-from-excel',
+            ...options,
+            headers: {
+                'Content-Type': null,
+                ...options.headers
+            }
+        });
+    }
+    
+    /**
+     * Update Exam Eligibility For Module
+     */
+    public static updateExamEligibilityForModule<ThrowOnError extends boolean = false>(options: Options<AttendanceUpdateExamEligibilityForModuleData, ThrowOnError>): RequestResult<AttendanceUpdateExamEligibilityForModuleResponses, AttendanceUpdateExamEligibilityForModuleErrors, ThrowOnError> {
+        return (options.client ?? client).post<AttendanceUpdateExamEligibilityForModuleResponses, AttendanceUpdateExamEligibilityForModuleErrors, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/attendance/exam-eligibility/module/{module_id}',
+            ...options
+        });
+    }
+    
+    /**
+     * Update Exam Eligibility For All Modules
+     */
+    public static updateExamEligibilityForAllModules<ThrowOnError extends boolean = false>(options?: Options<AttendanceUpdateExamEligibilityForAllModulesData, ThrowOnError>): RequestResult<AttendanceUpdateExamEligibilityForAllModulesResponses, unknown, ThrowOnError> {
+        return (options?.client ?? client).post<AttendanceUpdateExamEligibilityForAllModulesResponses, unknown, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/attendance/exam-eligibility/update-all-modules',
+            ...options
+        });
+    }
+    
+    /**
+     * Update Exam Eligibility For Lecturer
+     */
+    public static updateExamEligibilityForLecturer<ThrowOnError extends boolean = false>(options: Options<AttendanceUpdateExamEligibilityForLecturerData, ThrowOnError>): RequestResult<AttendanceUpdateExamEligibilityForLecturerResponses, AttendanceUpdateExamEligibilityForLecturerErrors, ThrowOnError> {
+        return (options.client ?? client).post<AttendanceUpdateExamEligibilityForLecturerResponses, AttendanceUpdateExamEligibilityForLecturerErrors, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/attendance/exam-eligibility/lecturer/{lecturer_id}/update',
+            ...options
+        });
+    }
+    
+    /**
+     * Export Exam Eligibility For Lecturer
+     */
+    public static exportExamEligibilityForLecturer<ThrowOnError extends boolean = false>(options: Options<AttendanceExportExamEligibilityForLecturerData, ThrowOnError>): RequestResult<AttendanceExportExamEligibilityForLecturerResponses, AttendanceExportExamEligibilityForLecturerErrors, ThrowOnError> {
+        return (options.client ?? client).post<AttendanceExportExamEligibilityForLecturerResponses, AttendanceExportExamEligibilityForLecturerErrors, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/attendance/exam-eligibility/lecturer/{lecturer_id}/export',
+            ...options
+        });
+    }
+    
+    /**
+     * Export Exam Eligibility
+     */
+    public static exportExamEligibility<ThrowOnError extends boolean = false>(options?: Options<AttendanceExportExamEligibilityData, ThrowOnError>): RequestResult<AttendanceExportExamEligibilityResponses, unknown, ThrowOnError> {
+        return (options?.client ?? client).post<AttendanceExportExamEligibilityResponses, unknown, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/attendance/exam-eligibility/export',
+            ...options
+        });
+    }
+    
+    /**
+     * View Attendance
+     */
+    public static viewAttendance<ThrowOnError extends boolean = false>(options?: Options<AttendanceViewAttendanceData, ThrowOnError>): RequestResult<AttendanceViewAttendanceResponses, AttendanceViewAttendanceErrors, ThrowOnError> {
+        return (options?.client ?? client).get<AttendanceViewAttendanceResponses, AttendanceViewAttendanceErrors, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/attendance/view',
+            ...options
+        });
+    }
+    
+    /**
+     * Get Attendance Requests
+     */
+    public static getAttendanceRequests<ThrowOnError extends boolean = false>(options?: Options<AttendanceGetAttendanceRequestsData, ThrowOnError>): RequestResult<AttendanceGetAttendanceRequestsResponses, AttendanceGetAttendanceRequestsErrors, ThrowOnError> {
+        return (options?.client ?? client).get<AttendanceGetAttendanceRequestsResponses, AttendanceGetAttendanceRequestsErrors, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/attendance/requests',
+            ...options
+        });
+    }
+    
+    /**
+     * Get Requests By Student
+     */
+    public static getRequestsByStudent<ThrowOnError extends boolean = false>(options: Options<AttendanceGetRequestsByStudentData, ThrowOnError>): RequestResult<AttendanceGetRequestsByStudentResponses, AttendanceGetRequestsByStudentErrors, ThrowOnError> {
+        return (options.client ?? client).get<AttendanceGetRequestsByStudentResponses, AttendanceGetRequestsByStudentErrors, ThrowOnError>({ url: '/api/attendance/requests/student/{student_id}', ...options });
+    }
+    
+    /**
+     * Get Requests By Module
+     */
+    public static getRequestsByModule<ThrowOnError extends boolean = false>(options: Options<AttendanceGetRequestsByModuleData, ThrowOnError>): RequestResult<AttendanceGetRequestsByModuleResponses, AttendanceGetRequestsByModuleErrors, ThrowOnError> {
+        return (options.client ?? client).get<AttendanceGetRequestsByModuleResponses, AttendanceGetRequestsByModuleErrors, ThrowOnError>({ url: '/api/attendance/requests/module/{module_id}', ...options });
+    }
+    
+    /**
+     * Get Exam Eligibility
+     */
+    public static getExamEligibility<ThrowOnError extends boolean = false>(options?: Options<AttendanceGetExamEligibilityData, ThrowOnError>): RequestResult<AttendanceGetExamEligibilityResponses, AttendanceGetExamEligibilityErrors, ThrowOnError> {
+        return (options?.client ?? client).get<AttendanceGetExamEligibilityResponses, AttendanceGetExamEligibilityErrors, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/attendance/exam-eligibility',
+            ...options
+        });
+    }
+    
+    /**
+     * Check Exam Eligibility
+     */
+    public static checkExamEligibility<ThrowOnError extends boolean = false>(options: Options<AttendanceCheckExamEligibilityData, ThrowOnError>): RequestResult<AttendanceCheckExamEligibilityResponses, AttendanceCheckExamEligibilityErrors, ThrowOnError> {
+        return (options.client ?? client).get<AttendanceCheckExamEligibilityResponses, AttendanceCheckExamEligibilityErrors, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/attendance/exam-eligibility/check',
+            ...options
+        });
+    }
+    
+    /**
+     * Handle Correction
+     */
+    public static handleCorrection<ThrowOnError extends boolean = false>(options: Options<AttendanceHandleCorrectionData, ThrowOnError>): RequestResult<AttendanceHandleCorrectionResponses, AttendanceHandleCorrectionErrors, ThrowOnError> {
+        return (options.client ?? client).put<AttendanceHandleCorrectionResponses, AttendanceHandleCorrectionErrors, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/attendance/correction/{request_id}',
+            ...options,
+            headers: {
+                'Content-Type': 'application/json',
+                ...options.headers
+            }
+        });
+    }
+    
+    /**
+     * Delete Attendance
+     */
+    public static deleteAttendance<ThrowOnError extends boolean = false>(options: Options<AttendanceDeleteAttendanceData, ThrowOnError>): RequestResult<AttendanceDeleteAttendanceResponses, AttendanceDeleteAttendanceErrors, ThrowOnError> {
+        return (options.client ?? client).delete<AttendanceDeleteAttendanceResponses, AttendanceDeleteAttendanceErrors, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/attendance/{attendance_id}',
+            ...options
+        });
+    }
+    
+    /**
+     * Update Attendance
+     */
+    public static updateAttendance<ThrowOnError extends boolean = false>(options: Options<AttendanceUpdateAttendanceData, ThrowOnError>): RequestResult<AttendanceUpdateAttendanceResponses, AttendanceUpdateAttendanceErrors, ThrowOnError> {
+        return (options.client ?? client).put<AttendanceUpdateAttendanceResponses, AttendanceUpdateAttendanceErrors, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/attendance/{attendance_id}',
+            ...options,
+            headers: {
+                'Content-Type': 'application/json',
+                ...options.headers
+            }
+        });
+    }
+    
+    /**
+     * Delete Attendance Request
+     */
+    public static deleteAttendanceRequest<ThrowOnError extends boolean = false>(options: Options<AttendanceDeleteAttendanceRequestData, ThrowOnError>): RequestResult<AttendanceDeleteAttendanceRequestResponses, AttendanceDeleteAttendanceRequestErrors, ThrowOnError> {
+        return (options.client ?? client).delete<AttendanceDeleteAttendanceRequestResponses, AttendanceDeleteAttendanceRequestErrors, ThrowOnError>({ url: '/api/attendance/requests/{request_id}', ...options });
+    }
+}
+
+export class ApiController {
+    /**
+     * Root
+     */
+    public static root<ThrowOnError extends boolean = false>(options?: Options<ApiRootData, ThrowOnError>): RequestResult<ApiRootResponses, unknown, ThrowOnError> {
+        return (options?.client ?? client).get<ApiRootResponses, unknown, ThrowOnError>({ url: '/api', ...options });
+    }
+}

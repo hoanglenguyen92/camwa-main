@@ -11,7 +11,7 @@
           "Account"
         ],
         "summary": "Create User",
-        "operationId": "account_create_user",
+        "operationId": "Account.create_user",
         "requestBody": {
           "content": {
             "application/json": {
@@ -57,12 +57,12 @@
           "Account"
         ],
         "summary": "Import Students",
-        "operationId": "account_import_students",
+        "operationId": "Account.import_students",
         "requestBody": {
           "content": {
             "multipart/form-data": {
               "schema": {
-                "$ref": "#/components/schemas/Body_account_import_students"
+                "$ref": "#/components/schemas/fastapi___compat__v2__Body_Account__import_students"
               }
             }
           },
@@ -103,12 +103,12 @@
           "Account"
         ],
         "summary": "Import Lecturers",
-        "operationId": "account_import_lecturers",
+        "operationId": "Account.import_lecturers",
         "requestBody": {
           "content": {
             "multipart/form-data": {
               "schema": {
-                "$ref": "#/components/schemas/Body_account_import_lecturers"
+                "$ref": "#/components/schemas/fastapi___compat__v2__Body_Account__import_lecturers"
               }
             }
           },
@@ -149,7 +149,7 @@
           "Account"
         ],
         "summary": "Get All Users",
-        "operationId": "account_get_all_users",
+        "operationId": "Account.get_all_users",
         "responses": {
           "200": {
             "description": "Successful Response",
@@ -175,7 +175,7 @@
           "Account"
         ],
         "summary": "Get User By Id",
-        "operationId": "account_get_user_by_id",
+        "operationId": "Account.get_user_by_id",
         "security": [
           {
             "HTTPBearer": []
@@ -220,7 +220,7 @@
           "Account"
         ],
         "summary": "Update User",
-        "operationId": "account_update_user",
+        "operationId": "Account.update_user",
         "security": [
           {
             "HTTPBearer": []
@@ -275,7 +275,7 @@
           "Account"
         ],
         "summary": "Delete User",
-        "operationId": "account_delete_user",
+        "operationId": "Account.delete_user",
         "security": [
           {
             "HTTPBearer": []
@@ -320,7 +320,7 @@
           "Account"
         ],
         "summary": "Change Password",
-        "operationId": "account_change_password",
+        "operationId": "Account.change_password",
         "security": [
           {
             "HTTPBearer": []
@@ -378,7 +378,7 @@
         ],
         "summary": "Login",
         "description": "Authenticate user and return JWT tokens",
-        "operationId": "authentication_login",
+        "operationId": "Authentication.login",
         "requestBody": {
           "content": {
             "application/json": {
@@ -420,7 +420,7 @@
         ],
         "summary": "Token Login",
         "description": "Exchange an identity provider token (e.g. from phone OTP sign-in) for JWT tokens",
-        "operationId": "authentication_token_login",
+        "operationId": "Authentication.token_login",
         "requestBody": {
           "content": {
             "application/json": {
@@ -462,7 +462,7 @@
         ],
         "summary": "Forgot Password",
         "description": "Send a password reset email",
-        "operationId": "authentication_forgot_password",
+        "operationId": "Authentication.forgot_password",
         "requestBody": {
           "content": {
             "application/json": {
@@ -504,7 +504,7 @@
         ],
         "summary": "Refresh Token",
         "description": "Exchange valid refresh token for new access token",
-        "operationId": "authentication_refresh_token",
+        "operationId": "Authentication.refresh_token",
         "requestBody": {
           "content": {
             "application/json": {
@@ -546,7 +546,7 @@
         ],
         "summary": "Logout",
         "description": "Invalidate tokens and clear refresh token",
-        "operationId": "authentication_logout",
+        "operationId": "Authentication.logout",
         "responses": {
           "200": {
             "description": "Successful Response",
@@ -572,7 +572,7 @@
           "Intake"
         ],
         "summary": "Get All Intakes",
-        "operationId": "intake_get_all_intakes",
+        "operationId": "Intake.get_all_intakes",
         "responses": {
           "200": {
             "description": "Successful Response",
@@ -591,7 +591,7 @@
           "Intake"
         ],
         "summary": "Create Intake",
-        "operationId": "intake_create_intake",
+        "operationId": "Intake.create_intake",
         "requestBody": {
           "content": {
             "application/json": {
@@ -637,7 +637,7 @@
           "Intake"
         ],
         "summary": "Get Intake By Year",
-        "operationId": "intake_get_intake_by_year",
+        "operationId": "Intake.get_intake_by_year",
         "parameters": [
           {
             "name": "year",
@@ -677,7 +677,7 @@
           "Intake"
         ],
         "summary": "Update Intake",
-        "operationId": "intake_update_intake",
+        "operationId": "Intake.update_intake",
         "security": [
           {
             "HTTPBearer": []
@@ -732,7 +732,7 @@
           "Intake"
         ],
         "summary": "Delete Intake",
-        "operationId": "intake_delete_intake",
+        "operationId": "Intake.delete_intake",
         "security": [
           {
             "HTTPBearer": []
@@ -779,7 +779,7 @@
           "Semester"
         ],
         "summary": "Get All Semester",
-        "operationId": "semester_get_all_semester",
+        "operationId": "Semester.get_all_semester",
         "responses": {
           "200": {
             "description": "Successful Response",
@@ -798,7 +798,7 @@
           "Semester"
         ],
         "summary": "Create Semester",
-        "operationId": "semester_create_semester",
+        "operationId": "Semester.create_semester",
         "requestBody": {
           "content": {
             "application/json": {
@@ -844,7 +844,7 @@
           "Semester"
         ],
         "summary": "Get Current Semester",
-        "operationId": "semester_get_current_semester",
+        "operationId": "Semester.get_current_semester",
         "responses": {
           "200": {
             "description": "Successful Response",
@@ -865,7 +865,7 @@
           "Semester"
         ],
         "summary": "Get Semester By Id",
-        "operationId": "semester_get_semester_by_id",
+        "operationId": "Semester.get_semester_by_id",
         "parameters": [
           {
             "name": "sem_id",
@@ -905,7 +905,7 @@
           "Semester"
         ],
         "summary": "Update Semester",
-        "operationId": "semester_update_semester",
+        "operationId": "Semester.update_semester",
         "security": [
           {
             "HTTPBearer": []
@@ -960,7 +960,7 @@
           "Semester"
         ],
         "summary": "Delete Semester",
-        "operationId": "semester_delete_semester",
+        "operationId": "Semester.delete_semester",
         "security": [
           {
             "HTTPBearer": []
@@ -1007,7 +1007,7 @@
           "Student"
         ],
         "summary": "Create Student",
-        "operationId": "student_create_student",
+        "operationId": "Student.create_student",
         "requestBody": {
           "content": {
             "application/json": {
@@ -1053,7 +1053,7 @@
           "Student"
         ],
         "summary": "Create Student Image",
-        "operationId": "student_create_student_image",
+        "operationId": "Student.create_student_image",
         "security": [
           {
             "HTTPBearer": []
@@ -1110,12 +1110,12 @@
           "Student"
         ],
         "summary": "Import Students",
-        "operationId": "student_import_students",
+        "operationId": "Student.import_students",
         "requestBody": {
           "content": {
             "multipart/form-data": {
               "schema": {
-                "$ref": "#/components/schemas/Body_student_import_students"
+                "$ref": "#/components/schemas/fastapi___compat__v2__Body_Student__import_students"
               }
             }
           },
@@ -1156,7 +1156,7 @@
           "Student"
         ],
         "summary": "Get All Students",
-        "operationId": "student_get_all_students",
+        "operationId": "Student.get_all_students",
         "responses": {
           "200": {
             "description": "Successful Response",
@@ -1177,7 +1177,7 @@
           "Student"
         ],
         "summary": "Get Student By Id",
-        "operationId": "student_get_student_by_id",
+        "operationId": "Student.get_student_by_id",
         "parameters": [
           {
             "name": "student_id",
@@ -1217,7 +1217,7 @@
           "Student"
         ],
         "summary": "Update Student",
-        "operationId": "student_update_student",
+        "operationId": "Student.update_student",
         "security": [
           {
             "HTTPBearer": []
@@ -1272,7 +1272,7 @@
           "Student"
         ],
         "summary": "Delete Student",
-        "operationId": "student_delete_student",
+        "operationId": "Student.delete_student",
         "security": [
           {
             "HTTPBearer": []
@@ -1319,7 +1319,7 @@
           "Student"
         ],
         "summary": "Get My Modules With Attendance",
-        "operationId": "student_get_my_modules_with_attendance",
+        "operationId": "Student.get_my_modules_with_attendance",
         "responses": {
           "200": {
             "description": "Successful Response",
@@ -1345,7 +1345,7 @@
           "Student"
         ],
         "summary": "Get My Exam Eligibility",
-        "operationId": "student_get_my_exam_eligibility",
+        "operationId": "Student.get_my_exam_eligibility",
         "responses": {
           "200": {
             "description": "Successful Response",
@@ -1371,7 +1371,7 @@
           "Student"
         ],
         "summary": "Get My Images",
-        "operationId": "student_get_my_images",
+        "operationId": "Student.get_my_images",
         "responses": {
           "200": {
             "description": "Successful Response",
@@ -1395,7 +1395,7 @@
           "Student"
         ],
         "summary": "Get Student Modules With Attendance",
-        "operationId": "student_get_student_modules_with_attendance",
+        "operationId": "Student.get_student_modules_with_attendance",
         "security": [
           {
             "HTTPBearer": []
@@ -1442,7 +1442,7 @@
           "Student"
         ],
         "summary": "Get Student Exam Eligibility",
-        "operationId": "student_get_student_exam_eligibility",
+        "operationId": "Student.get_student_exam_eligibility",
         "security": [
           {
             "HTTPBearer": []
@@ -1489,7 +1489,7 @@
           "Student"
         ],
         "summary": "Get Student Image Info",
-        "operationId": "student_get_student_image_info",
+        "operationId": "Student.get_student_image_info",
         "security": [
           {
             "HTTPBearer": []
@@ -1545,7 +1545,7 @@
           "Program"
         ],
         "summary": "Get All Programs",
-        "operationId": "program_get_all_programs",
+        "operationId": "Program.get_all_programs",
         "responses": {
           "200": {
             "description": "Successful Response",
@@ -1569,7 +1569,7 @@
           "Program"
         ],
         "summary": "Create Program",
-        "operationId": "program_create_program",
+        "operationId": "Program.create_program",
         "requestBody": {
           "content": {
             "application/json": {
@@ -1615,7 +1615,7 @@
           "Program"
         ],
         "summary": "Assign Student To Program",
-        "operationId": "program_assign_student_to_program",
+        "operationId": "Program.assign_student_to_program",
         "security": [
           {
             "HTTPBearer": []
@@ -1671,7 +1671,7 @@
           "Program"
         ],
         "summary": "Assign Lecturer To Program",
-        "operationId": "program_assign_lecturer_to_program",
+        "operationId": "Program.assign_lecturer_to_program",
         "security": [
           {
             "HTTPBearer": []
@@ -1727,7 +1727,7 @@
           "Program"
         ],
         "summary": "Assign Module To Program",
-        "operationId": "program_assign_module_to_program",
+        "operationId": "Program.assign_module_to_program",
         "security": [
           {
             "HTTPBearer": []
@@ -1783,7 +1783,7 @@
           "Program"
         ],
         "summary": "Find Program By Id",
-        "operationId": "program_find_program_by_id",
+        "operationId": "Program.find_program_by_id",
         "security": [
           {
             "HTTPBearer": []
@@ -1828,7 +1828,7 @@
           "Program"
         ],
         "summary": "Update Program",
-        "operationId": "program_update_program",
+        "operationId": "Program.update_program",
         "security": [
           {
             "HTTPBearer": []
@@ -1883,7 +1883,7 @@
           "Program"
         ],
         "summary": "Delete Program",
-        "operationId": "program_delete_program",
+        "operationId": "Program.delete_program",
         "security": [
           {
             "HTTPBearer": []
@@ -1930,7 +1930,7 @@
           "Program"
         ],
         "summary": "View Modules In Program",
-        "operationId": "program_view_modules_in_program",
+        "operationId": "Program.view_modules_in_program",
         "security": [
           {
             "HTTPBearer": []
@@ -1977,7 +1977,7 @@
           "Program"
         ],
         "summary": "View Lecturers In Program",
-        "operationId": "program_view_lecturers_in_program",
+        "operationId": "Program.view_lecturers_in_program",
         "security": [
           {
             "HTTPBearer": []
@@ -2024,7 +2024,7 @@
           "Program"
         ],
         "summary": "View Students In Program",
-        "operationId": "program_view_students_in_program",
+        "operationId": "Program.view_students_in_program",
         "security": [
           {
             "HTTPBearer": []
@@ -2071,7 +2071,7 @@
           "Module"
         ],
         "summary": "Create Module",
-        "operationId": "module_create_module",
+        "operationId": "Module.create_module",
         "requestBody": {
           "content": {
             "application/json": {
@@ -2117,12 +2117,12 @@
           "Module"
         ],
         "summary": "Delete Modules From Excel",
-        "operationId": "module_delete_modules_from_excel",
+        "operationId": "Module.delete_modules_from_excel",
         "requestBody": {
           "content": {
             "multipart/form-data": {
               "schema": {
-                "$ref": "#/components/schemas/Body_module_delete_modules_from_excel"
+                "$ref": "#/components/schemas/delete_modules_from_excel"
               }
             }
           },
@@ -2163,12 +2163,12 @@
           "Module"
         ],
         "summary": "Import Module",
-        "operationId": "module_import_module",
+        "operationId": "Module.import_module",
         "requestBody": {
           "content": {
             "multipart/form-data": {
               "schema": {
-                "$ref": "#/components/schemas/Body_module_import_module"
+                "$ref": "#/components/schemas/import_module"
               }
             }
           },
@@ -2209,7 +2209,7 @@
           "Module"
         ],
         "summary": "View Modules",
-        "operationId": "module_view_modules",
+        "operationId": "Module.view_modules",
         "responses": {
           "200": {
             "description": "Successful Response",
@@ -2235,7 +2235,7 @@
           "Module"
         ],
         "summary": "Get Camera Path",
-        "operationId": "module_get_camera_path",
+        "operationId": "Module.get_camera_path",
         "security": [
           {
             "HTTPBearer": []
@@ -2282,7 +2282,7 @@
           "Module"
         ],
         "summary": "Set Camera Path",
-        "operationId": "module_set_camera_path",
+        "operationId": "Module.set_camera_path",
         "security": [
           {
             "HTTPBearer": []
@@ -2339,7 +2339,7 @@
           "Module"
         ],
         "summary": "Update Module",
-        "operationId": "module_update_module",
+        "operationId": "Module.update_module",
         "security": [
           {
             "HTTPBearer": []
@@ -2396,7 +2396,7 @@
           "Module"
         ],
         "summary": "Delete Module",
-        "operationId": "module_delete_module",
+        "operationId": "Module.delete_module",
         "security": [
           {
             "HTTPBearer": []
@@ -2443,7 +2443,7 @@
           "Facility Faculty"
         ],
         "summary": "Get All Faculties",
-        "operationId": "facility_faculty_get_all_faculties",
+        "operationId": "FacilityFaculty.get_all_faculties",
         "responses": {
           "200": {
             "description": "Successful Response",
@@ -2467,7 +2467,7 @@
           "Facility Faculty"
         ],
         "summary": "Create Faculty",
-        "operationId": "facility_faculty_create_faculty",
+        "operationId": "FacilityFaculty.create_faculty",
         "requestBody": {
           "content": {
             "application/json": {
@@ -2513,7 +2513,7 @@
           "Facility Faculty"
         ],
         "summary": "Get Faculty",
-        "operationId": "facility_faculty_get_faculty",
+        "operationId": "FacilityFaculty.get_faculty",
         "security": [
           {
             "HTTPBearer": []
@@ -2558,7 +2558,7 @@
           "Facility Faculty"
         ],
         "summary": "Update Faculty",
-        "operationId": "facility_faculty_update_faculty",
+        "operationId": "FacilityFaculty.update_faculty",
         "security": [
           {
             "HTTPBearer": []
@@ -2613,7 +2613,7 @@
           "Facility Faculty"
         ],
         "summary": "Delete Faculty",
-        "operationId": "facility_faculty_delete_faculty",
+        "operationId": "FacilityFaculty.delete_faculty",
         "security": [
           {
             "HTTPBearer": []
@@ -2660,7 +2660,7 @@
           "Lecturer"
         ],
         "summary": "Get All Lecturers",
-        "operationId": "lecturer_get_all_lecturers",
+        "operationId": "Lecturer.get_all_lecturers",
         "responses": {
           "200": {
             "description": "Successful Response",
@@ -2684,7 +2684,7 @@
           "Lecturer"
         ],
         "summary": "Create Lecturer",
-        "operationId": "lecturer_create_lecturer",
+        "operationId": "Lecturer.create_lecturer",
         "requestBody": {
           "content": {
             "application/json": {
@@ -2730,12 +2730,12 @@
           "Lecturer"
         ],
         "summary": "Import Lecturers",
-        "operationId": "lecturer_import_lecturers",
+        "operationId": "Lecturer.import_lecturers",
         "requestBody": {
           "content": {
             "multipart/form-data": {
               "schema": {
-                "$ref": "#/components/schemas/Body_lecturer_import_lecturers"
+                "$ref": "#/components/schemas/fastapi___compat__v2__Body_Lecturer__import_lecturers"
               }
             }
           },
@@ -2776,7 +2776,7 @@
           "Lecturer"
         ],
         "summary": "Get Lecturer By Id",
-        "operationId": "lecturer_get_lecturer_by_id",
+        "operationId": "Lecturer.get_lecturer_by_id",
         "security": [
           {
             "HTTPBearer": []
@@ -2821,7 +2821,7 @@
           "Lecturer"
         ],
         "summary": "Update Lecturer",
-        "operationId": "lecturer_update_lecturer",
+        "operationId": "Lecturer.update_lecturer",
         "security": [
           {
             "HTTPBearer": []
@@ -2876,7 +2876,7 @@
           "Lecturer"
         ],
         "summary": "Delete Lecturer",
-        "operationId": "lecturer_delete_lecturer",
+        "operationId": "Lecturer.delete_lecturer",
         "security": [
           {
             "HTTPBearer": []
@@ -2923,7 +2923,7 @@
           "Module Registrations"
         ],
         "summary": "Get All Module Registrations",
-        "operationId": "module_registrations_get_all_module_registrations",
+        "operationId": "ModuleRegistrations.get_all_module_registrations",
         "responses": {
           "200": {
             "description": "Successful Response",
@@ -2947,7 +2947,7 @@
           "Module Registrations"
         ],
         "summary": "Create Module Registration",
-        "operationId": "module_registrations_create_module_registration",
+        "operationId": "ModuleRegistrations.create_module_registration",
         "requestBody": {
           "content": {
             "application/json": {
@@ -2993,12 +2993,12 @@
           "Module Registrations"
         ],
         "summary": "Import Module Registrations",
-        "operationId": "module_registrations_import_module_registrations",
+        "operationId": "ModuleRegistrations.import_module_registrations",
         "requestBody": {
           "content": {
             "multipart/form-data": {
               "schema": {
-                "$ref": "#/components/schemas/Body_module_registrations_import_module_registrations"
+                "$ref": "#/components/schemas/import_module_registrations"
               }
             }
           },
@@ -3039,7 +3039,7 @@
           "Module Registrations"
         ],
         "summary": "Get By Student",
-        "operationId": "module_registrations_get_by_student",
+        "operationId": "ModuleRegistrations.get_by_student",
         "security": [
           {
             "HTTPBearer": []
@@ -3086,7 +3086,7 @@
           "Module Registrations"
         ],
         "summary": "Get By Module",
-        "operationId": "module_registrations_get_by_module",
+        "operationId": "ModuleRegistrations.get_by_module",
         "security": [
           {
             "HTTPBearer": []
@@ -3133,7 +3133,7 @@
           "Module Registrations"
         ],
         "summary": "Get By Lecturer",
-        "operationId": "module_registrations_get_by_lecturer",
+        "operationId": "ModuleRegistrations.get_by_lecturer",
         "security": [
           {
             "HTTPBearer": []
@@ -3180,7 +3180,7 @@
           "Module Registrations"
         ],
         "summary": "Get My Modules Lecturer Only",
-        "operationId": "module_registrations_get_my_modules_lecturer_only",
+        "operationId": "ModuleRegistrations.get_my_modules_lecturer_only",
         "responses": {
           "200": {
             "description": "Successful Response",
@@ -3206,7 +3206,7 @@
           "Module Registrations"
         ],
         "summary": "Get My Registrations Student Only",
-        "operationId": "module_registrations_get_my_registrations_student_only",
+        "operationId": "ModuleRegistrations.get_my_registrations_student_only",
         "responses": {
           "200": {
             "description": "Successful Response",
@@ -3232,7 +3232,7 @@
           "Module Registrations"
         ],
         "summary": "Get All Modules With Attendance",
-        "operationId": "module_registrations_get_all_modules_with_attendance",
+        "operationId": "ModuleRegistrations.get_all_modules_with_attendance",
         "responses": {
           "200": {
             "description": "Successful Response",
@@ -3258,7 +3258,7 @@
           "Module Registrations"
         ],
         "summary": "Get My Modules Students Attendance Lecturer Only",
-        "operationId": "module_registrations_get_my_modules_students_attendance_lecturer_only",
+        "operationId": "ModuleRegistrations.get_my_modules_students_attendance_lecturer_only",
         "security": [
           {
             "HTTPBearer": []
@@ -3312,7 +3312,7 @@
           "Module Registrations"
         ],
         "summary": "Get Module Registration By Id",
-        "operationId": "module_registrations_get_module_registration_by_id",
+        "operationId": "ModuleRegistrations.get_module_registration_by_id",
         "security": [
           {
             "HTTPBearer": []
@@ -3357,7 +3357,7 @@
           "Module Registrations"
         ],
         "summary": "Update Module Registration",
-        "operationId": "module_registrations_update_module_registration",
+        "operationId": "ModuleRegistrations.update_module_registration",
         "security": [
           {
             "HTTPBearer": []
@@ -3412,7 +3412,7 @@
           "Module Registrations"
         ],
         "summary": "Delete Module Registration",
-        "operationId": "module_registrations_delete_module_registration",
+        "operationId": "ModuleRegistrations.delete_module_registration",
         "security": [
           {
             "HTTPBearer": []
@@ -3459,7 +3459,7 @@
           "Notification"
         ],
         "summary": "Get All Notifications",
-        "operationId": "notification_get_all_notifications",
+        "operationId": "Notification.get_all_notifications",
         "security": [
           {
             "HTTPBearer": []
@@ -3513,7 +3513,7 @@
           "Notification"
         ],
         "summary": "Get Unread Count",
-        "operationId": "notification_get_unread_count",
+        "operationId": "Notification.get_unread_count",
         "responses": {
           "200": {
             "description": "Successful Response",
@@ -3539,7 +3539,7 @@
           "Notification"
         ],
         "summary": "Mark Notification As Read",
-        "operationId": "notification_mark_notification_as_read",
+        "operationId": "Notification.mark_notification_as_read",
         "security": [
           {
             "HTTPBearer": []
@@ -3586,7 +3586,7 @@
           "Notification"
         ],
         "summary": "Mark All Notifications As Read",
-        "operationId": "notification_mark_all_notifications_as_read",
+        "operationId": "Notification.mark_all_notifications_as_read",
         "responses": {
           "200": {
             "description": "Successful Response",
@@ -3612,7 +3612,7 @@
           "Notification"
         ],
         "summary": "Delete Notification",
-        "operationId": "notification_delete_notification",
+        "operationId": "Notification.delete_notification",
         "security": [
           {
             "HTTPBearer": []
@@ -3659,7 +3659,7 @@
           "Dashboard"
         ],
         "summary": "Dashboard Stats",
-        "operationId": "dashboard_dashboard_stats",
+        "operationId": "Dashboard.dashboard_stats",
         "responses": {
           "200": {
             "description": "Successful Response",
@@ -3685,7 +3685,7 @@
           "Attendance"
         ],
         "summary": "Submit Attendance",
-        "operationId": "attendance_submit_attendance",
+        "operationId": "Attendance.submit_attendance",
         "requestBody": {
           "content": {
             "application/json": {
@@ -3731,7 +3731,7 @@
           "Attendance"
         ],
         "summary": "Request Correction",
-        "operationId": "attendance_request_correction",
+        "operationId": "Attendance.request_correction",
         "requestBody": {
           "content": {
             "application/json": {
@@ -3777,12 +3777,12 @@
           "Attendance"
         ],
         "summary": "Import Attendance From Excel",
-        "operationId": "attendance_import_attendance_from_excel",
+        "operationId": "Attendance.import_attendance_from_excel",
         "requestBody": {
           "content": {
             "multipart/form-data": {
               "schema": {
-                "$ref": "#/components/schemas/Body_attendance_import_attendance_from_excel"
+                "$ref": "#/components/schemas/import_attendance_from_excel"
               }
             }
           },
@@ -3823,7 +3823,7 @@
           "Attendance"
         ],
         "summary": "Update Exam Eligibility For Module",
-        "operationId": "attendance_update_exam_eligibility_for_module",
+        "operationId": "Attendance.update_exam_eligibility_for_module",
         "security": [
           {
             "HTTPBearer": []
@@ -3870,7 +3870,7 @@
           "Attendance"
         ],
         "summary": "Update Exam Eligibility For All Modules",
-        "operationId": "attendance_update_exam_eligibility_for_all_modules",
+        "operationId": "Attendance.update_exam_eligibility_for_all_modules",
         "responses": {
           "200": {
             "description": "Successful Response",
@@ -3896,7 +3896,7 @@
           "Attendance"
         ],
         "summary": "Update Exam Eligibility For Lecturer",
-        "operationId": "attendance_update_exam_eligibility_for_lecturer",
+        "operationId": "Attendance.update_exam_eligibility_for_lecturer",
         "security": [
           {
             "HTTPBearer": []
@@ -3943,7 +3943,7 @@
           "Attendance"
         ],
         "summary": "Export Exam Eligibility For Lecturer",
-        "operationId": "attendance_export_exam_eligibility_for_lecturer",
+        "operationId": "Attendance.export_exam_eligibility_for_lecturer",
         "security": [
           {
             "HTTPBearer": []
@@ -3990,7 +3990,7 @@
           "Attendance"
         ],
         "summary": "Export Exam Eligibility",
-        "operationId": "attendance_export_exam_eligibility",
+        "operationId": "Attendance.export_exam_eligibility",
         "responses": {
           "200": {
             "description": "Successful Response",
@@ -4016,7 +4016,7 @@
           "Attendance"
         ],
         "summary": "View Attendance",
-        "operationId": "attendance_view_attendance",
+        "operationId": "Attendance.view_attendance",
         "security": [
           {
             "HTTPBearer": []
@@ -4086,7 +4086,7 @@
           "Attendance"
         ],
         "summary": "Get Attendance Requests",
-        "operationId": "attendance_get_attendance_requests",
+        "operationId": "Attendance.get_attendance_requests",
         "security": [
           {
             "HTTPBearer": []
@@ -4156,7 +4156,7 @@
           "Attendance"
         ],
         "summary": "Get Requests By Student",
-        "operationId": "attendance_get_requests_by_student",
+        "operationId": "Attendance.get_requests_by_student",
         "parameters": [
           {
             "name": "student_id",
@@ -4198,7 +4198,7 @@
           "Attendance"
         ],
         "summary": "Get Requests By Module",
-        "operationId": "attendance_get_requests_by_module",
+        "operationId": "Attendance.get_requests_by_module",
         "parameters": [
           {
             "name": "module_id",
@@ -4240,7 +4240,7 @@
           "Attendance"
         ],
         "summary": "Get Exam Eligibility",
-        "operationId": "attendance_get_exam_eligibility",
+        "operationId": "Attendance.get_exam_eligibility",
         "security": [
           {
             "HTTPBearer": []
@@ -4310,7 +4310,7 @@
           "Attendance"
         ],
         "summary": "Check Exam Eligibility",
-        "operationId": "attendance_check_exam_eligibility",
+        "operationId": "Attendance.check_exam_eligibility",
         "security": [
           {
             "HTTPBearer": []
@@ -4366,7 +4366,7 @@
           "Attendance"
         ],
         "summary": "Handle Correction",
-        "operationId": "attendance_handle_correction",
+        "operationId": "Attendance.handle_correction",
         "security": [
           {
             "HTTPBearer": []
@@ -4423,7 +4423,7 @@
           "Attendance"
         ],
         "summary": "Update Attendance",
-        "operationId": "attendance_update_attendance",
+        "operationId": "Attendance.update_attendance",
         "security": [
           {
             "HTTPBearer": []
@@ -4478,7 +4478,7 @@
           "Attendance"
         ],
         "summary": "Delete Attendance",
-        "operationId": "attendance_delete_attendance",
+        "operationId": "Attendance.delete_attendance",
         "security": [
           {
             "HTTPBearer": []
@@ -4525,7 +4525,7 @@
           "Attendance"
         ],
         "summary": "Delete Attendance Request",
-        "operationId": "attendance_delete_attendance_request",
+        "operationId": "Attendance.delete_attendance_request",
         "parameters": [
           {
             "name": "request_id",
@@ -4564,7 +4564,7 @@
     "/api": {
       "get": {
         "summary": "Root",
-        "operationId": "root",
+        "operationId": "Api.root",
         "responses": {
           "200": {
             "description": "Successful Response",
@@ -5949,118 +5949,6 @@
         ],
         "title": "AttendanceUpdate"
       },
-      "Body_account_import_lecturers": {
-        "properties": {
-          "file": {
-            "type": "string",
-            "contentMediaType": "application/octet-stream",
-            "title": "File"
-          }
-        },
-        "type": "object",
-        "required": [
-          "file"
-        ],
-        "title": "Body_account_import_lecturers"
-      },
-      "Body_account_import_students": {
-        "properties": {
-          "file": {
-            "type": "string",
-            "contentMediaType": "application/octet-stream",
-            "title": "File"
-          }
-        },
-        "type": "object",
-        "required": [
-          "file"
-        ],
-        "title": "Body_account_import_students"
-      },
-      "Body_attendance_import_attendance_from_excel": {
-        "properties": {
-          "file": {
-            "type": "string",
-            "contentMediaType": "application/octet-stream",
-            "title": "File"
-          }
-        },
-        "type": "object",
-        "required": [
-          "file"
-        ],
-        "title": "Body_attendance_import_attendance_from_excel"
-      },
-      "Body_lecturer_import_lecturers": {
-        "properties": {
-          "file": {
-            "type": "string",
-            "contentMediaType": "application/octet-stream",
-            "title": "File"
-          }
-        },
-        "type": "object",
-        "required": [
-          "file"
-        ],
-        "title": "Body_lecturer_import_lecturers"
-      },
-      "Body_module_delete_modules_from_excel": {
-        "properties": {
-          "file": {
-            "type": "string",
-            "contentMediaType": "application/octet-stream",
-            "title": "File"
-          }
-        },
-        "type": "object",
-        "required": [
-          "file"
-        ],
-        "title": "Body_module_delete_modules_from_excel"
-      },
-      "Body_module_import_module": {
-        "properties": {
-          "file": {
-            "type": "string",
-            "contentMediaType": "application/octet-stream",
-            "title": "File"
-          }
-        },
-        "type": "object",
-        "required": [
-          "file"
-        ],
-        "title": "Body_module_import_module"
-      },
-      "Body_module_registrations_import_module_registrations": {
-        "properties": {
-          "file": {
-            "type": "string",
-            "contentMediaType": "application/octet-stream",
-            "title": "File"
-          }
-        },
-        "type": "object",
-        "required": [
-          "file"
-        ],
-        "title": "Body_module_registrations_import_module_registrations"
-      },
-      "Body_student_import_students": {
-        "properties": {
-          "file": {
-            "type": "string",
-            "contentMediaType": "application/octet-stream",
-            "title": "File"
-          }
-        },
-        "type": "object",
-        "required": [
-          "file"
-        ],
-        "title": "Body_student_import_students"
-      },
       "CameraPathUpdate": {
         "properties": {
           "camera_path": {
@@ -7438,6 +7326,118 @@
           "type"
         ],
         "title": "ValidationError"
+      },
+      "delete_modules_from_excel": {
+        "properties": {
+          "file": {
+            "type": "string",
+            "contentMediaType": "application/octet-stream",
+            "title": "File"
+          }
+        },
+        "type": "object",
+        "required": [
+          "file"
+        ],
+        "title": "Body_Module.delete_modules_from_excel"
+      },
+      "fastapi___compat__v2__Body_Account__import_lecturers": {
+        "properties": {
+          "file": {
+            "type": "string",
+            "contentMediaType": "application/octet-stream",
+            "title": "File"
+          }
+        },
+        "type": "object",
+        "required": [
+          "file"
+        ],
+        "title": "Body_Account.import_lecturers"
+      },
+      "fastapi___compat__v2__Body_Account__import_students": {
+        "properties": {
+          "file": {
+            "type": "string",
+            "contentMediaType": "application/octet-stream",
+            "title": "File"
+          }
+        },
+        "type": "object",
+        "required": [
+          "file"
+        ],
+        "title": "Body_Account.import_students"
+      },
+      "fastapi___compat__v2__Body_Lecturer__import_lecturers": {
+        "properties": {
+          "file": {
+            "type": "string",
+            "contentMediaType": "application/octet-stream",
+            "title": "File"
+          }
+        },
+        "type": "object",
+        "required": [
+          "file"
+        ],
+        "title": "Body_Lecturer.import_lecturers"
+      },
+      "fastapi___compat__v2__Body_Student__import_students": {
+        "properties": {
+          "file": {
+            "type": "string",
+            "contentMediaType": "application/octet-stream",
+            "title": "File"
+          }
+        },
+        "type": "object",
+        "required": [
+          "file"
+        ],
+        "title": "Body_Student.import_students"
+      },
+      "import_attendance_from_excel": {
+        "properties": {
+          "file": {
+            "type": "string",
+            "contentMediaType": "application/octet-stream",
+            "title": "File"
+          }
+        },
+        "type": "object",
+        "required": [
+          "file"
+        ],
+        "title": "Body_Attendance.import_attendance_from_excel"
+      },
+      "import_module": {
+        "properties": {
+          "file": {
+            "type": "string",
+            "contentMediaType": "application/octet-stream",
+            "title": "File"
+          }
+        },
+        "type": "object",
+        "required": [
+          "file"
+        ],
+        "title": "Body_Module.import_module"
+      },
+      "import_module_registrations": {
+        "properties": {
+          "file": {
+            "type": "string",
+            "contentMediaType": "application/octet-stream",
+            "title": "File"
+          }
+        },
+        "type": "object",
+        "required": [
+          "file"
+        ],
+        "title": "Body_ModuleRegistrations.import_module_registrations"
       }
     },
     "securitySchemes": {
