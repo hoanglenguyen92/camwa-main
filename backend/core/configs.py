@@ -35,6 +35,9 @@ class Settings(BaseSettings):
     USE_CREDENTIALS: bool
     EMAIL_RETRY_ATTEMPTS: int
 
+    FIREBASE_SERVICE_ACCOUNT_PATH: str = ""
+    FIREBASE_WEB_API_KEY: str = ""
+
 
 
 settings = Settings()

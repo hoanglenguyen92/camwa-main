@@ -5,7 +5,8 @@ psycopg2-binary
 pydantic
 pydantic-settings
 pyjwt
-pwdlib[argon2]
+firebase-admin
+httpx
 python-multipart
 openpyxl
 aiosmtplib
