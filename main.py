@@ -4,7 +4,7 @@ from fastapi import FastAPI
 from fastapi.routing import APIRoute
 
 from backend.core.db import engine, init_db
-from backend.routes import auth, account, intake, semester, student, program, module, module_registration, \
+from backend.controllers import auth, account, intake, semester, student, program, module, module_registration, \
     lecturer, facility_faculty, dashboard, notification, attendance
 
 
