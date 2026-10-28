@@ -6,29 +6,37 @@ from fastapi import HTTPException, status
 from sqlalchemy import select, or_
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from backend.core.security import pwd_context
+from backend.core import firebase
+from backend.core.security import invalidate_user_tokens
 from backend.models import Iam, ImageAsset
 from backend.schemas.account import UserResponse, UserCreate, UserUpdate, PasswordChange
 
 '''CRUD Operations for Users'''
 
 async def create_user(session: AsyncSession, data: UserCreate) -> UserResponse:
-    existing_user = await session.execute(
-        select(Iam).where(or_(Iam.email == data.email, Iam.username == data.username))
-    )
+    conditions = [Iam.email == data.email, Iam.username == data.username]
+    if data.phone_number:
+        conditions.append(Iam.phone_number == data.phone_number)
+    existing_user = await session.execute(select(Iam).where(or_(*conditions)))
     if existing_user.scalar():
-        raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail=f"User with {data.username} or {data.email} already exists")
+        raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail=f"User with {data.username}, {data.email} or that phone number already exists")
 
-    hashed_password = pwd_context.hash(data.password)
+    uid = await firebase.create_user(data.email, data.password, data.phone_number)
     new_user = Iam(
         iam_id=data.iam_id,
         username=data.username,
         email=data.email,
-        password=hashed_password,
+        firebase_uid=uid,
+        phone_number=data.phone_number,
         role=data.role.value,
     )
     session.add(new_user)
-    await session.commit()
+    try:
+        await session.commit()
+    except Exception:
+        await session.rollback()
+        await firebase.delete_user(uid)
+        raise
     await session.refresh(new_user)
     return UserResponse.model_validate(new_user)
 
@@ -73,9 +81,21 @@ async def update_user(session: AsyncSession, iam_id: str, data: UserUpdate) -> U
                 detail=f"User with username {update_dict['username']} already exists",
             )
 
-    if "password" in update_dict and update_dict["password"]:
-        update_dict["password"] = pwd_context.hash(update_dict["password"])
+    if "phone_number" in update_dict and update_dict["phone_number"] != user.phone_number:
+        if update_dict["phone_number"]:
+            existing_user = await session.execute(
+                select(Iam).where(Iam.phone_number == update_dict["phone_number"], Iam.iam_id != iam_id)
+            )
+            if existing_user.scalar():
+                raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="User with that phone number already exists")
 
+    password = update_dict.pop("password", None)
+    await firebase.update_user(
+        user.firebase_uid,
+        email=update_dict.get("email"),
+        password=password or None,
+        phone_number=update_dict.get("phone_number") or None,
+    )
 
     for field, value in update_dict.items():
         setattr(user, field, value)
@@ -89,6 +109,7 @@ async def delete_user(session: AsyncSession, iam_id: str) -> None:
     user = await session.get(Iam, iam_id)
     if not user:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"User with {iam_id} not found")
+    await firebase.delete_user(user.firebase_uid)
     await session.delete(user)
     await session.commit()
 
@@ -98,13 +119,17 @@ async def change_password(session: AsyncSession, iam_id: str, data: PasswordChan
     if not user:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"User with {iam_id} not found")
 
-    if not pwd_context.verify(data.current_password, user.password):
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Current password is incorrect")
-    if pwd_context.verify(data.new_password, user.password):
+    try:
+        await firebase.sign_in_with_password(user.email, data.current_password)
+    except HTTPException as e:
+        if e.status_code == status.HTTP_401_UNAUTHORIZED:
+            raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Current password is incorrect")
+        raise
+    if data.new_password == data.current_password:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="New password cannot be the same as the current password")
 
-    user.password = pwd_context.hash(data.new_password)
-    await session.commit()
+    await firebase.update_user(user.firebase_uid, password=data.new_password)
+    await invalidate_user_tokens(session, iam_id)
 
 '''Bulk Operations for Users'''
 
@@ -113,6 +138,7 @@ async def _process_excel(session: AsyncSession, file_contents: bytes, role: str)
     sheet = workbook.active
     successful = []
     failed = []
+    created_uids = []
     seen_iam_ids = set()
     seen_usernames = set()
     seen_emails = set()
@@ -153,11 +179,23 @@ async def _process_excel(session: AsyncSession, file_contents: bytes, role: str)
                 "error": "User already exists",
             })
             continue
+        try:
+            uid = await firebase.create_user(email, password)
+        except HTTPException as e:
+            failed.append({
+                "row": row_index,
+                "iam_id": iam_id,
+                "username": username,
+                "email": email,
+                "error": e.detail,
+            })
+            continue
+        created_uids.append(uid)
         new_user = Iam(
             iam_id=iam_id,
             username=username,
             email=email,
-            password=pwd_context.hash(password),
+            firebase_uid=uid,
             role=role,
         )
         session.add(new_user)
@@ -173,7 +211,13 @@ async def _process_excel(session: AsyncSession, file_contents: bytes, role: str)
             "username": username,
             "email": email,
         })
-    await session.commit()
+    try:
+        await session.commit()
+    except Exception:
+        await session.rollback()
+        for uid in created_uids:
+            await firebase.delete_user(uid)
+        raise
     return {
         "successful": successful,
         "failed": failed,

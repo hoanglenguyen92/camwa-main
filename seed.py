@@ -1,10 +1,22 @@
 import asyncio
+import os
+import sys
 from datetime import datetime
+
+from dotenv import load_dotenv
 from sqlalchemy import select
 from backend.core.db import AsyncSessionLocal
-from backend.core.security import get_password_hash
+from backend.core import firebase
 from backend.models import Iam, Intake, Program, Semester
+
+load_dotenv()
+
+
 async def seed():
+    admin_password = os.environ.get("SEED_ADMIN_PASSWORD")
+    if not admin_password:
+        sys.exit("SEED_ADMIN_PASSWORD is not set. Set it in the environment to create the admin account.")
+
     async with AsyncSessionLocal() as session:
 
         # Program
@@ -34,12 +46,16 @@ async def seed():
         admin_id = "admin"
         existing_admin = await session.get(Iam, admin_id)
         if not existing_admin:
+            admin_email = "admin@example.com"
+            admin_uid = await firebase.get_uid_by_email(admin_email)
+            if admin_uid is None:
+                admin_uid = await firebase.create_user(admin_email, admin_password)
             session.add(
                 Iam(
                     iam_id=admin_id,
                     username="admin",
-                    email="admin@example.com",
-                    password=get_password_hash("123"),
+                    email=admin_email,
+                    firebase_uid=admin_uid,
                     role="ADMIN",
                     token_version=1,
                 )
