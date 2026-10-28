@@ -116,13 +116,16 @@ async def update_user(
     email: Optional[str] = None,
     password: Optional[str] = None,
     phone_number: Optional[str] = None,
+    clear_phone_number: bool = False,
 ) -> None:
     kwargs = {}
     if email is not None:
         kwargs["email"] = email
     if password is not None:
         kwargs["password"] = password
-    if phone_number is not None:
+    if clear_phone_number:
+        kwargs["phone_number"] = auth.DELETE_ATTRIBUTE
+    elif phone_number is not None:
         kwargs["phone_number"] = phone_number
     if kwargs:
         await _admin_call(auth.update_user, uid, **kwargs)

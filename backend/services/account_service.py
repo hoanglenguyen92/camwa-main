@@ -81,6 +81,9 @@ async def update_user(session: AsyncSession, iam_id: str, data: UserUpdate) -> U
                 detail=f"User with username {update_dict['username']} already exists",
             )
 
+    if "phone_number" in update_dict:
+        update_dict["phone_number"] = update_dict["phone_number"] or None
+
     if "phone_number" in update_dict and update_dict["phone_number"] != user.phone_number:
         if update_dict["phone_number"]:
             existing_user = await session.execute(
@@ -94,7 +97,8 @@ async def update_user(session: AsyncSession, iam_id: str, data: UserUpdate) -> U
         user.firebase_uid,
         email=update_dict.get("email"),
         password=password or None,
-        phone_number=update_dict.get("phone_number") or None,
+        phone_number=update_dict.get("phone_number"),
+        clear_phone_number="phone_number" in update_dict and update_dict["phone_number"] is None,
     )
 
     for field, value in update_dict.items():
