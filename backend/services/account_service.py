@@ -1,4 +1,5 @@
 import io
+import logging
 from typing import List
 
 import openpyxl
@@ -10,6 +11,8 @@ from backend.core import firebase
 from backend.core.security import invalidate_user_tokens
 from backend.models import Iam, ImageAsset
 from backend.schemas.account import UserResponse, UserCreate, UserUpdate, PasswordChange
+
+logger = logging.getLogger(__name__)
 
 '''CRUD Operations for Users'''
 
@@ -128,7 +131,10 @@ async def delete_user(session: AsyncSession, iam_id: str) -> None:
     uid = user.firebase_uid
     await session.delete(user)
     await session.commit()
-    await firebase.delete_user(uid)
+    try:
+        await firebase.delete_user(uid)
+    except HTTPException:
+        logger.warning("Deleted iam %s but could not delete Firebase user %s", iam_id, uid)
 
 
 async def change_password(session: AsyncSession, iam_id: str, data: PasswordChange) -> None:
