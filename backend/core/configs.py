@@ -1,6 +1,7 @@
 import os
 
 from fastapi import Path
+from pydantic import Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -19,8 +20,8 @@ class Settings(BaseSettings):
     DB_MAX_OVERFLOW: int = 10
     DB_POOL_RECYCLE: int = 3600
 
-    JWT_SECRET_KEY: str = ""
-    JWT_REFRESH_SECRET_KEY: str = ""
+    JWT_SECRET_KEY: str = Field(min_length=32)
+    JWT_REFRESH_SECRET_KEY: str = Field(min_length=32)
     ALGORITHM: str = 'HS256'
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60
     REFRESH_TOKEN_EXPIRE_DAYS: int = 7

@@ -165,7 +165,7 @@ async def _process_excel(session: AsyncSession, file_contents: bytes, role: str)
         iam_id = str(row[0]).strip()
         email = str(row[1]).strip()
         username = str(row[2]).strip() if len(row) > 2 and row[2] else iam_id
-        password = str(row[3]).strip() if len(row) > 3 and row[3] else iam_id
+        password = str(row[3]).strip() if len(row) > 3 and row[3] else None
         if iam_id in seen_iam_ids or username in seen_usernames or email in seen_emails:
             failed.append({
                 "row": row_index,
@@ -227,6 +227,7 @@ async def _process_excel(session: AsyncSession, file_contents: bytes, role: str)
             "iam_id": iam_id,
             "username": username,
             "email": email,
+            "password_set": password is not None,
         })
     try:
         await session.commit()

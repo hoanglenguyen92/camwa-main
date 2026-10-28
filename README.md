@@ -42,6 +42,8 @@ FastAPI backend for CAMWA. Firebase Authentication owns identities and credentia
 
 Argon2 hashes cannot be imported into Firebase. Users created by the script must set a password with `POST /api/auth/forgot-password` before they can log in with email and password.
 
+Users imported from Excel without a password column value are created without a password. They set one via `POST /api/auth/forgot-password`.
+
 ## Login flows
 
 Both flows return the same token payload.

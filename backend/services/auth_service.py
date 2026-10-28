@@ -5,7 +5,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from backend.core.configs import settings
 from backend.core import firebase
-from backend.core.security import create_access_token, create_refresh_token
+from backend.core.security import create_access_token, create_refresh_token, hash_token
 from backend.models import Iam, AcademicCoordinator
 
 
@@ -25,7 +25,7 @@ async def _issue_tokens(db: AsyncSession, user: Iam) -> dict:
     )
     refresh_token = create_refresh_token({"sub": user.iam_id}, user.token_version)
 
-    user.refresh_token = refresh_token
+    user.refresh_token = hash_token(refresh_token)
     await db.commit()
 
     return {
@@ -71,7 +71,7 @@ async def refresh_access_token(db: AsyncSession, refresh_token: str) -> dict:
 
     stmt = select(Iam).where(
         Iam.iam_id == user_id,
-        Iam.refresh_token == refresh_token,
+        Iam.refresh_token == hash_token(refresh_token),
         Iam.token_version == token_version
     )
     result = await db.execute(stmt)
@@ -126,7 +126,7 @@ async def toggle_ac_role(db: AsyncSession, user_id: str) -> dict:
 
     new_refresh = create_refresh_token({"sub": user.iam_id}, user.token_version + 1)
     await db.execute(
-        update(Iam).where(Iam.iam_id == user_id).values(refresh_token=new_refresh)
+        update(Iam).where(Iam.iam_id == user_id).values(refresh_token=hash_token(new_refresh))
     )
     await db.commit()
 

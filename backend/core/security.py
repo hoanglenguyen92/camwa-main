@@ -1,3 +1,4 @@
+import hashlib
 from datetime import timedelta, datetime, timezone
 from typing import Optional
 
@@ -9,6 +10,10 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from backend.core.configs import settings
 from backend.models import Iam
+
+def hash_token(token: str) -> str:
+    return hashlib.sha256(token.encode()).hexdigest()
+
 
 def create_access_token(data: dict, token_version: int) -> str:
     to_encode = data.copy()
