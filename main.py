@@ -7,9 +7,6 @@ from backend.routes import auth, account, intake, semester, student, program, mo
     lecturer, facility_faculty, dashboard, notification, attendance
 
 
-app = FastAPI()
-
-
 @asynccontextmanager
 async def lifespan(_app: FastAPI):
     await init_db()

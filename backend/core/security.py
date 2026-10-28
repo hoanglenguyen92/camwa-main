@@ -1,10 +1,7 @@
 import hashlib
 from datetime import timedelta, datetime, timezone
-from typing import Optional
 
 import jwt
-from fastapi import Depends
-from fastapi.security import OAuth2PasswordBearer
 from sqlalchemy import update
 from sqlalchemy.ext.asyncio import AsyncSession
 

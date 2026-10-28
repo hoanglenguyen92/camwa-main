@@ -13,10 +13,6 @@ load_dotenv()
 
 
 async def seed():
-    admin_password = os.environ.get("SEED_ADMIN_PASSWORD")
-    if not admin_password:
-        sys.exit("SEED_ADMIN_PASSWORD is not set. Set it in the environment to create the admin account.")
-
     async with AsyncSessionLocal() as session:
 
         # Program
@@ -49,6 +45,9 @@ async def seed():
             admin_email = "admin@example.com"
             admin_uid = await firebase.get_uid_by_email(admin_email)
             if admin_uid is None:
+                admin_password = os.environ.get("SEED_ADMIN_PASSWORD")
+                if not admin_password:
+                    sys.exit("SEED_ADMIN_PASSWORD is not set. Set it in the environment to create the admin account.")
                 admin_uid = await firebase.create_user(admin_email, admin_password)
             session.add(
                 Iam(
