@@ -225,7 +225,7 @@ async def _process_excel(session: AsyncSession, file_contents: bytes, role: str)
         if role == "STUDENT":
             session.add(
                 ImageAsset(
-                    username=username,
+                    iam_id=iam_id,
                     image_path=f"image_assets/{username}.jpg",
                 )
             )

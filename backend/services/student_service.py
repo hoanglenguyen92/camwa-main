@@ -279,7 +279,7 @@ async def get_student_images(session: AsyncSession, student_id: str):
     if not student:
         raise HTTPException(status_code=404, detail="Student not found")
     result = await session.execute(
-        select(ImageAsset).where(ImageAsset.username == student_id)
+        select(ImageAsset).where(ImageAsset.iam_id == student_id)
     )
     images = result.scalars().all()
     return {
@@ -288,7 +288,7 @@ async def get_student_images(session: AsyncSession, student_id: str):
         "images": [
             {
                 "image_id": image.image_id,
-                "username": image.username,
+                "username": image.iam_id,
                 "image_path": image.image_path,
                 "created_at": image.created_at,
                 "updated_at": image.updated_at,
@@ -307,7 +307,7 @@ async def create_student_image(
     if not student:
         raise HTTPException(status_code=404, detail="Student not found")
     image = ImageAsset(
-        username=student_id,
+        iam_id=student_id,
         image_path=image_path or f"image_assets/{student_id}.jpg",
     )
     session.add(image)
@@ -317,7 +317,7 @@ async def create_student_image(
         "message": "Image asset created successfully",
         "image": {
             "image_id": image.image_id,
-            "username": image.username,
+            "username": image.iam_id,
             "image_path": image.image_path,
             "created_at": image.created_at,
         },
@@ -327,7 +327,7 @@ async def create_student_image(
 async def get_student_image_file(session: AsyncSession, student_id: str, image_id: int):
     result = await session.execute(
         select(ImageAsset).where(
-            ImageAsset.username == student_id,
+            ImageAsset.iam_id == student_id,
             ImageAsset.image_id == image_id,
         )
     )
@@ -336,7 +336,7 @@ async def get_student_image_file(session: AsyncSession, student_id: str, image_i
         raise HTTPException(status_code=404, detail="Image not found for this student")
     return {
         "image_path": image.image_path,
-        "username": image.username,
+        "username": image.iam_id,
         "image_id": image.image_id,
     }
 
@@ -348,7 +348,7 @@ async def get_latest_student_image_path(session: AsyncSession, student_id: str) 
         raise HTTPException(status_code=404, detail="Student not found")
     result = await session.execute(
         select(ImageAsset)
-        .where(ImageAsset.username == student_id)
+        .where(ImageAsset.iam_id == student_id)
         .order_by(ImageAsset.created_at.desc())
     )
     image = result.scalars().first()
