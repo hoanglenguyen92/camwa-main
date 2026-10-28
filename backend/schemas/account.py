@@ -1,8 +1,10 @@
 from typing import Optional
 
-from pydantic import BaseModel, EmailStr, ConfigDict
+from pydantic import BaseModel, EmailStr, ConfigDict, Field
 
 from backend.models.enums import AccountRole
+
+E164 = r"^\+[1-9]\d{6,14}$"
 
 
 class UserResponse(BaseModel):
@@ -20,7 +22,7 @@ class UserCreate(BaseModel):
     username: str
     email: EmailStr
     password: str
-    phone_number: Optional[str] = None
+    phone_number: Optional[str] = Field(default=None, pattern=E164)
     role: AccountRole
 
 
@@ -28,7 +30,7 @@ class UserUpdate(BaseModel):
     username: Optional[str] = None
     email: Optional[EmailStr] = None
     password: Optional[str] = None
-    phone_number: Optional[str] = None
+    phone_number: Optional[str] = Field(default=None, pattern=E164)
     role: Optional[AccountRole] = None
 
 

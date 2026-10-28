@@ -81,9 +81,6 @@ async def update_user(session: AsyncSession, iam_id: str, data: UserUpdate) -> U
                 detail=f"User with username {update_dict['username']} already exists",
             )
 
-    if "phone_number" in update_dict:
-        update_dict["phone_number"] = update_dict["phone_number"] or None
-
     if "phone_number" in update_dict and update_dict["phone_number"] != user.phone_number:
         if update_dict["phone_number"]:
             existing_user = await session.execute(
@@ -92,11 +89,12 @@ async def update_user(session: AsyncSession, iam_id: str, data: UserUpdate) -> U
             if existing_user.scalar():
                 raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="User with that phone number already exists")
 
+    uid, old_email, old_phone = user.firebase_uid, user.email, user.phone_number
     password = update_dict.pop("password", None) or None
     if password or ("role" in update_dict and update_dict["role"] != user.role):
         user.token_version += 1
     await firebase.update_user(
-        user.firebase_uid,
+        uid,
         email=update_dict.get("email"),
         password=password,
         phone_number=update_dict.get("phone_number"),
@@ -106,9 +104,19 @@ async def update_user(session: AsyncSession, iam_id: str, data: UserUpdate) -> U
     for field, value in update_dict.items():
         setattr(user, field, value)
 
-    await session.commit()
+    try:
+        await session.commit()
+    except Exception:
+        await session.rollback()
+        try:
+            await firebase.update_user(
+                uid, email=old_email, phone_number=old_phone, clear_phone_number=old_phone is None
+            )
+        except Exception:
+            pass
+        raise
     if password:
-        await firebase.revoke_refresh_tokens(user.firebase_uid)
+        await firebase.revoke_refresh_tokens(uid)
     await session.refresh(user)
     return UserResponse.model_validate(user)
 
@@ -117,9 +125,10 @@ async def delete_user(session: AsyncSession, iam_id: str) -> None:
     user = await session.get(Iam, iam_id)
     if not user:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"User with {iam_id} not found")
-    await firebase.delete_user(user.firebase_uid)
+    uid = user.firebase_uid
     await session.delete(user)
     await session.commit()
+    await firebase.delete_user(uid)
 
 
 async def change_password(session: AsyncSession, iam_id: str, data: PasswordChange) -> None:
