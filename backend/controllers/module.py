@@ -1,126 +1,92 @@
-from typing import List
+from typing import List, Optional
 
-from fastapi import APIRouter, UploadFile, File, HTTPException
+from fastapi import APIRouter, File, UploadFile
 
 from backend.core.db import AsyncSessionDep
-from backend.core.deps import AdminOrFA, AdminOnly
-from backend.helpers.response_wrapper import ApiResponse
-from backend.schemas.module import ModuleResponse, ModuleCreate, ModuleUpdate, CameraPathUpdate
-from backend.services import module_service
+from backend.core.deps import AdminOnly, AdminOrFA, AdminOrFAOrAC, AdminOrFAOrLecturerOrAC, AllAuthenticated
+from backend.core.policies import ensure_module_access, ensure_program_write, module_scope
+from backend.helpers.http import SetLocation, read_upload
+from backend.helpers.pagination import Page, PageDep
+from backend.models import Module, ModuleRegistration
+from backend.schemas.attendance import ExamEligibilityResponse
+from backend.schemas.module import CameraPathUpdate, ModuleCreate, ModuleResponse, ModuleUpdate
+from backend.services import attendance_service, module_registration_service, module_service
 
 router = APIRouter(
-    prefix="/module",
-    tags=["Module"],
+    prefix="/modules",
+    tags=["Modules"],
 )
 
 
-@router.post("/create", response_model=ApiResponse[ModuleResponse], status_code=201)
-async def create_module(
-        session: AsyncSessionDep,
-        data: ModuleCreate,
-        _: AdminOrFA = None
+@router.get("", response_model=Page[ModuleResponse])
+async def list_modules(
+    session: AsyncSessionDep,
+    page: PageDep,
+    user: AdminOrFAOrAC,
+    program_id: Optional[str] = None,
+    semester_id: Optional[str] = None,
+    lecturer_id: Optional[str] = None,
 ):
+    return await module_service.list_modules(
+        session, page, module_scope(user, Module.module_id), program_id, semester_id, lecturer_id
+    )
+
+
+@router.post("", response_model=ModuleResponse, status_code=201)
+async def create_module(session: AsyncSessionDep, data: ModuleCreate, user: AdminOrFA, location: SetLocation):
+    ensure_program_write(user, data.program_id)
     module = await module_service.create_module(session, data)
-    return ApiResponse(
-        message="Module created successfully",
-        meta_data=module
+    location(module.module_id)
+    return module
+
+
+@router.post("/imports")
+async def import_modules(session: AsyncSessionDep, user: AdminOrFA, file: UploadFile = File(...)):
+    contents = await read_upload(file, ".xlsx", ".xls")
+    return await module_service.create_multiple_module_from_excel(
+        session, contents, None if user.is_admin else user.program_id
     )
 
 
-@router.post("/delete-from-excel", response_model=ApiResponse)
-async def delete_modules_from_excel(
-    session: AsyncSessionDep,
-    file: UploadFile = File(...),
-    _: AdminOnly = None
-):
-    if not file.filename or not file.filename.lower().endswith(".xlsx"):
-        raise HTTPException(status_code=400, detail="Invalid file type. Only .xlsx files are allowed.")
-    contents = await file.read()
-    result = await module_service.delete_multiple_modules_from_excel(session, contents)
-    return ApiResponse(
-        message="Modules deleted from Excel successfully",
-        meta_data=result,
+@router.post("/bulk-deletions")
+async def delete_modules(session: AsyncSessionDep, _: AdminOnly, file: UploadFile = File(...)):
+    contents = await read_upload(file, ".xlsx")
+    return await module_service.delete_multiple_modules_from_excel(session, contents)
+
+
+@router.get("/attendance-summary")
+async def get_modules_attendance_summary(session: AsyncSessionDep, user: AdminOrFAOrAC):
+    return await module_registration_service.get_all_modules_with_student_count_and_attendance_rate(
+        session, module_scope(user, ModuleRegistration.module_id)
     )
 
 
-@router.post("/create-from-excel", response_model=ApiResponse)
-async def import_module(
-        session: AsyncSessionDep,
-        file: UploadFile = File(...),
-        _: AdminOrFA = None
-):
-    if not file.filename or not any(file.filename.lower().endswith(ext) for ext in [".xlsx", ".xls"]):
-        raise HTTPException(status_code=400, detail="Invalid file type. Only Excel files are allowed.")
-
-    contents = await file.read()
-    result = await module_service.create_multiple_module_from_excel(session, contents)
-    return ApiResponse(
-        message="Modules imported successfully",
-        meta_data=result
-    )
+@router.get("/{module_id}", response_model=ModuleResponse)
+async def get_module(session: AsyncSessionDep, module_id: str, user: AllAuthenticated):
+    return await ensure_module_access(user, session, module_id)
 
 
-
-@router.get("/view", response_model=ApiResponse[List[ModuleResponse]])
-async def view_modules(
-        session: AsyncSessionDep,
-        _: AdminOrFA = None
-):
-    modules = await module_service.view_modules(session)
-    return ApiResponse(
-        message="Modules retrieved successfully",
-        meta_data=modules
-    )
+@router.patch("/{module_id}", response_model=ModuleResponse)
+async def update_module(session: AsyncSessionDep, module_id: str, data: ModuleUpdate, _: AdminOnly):
+    return await module_service.update_module(session, module_id, data)
 
 
-@router.get("/camera-path/{module_id}", response_model=ApiResponse[dict])
-async def get_camera_path(
-        module_id: str,
-        session: AsyncSessionDep,
-        _: AdminOnly = None
-):
-    result = await module_service.get_camera_path(session, module_id)
-    return ApiResponse(
-        message="Camera path retrieved successfully",
-        meta_data=result
-    )
-
-
-@router.put("/set-camera-path/{module_id}", response_model=ApiResponse[dict])
-async def set_camera_path(
-    module_id: str,
-    data: CameraPathUpdate,
-    session: AsyncSessionDep,
-    _: AdminOnly = None
-):
-    result = await module_service.set_camera_path(session, module_id, data.camera_path)
-    return ApiResponse(
-        message="Camera path set successfully",
-        meta_data=result
-    )
-
-@router.put("/update/{module_id}", response_model=ApiResponse[ModuleResponse])
-async def update_module(
-        session: AsyncSessionDep,
-        module_id: str,
-        data: ModuleUpdate,
-        _: AdminOnly = None
-):
-    module = await module_service.update_module(session, module_id, data)
-    return ApiResponse(
-        message="Module updated successfully",
-        meta_data=module
-    )
-
-
-@router.delete("/delete/{module_id}", response_model=ApiResponse[None])
-async def delete_module(
-        session: AsyncSessionDep,
-        module_id: str,
-        _: AdminOnly = None
-):
+@router.delete("/{module_id}", status_code=204)
+async def delete_module(session: AsyncSessionDep, module_id: str, _: AdminOnly):
     await module_service.delete_module(session, module_id)
-    return ApiResponse(
-        message="Module deleted successfully",
-        meta_data=None
-    )
+
+
+@router.get("/{module_id}/camera-path")
+async def get_camera_path(session: AsyncSessionDep, module_id: str, _: AdminOnly):
+    return await module_service.get_camera_path(session, module_id)
+
+
+@router.put("/{module_id}/camera-path")
+async def set_camera_path(session: AsyncSessionDep, module_id: str, data: CameraPathUpdate, _: AdminOnly):
+    return await module_service.set_camera_path(session, module_id, data.camera_path)
+
+
+@router.get("/{module_id}/exam-eligibility", response_model=List[ExamEligibilityResponse])
+async def get_module_exam_eligibility(session: AsyncSessionDep, module_id: str, user: AdminOrFAOrLecturerOrAC):
+    await ensure_module_access(user, session, module_id)
+    return await attendance_service.get_exam_eligibility_by_module(session, module_id)

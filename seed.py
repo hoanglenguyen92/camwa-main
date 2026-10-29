@@ -1,65 +1,93 @@
+"""Seeds reference data, and optionally demo accounts, into the app database and Keycloak.
+
+    python seed.py                 # program CSE, intake 2021, semester WS2025
+    python seed.py --demo-users    # also one FA, LECTURER, AC and STUDENT, password from SEED_DEMO_PASSWORD
+
+Safe to rerun. Demo users are refused unless Keycloak is local.
+"""
+import argparse
 import asyncio
 import os
 import sys
 from datetime import datetime
+from urllib.parse import urlparse
 
 from dotenv import load_dotenv
-from sqlalchemy import select
-from backend.core.db import AsyncSessionLocal
-from backend.core.identity import provider as identity
-from backend.models import Iam, Intake, Program, Semester
 
 load_dotenv()
 
+from backend.core.configs import settings  # noqa: E402
+from backend.core.db import AsyncSessionLocal, engine, init_db  # noqa: E402
+from backend.core.keycloak import NewUser, keycloak  # noqa: E402
+from backend.models import Intake, Program, Semester  # noqa: E402
+from backend.models.enums import AccountRole  # noqa: E402
+from backend.schemas.users import UserImportRow  # noqa: E402
+from backend.services.user_service import ensure_profiles  # noqa: E402
 
-async def seed():
-    async with AsyncSessionLocal() as session:
+LOCAL_KEYCLOAK_HOSTS = ("localhost", "127.0.0.1")
+PROGRAM_ID = "CSE"
+INTAKE_YEAR = 2021
+DEMO_USERS = (
+    ("90001", AccountRole.FA, "Demo", "Faculty"),
+    ("90002", AccountRole.LECTURER, "Demo", "Lecturer"),
+    ("90003", AccountRole.AC, "Demo", "Coordinator"),
+    ("90004", AccountRole.STUDENT, "Demo", "Student"),
+)
 
-        # Program
-        program_id = "CSE"
-        existing_program = await session.get(Program, program_id)
-        if not existing_program:
-            session.add(Program(program_id=program_id, name="Computer Science"))
 
-        # Intake
-        intake_year = 2021
-        existing_intake = await session.get(Intake, intake_year)
-        if not existing_intake:
-            session.add(Intake(year=intake_year))
+async def seed_reference_data(session) -> None:
+    if not await session.get(Program, PROGRAM_ID):
+        session.add(Program(program_id=PROGRAM_ID, name="Computer Science"))
+    if not await session.get(Intake, INTAKE_YEAR):
+        session.add(Intake(year=INTAKE_YEAR))
+    if not await session.get(Semester, "WS2025"):
+        session.add(Semester(sem_id="WS2025", start_date=datetime(2025, 9, 1), end_date=datetime(2026, 2, 28)))
+    await session.commit()
+    print(f"Reference data: program {PROGRAM_ID}, intake {INTAKE_YEAR}, semester WS2025")
 
-        # Semester
-        sem_id = "WS2025"
-        existing_sem = await session.get(Semester, sem_id)
-        if not existing_sem:
-            session.add(
-                Semester(
-                    sem_id=sem_id,
-                    start_date=datetime(2025, 9, 1),
-                    end_date=datetime(2026, 2, 28),
-                )
-            )
-        # Admin account in IAM
-        admin_id = "admin"
-        existing_admin = await session.get(Iam, admin_id)
-        if not existing_admin:
-            admin_email = "admin@example.com"
-            admin_uid = await identity.get_uid_by_email(admin_email)
-            if admin_uid is None:
-                admin_password = os.environ.get("SEED_ADMIN_PASSWORD")
-                if not admin_password:
-                    sys.exit("SEED_ADMIN_PASSWORD is not set. Set it in the environment to create the admin account.")
-                admin_uid = await identity.create_user(admin_email, admin_password)
-            session.add(
-                Iam(
-                    iam_id=admin_id,
-                    username="admin",
-                    email=admin_email,
-                    auth_uid=admin_uid,
-                    role="ADMIN",
-                    token_version=1,
-                )
-            )
-        await session.commit()
-        print("Seed completed.")
+
+async def seed_demo_users(session, password: str) -> None:
+    for camwa_id, role, first_name, last_name in DEMO_USERS:
+        row = UserImportRow(
+            camwa_id=camwa_id,
+            email=f"demo.{role.value.lower()}@example.com",
+            first_name=first_name,
+            last_name=last_name,
+            role=role,
+            program_id=PROGRAM_ID,
+            intake=INTAKE_YEAR if role == AccountRole.STUDENT else None,
+        )
+        if await keycloak.get_user(camwa_id) is None:
+            account = await keycloak.create_user(NewUser(camwa_id, row.email, first_name, last_name, role.value))
+            await keycloak.set_password(account.id, password)
+        await ensure_profiles(session, row)
+        print(f"Demo {role.value}: {camwa_id} / {row.email}")
+
+
+async def seed(demo_users: bool) -> None:
+    password = os.environ.get("SEED_DEMO_PASSWORD")
+    if demo_users:
+        if urlparse(settings.KEYCLOAK_URL).hostname not in LOCAL_KEYCLOAK_HOSTS:
+            sys.exit("--demo-users runs only against a local Keycloak.")
+        if not password:
+            sys.exit("Set SEED_DEMO_PASSWORD to seed demo users.")
+    await init_db()
+    try:
+        async with AsyncSessionLocal() as session:
+            await seed_reference_data(session)
+            if demo_users:
+                await seed_demo_users(session, password)
+    finally:
+        await engine.dispose()
+    print("Seed completed.")
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    parser.add_argument("--demo-users", action="store_true", help="also create demo accounts in Keycloak and the app")
+    args = parser.parse_args()
+    asyncio.run(seed(args.demo_users))
+
+
 if __name__ == "__main__":
-    asyncio.run(seed())
+    main()

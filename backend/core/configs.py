@@ -1,6 +1,3 @@
-from typing import Literal
-
-from pydantic import Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -19,12 +16,6 @@ class Settings(BaseSettings):
     DB_MAX_OVERFLOW: int = 10
     DB_POOL_RECYCLE: int = 3600
 
-    JWT_SECRET_KEY: str = Field(min_length=32)
-    JWT_REFRESH_SECRET_KEY: str = Field(min_length=32)
-    ALGORITHM: str = 'HS256'
-    ACCESS_TOKEN_EXPIRE_MINUTES: int = 60
-    REFRESH_TOKEN_EXPIRE_DAYS: int = 7
-
     MAIL_USERNAME: str = ""
     MAIL_PASSWORD: str = ""
     MAIL_FROM: str = ""
@@ -35,8 +26,15 @@ class Settings(BaseSettings):
     USE_CREDENTIALS: bool = True
     EMAIL_RETRY_ATTEMPTS: int = 3
 
-    AUTH_PROVIDER: Literal["firebase"] = "firebase"
+    KEYCLOAK_URL: str = "http://localhost:8080"
+    KEYCLOAK_REALM: str = "camwa"
+    KEYCLOAK_CLIENT_ID: str = "camwa-backend"
+    KEYCLOAK_CLIENT_SECRET: str = ""
+    KEYCLOAK_TIMEOUT_SECONDS: float = 10
 
+    @property
+    def keycloak_issuer(self) -> str:
+        return f"{self.KEYCLOAK_URL.rstrip('/')}/realms/{self.KEYCLOAK_REALM}"
 
 
 settings = Settings()

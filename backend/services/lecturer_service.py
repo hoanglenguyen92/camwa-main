@@ -1,5 +1,5 @@
 import io
-from typing import List
+from typing import Optional
 
 import openpyxl
 from fastapi import HTTPException, status
@@ -7,7 +7,9 @@ from sqlalchemy import select, or_
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from backend.models import Lecturer, Program
+from backend.helpers.http import reject_rows_outside_program
+from backend.helpers.pagination import Page, PageParams, paginate
+from backend.models import Lecturer, Module, Program
 from backend.schemas.lecturer import LecturerCreate, LecturerResponse, LecturerUpdate
 
 
@@ -44,23 +46,24 @@ async def create_lecturer(session: AsyncSession, data: LecturerCreate) -> Lectur
     return LecturerResponse.model_validate(new_lecturer)
 
 
-async def get_all_lecturers(session: AsyncSession) -> List[LecturerResponse]:
-    result = await session.execute(select(Lecturer))
-    lecturers = result.scalars().all()
-    return [LecturerResponse.model_validate(lecturer) for lecturer in lecturers]
+async def list_lecturers(session: AsyncSession, page: PageParams, program_id: Optional[str] = None) -> Page[LecturerResponse]:
+    stmt = select(Lecturer).order_by(Lecturer.lecturer_id)
+    if program_id:
+        stmt = stmt.where(Lecturer.program_id == program_id)
+    return await paginate(session, stmt, LecturerResponse, page)
 
 
-async def find_lecturer_by_id(session: AsyncSession, lecturer_id: str) -> LecturerResponse:
+async def get_lecturer(session: AsyncSession, lecturer_id: str) -> Lecturer:
     lecturer = await session.get(Lecturer, lecturer_id)
     if not lecturer:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Lecturer not found: {lecturer_id}")
-    return LecturerResponse.model_validate(lecturer)
+    return lecturer
 
 
 async def delete_lecturer(session: AsyncSession, lecturer_id: str) -> None:
-    lecturer = await session.get(Lecturer, lecturer_id)
-    if not lecturer:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Lecturer not found: {lecturer_id}")
+    lecturer = await get_lecturer(session, lecturer_id)
+    if await session.scalar(select(Module.module_id).where(Module.lecturer_id == lecturer_id).limit(1)):
+        raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="Lecturer still teaches a module")
     await session.delete(lecturer)
     await session.commit()
 
@@ -95,12 +98,15 @@ async def update_lecturer(session: AsyncSession, lecturer_id: str, lecturer_upda
     return LecturerResponse.model_validate(lecturer)
 
 
-async def _process_excel(session: AsyncSession, file_contents: bytes):
+async def create_multiple_lecturers_from_excel(
+    session: AsyncSession, file_contents: bytes, allowed_program_id: Optional[str] = None
+):
     workbook = openpyxl.load_workbook(io.BytesIO(file_contents))
     sheet = workbook.active
 
     successful = []
     failed = []
+    outside_program = []
 
     for row_index, row in enumerate(sheet.iter_rows(min_row=2, values_only=True), start=2):
         lecturer_id = str(row[0]).strip() if len(row) > 0 and row[0] else None
@@ -117,7 +123,10 @@ async def _process_excel(session: AsyncSession, file_contents: bytes):
             })
             continue
 
-        # Check duplicates
+        if allowed_program_id and program_id != allowed_program_id:
+            outside_program.append(row_index)
+            continue
+
         existing = await session.get(Lecturer, lecturer_id)
         if existing:
             failed.append({
@@ -152,6 +161,9 @@ async def _process_excel(session: AsyncSession, file_contents: bytes):
             "program_id": program_id
         })
 
+    if outside_program:
+        await session.rollback()
+        reject_rows_outside_program(outside_program)
     try:
         await session.commit()
     except IntegrityError as exc:
@@ -161,7 +173,3 @@ async def _process_excel(session: AsyncSession, file_contents: bytes):
             detail=f"Could not import lecturers: {exc.orig}",
         )
     return {"successful": successful, "failed": failed}
-
-
-async def create_multiple_lecturers_from_excel(session: AsyncSession, file_contents: bytes):
-    return await _process_excel(session, file_contents)

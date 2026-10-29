@@ -4,9 +4,12 @@ from typing import List, Optional, Dict, Any
 
 import openpyxl
 from fastapi import HTTPException, status
-from sqlalchemy import select, func, case, or_
+from sqlalchemy import ColumnElement, select, func, case
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
+
+from backend.helpers.http import reject_rows_outside_program
+from backend.helpers.pagination import Page, PageParams, paginate
 
 from backend.models import ModuleRegistration, Attendance, Student, Module, Lecturer
 from backend.models.enums import AttendanceStatus
@@ -76,29 +79,22 @@ async def create_registration(
     return ModuleRegistrationResponse.model_validate(registration)
 
 
-async def get_all_registrations(session: AsyncSession) -> List[ModuleRegistrationResponse]:
-    result = await session.execute(select(ModuleRegistration))
-    rows = result.scalars().all()
-    return [ModuleRegistrationResponse.model_validate(row) for row in rows]
-
-
-async def find_registration_by_id(session: AsyncSession, module_reg_id: int) -> ModuleRegistrationResponse:
-    row = await session.get(ModuleRegistration, module_reg_id)
-    if not row:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Registration not found")
-    return ModuleRegistrationResponse.model_validate(row)
-
-
-async def find_registrations_by_student_id(session: AsyncSession, student_id: str) -> List[ModuleRegistrationResponse]:
-    result = await session.execute(select(ModuleRegistration).where(ModuleRegistration.student_id == student_id))
-    rows = result.scalars().all()
-    return [ModuleRegistrationResponse.model_validate(row) for row in rows]
-
-
-async def find_registrations_by_module_id(session: AsyncSession, module_id: str) -> List[ModuleRegistrationResponse]:
-    result = await session.execute(select(ModuleRegistration).where(ModuleRegistration.module_id == module_id))
-    rows = result.scalars().all()
-    return [ModuleRegistrationResponse.model_validate(row) for row in rows]
+async def list_registrations(
+    session: AsyncSession,
+    page: PageParams,
+    scope: ColumnElement[bool],
+    student_id: Optional[str] = None,
+    module_id: Optional[str] = None,
+    lecturer_id: Optional[str] = None,
+) -> Page[ModuleRegistrationResponse]:
+    stmt = select(ModuleRegistration).where(scope).order_by(ModuleRegistration.module_reg_id)
+    if student_id:
+        stmt = stmt.where(ModuleRegistration.student_id == student_id)
+    if module_id:
+        stmt = stmt.where(ModuleRegistration.module_id == module_id)
+    if lecturer_id:
+        stmt = stmt.where(ModuleRegistration.lecturer_id == lecturer_id)
+    return await paginate(session, stmt, ModuleRegistrationResponse, page)
 
 
 async def get_lecturer_modules_with_student_count(session: AsyncSession, lecturer_id: str) -> list[dict]:
@@ -140,9 +136,10 @@ async def get_lecturer_modules_with_student_count(session: AsyncSession, lecture
     return payload
 
 
-async def get_all_modules_with_student_count_and_attendance_rate(session: AsyncSession) -> list[dict]:
+async def get_all_modules_with_student_count_and_attendance_rate(session: AsyncSession, scope) -> list[dict]:
     reg_result = await session.execute(
         select(ModuleRegistration.module_id, func.count(ModuleRegistration.student_id))
+        .where(scope)
         .group_by(ModuleRegistration.module_id)
     )
     registrations = reg_result.all()
@@ -151,7 +148,9 @@ async def get_all_modules_with_student_count_and_attendance_rate(session: AsyncS
             Attendance.module_id,
             func.count(Attendance.attendance_id).label("total"),
             func.sum(case((Attendance.attendance_status.in_(PRESENT_STATUSES), 1), else_=0)).label("attended"),
-        ).group_by(Attendance.module_id)
+        )
+        .where(Attendance.module_id.in_(select(ModuleRegistration.module_id).where(scope)))
+        .group_by(Attendance.module_id)
     )
     attendance = att_result.all()
     att_map = {module_id: (total or 0, present or 0) for module_id, total, present in attendance}
@@ -262,12 +261,10 @@ async def get_lecturer_students_with_attendance_rate(
 
 async def update_registration(
     session: AsyncSession,
-    module_reg_id: int,
+    row: ModuleRegistration,
     data: ModuleRegistrationUpdate,
 ) -> ModuleRegistrationResponse:
-    row = await session.get(ModuleRegistration, module_reg_id)
-    if not row:
-        raise HTTPException(status_code=404, detail="Registration not found")
+    module_reg_id = row.module_reg_id
     update_data = data.model_dump(exclude_unset=True)
     if not update_data:
         return ModuleRegistrationResponse.model_validate(row)
@@ -288,19 +285,20 @@ async def update_registration(
     return ModuleRegistrationResponse.model_validate(row)
 
 
-async def delete_registration(session: AsyncSession, module_reg_id: int) -> None:
-    row = await session.get(ModuleRegistration, module_reg_id)
-    if not row:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Registration not found")
+async def delete_registration(session: AsyncSession, row: ModuleRegistration) -> None:
     await session.delete(row)
     await session.commit()
 
 
-async def _process_excel(session: AsyncSession, file_contents: bytes):
+async def create_multiple_module_registration_from_excel(
+    session: AsyncSession, file_contents: bytes, allowed_program_id: Optional[str] = None
+):
     workbook = openpyxl.load_workbook(io.BytesIO(file_contents))
     sheet = workbook.active
     successful = []
     failed = []
+    outside_program = []
+    program_of_module: Dict[str, Optional[str]] = {}
     seen_pairs = set()
     for row_index, row in enumerate(sheet.iter_rows(min_row=2, values_only=True), start=2):
         student_id = str(row[0]).strip() if len(row) > 0 and row[0] else None
@@ -315,6 +313,14 @@ async def _process_excel(session: AsyncSession, file_contents: bytes):
                 "error": "Missing required fields",
             })
             continue
+        if allowed_program_id:
+            if module_id not in program_of_module:
+                program_of_module[module_id] = await session.scalar(
+                    select(Module.program_id).where(Module.module_id == module_id)
+                )
+            if program_of_module[module_id] != allowed_program_id:
+                outside_program.append(row_index)
+                continue
         pair = (student_id, module_id)
         if pair in seen_pairs:
             failed.append({
@@ -357,10 +363,9 @@ async def _process_excel(session: AsyncSession, file_contents: bytes):
             "module_id": module_id,
             "lecturer_id": lecturer_id,
         })
+    if outside_program:
+        await session.rollback()
+        reject_rows_outside_program(outside_program)
     await session.commit()
     return {"successful": successful, "failed": failed}
-
-
-async def create_multiple_module_registration_from_excel(session: AsyncSession, file_contents: bytes):
-    return await _process_excel(session, file_contents)
 

@@ -3,7 +3,7 @@ from backend.models.attendance import Attendance
 from backend.models.attendance_request import AttendanceRequest
 from backend.models.exam import Exam
 from backend.models.facility_faculty import FacilityFaculty
-from backend.models.iam import Iam
+
 from backend.models.image_asset import ImageAsset
 from backend.models.intake import Intake
 from backend.models.lecturer import Lecturer
@@ -15,7 +15,7 @@ from backend.models.semester import Semester
 from backend.models.student import Student
 
 __all__ = [
-    "Iam",
+
     "Student",
     "Program",
     "Intake",

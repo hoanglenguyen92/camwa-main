@@ -1,7 +1,7 @@
 from datetime import datetime
-from typing import Optional
+from typing import Literal, Optional
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel
 
 from backend.models.enums import AttendanceStatus, RequestStatus
 
@@ -34,9 +34,10 @@ class AttendanceRequestCreate(BaseModel):
     reason: Optional[str]
 
 
-class CorrectionApproval(BaseModel):
-    approved_status: AttendanceStatus
-    processed_by: str
+class CorrectionDecision(BaseModel):
+    status: Literal[RequestStatus.APPROVED, RequestStatus.REJECTED]
+    approved_status: Optional[AttendanceStatus] = None
+    """The status to record when approving. Defaults to the proposed status."""
 
 
 class AttendanceRequestResponse(BaseModel):
@@ -60,3 +61,9 @@ class ExamEligibilityResponse(BaseModel):
     attendance_rate: float
     is_eligible: bool
     model_config = {"from_attributes": True}
+
+
+class EligibilityRecalculation(BaseModel):
+    """Leave both empty to recalculate every module in reach."""
+    module_id: Optional[str] = None
+    lecturer_id: Optional[str] = None

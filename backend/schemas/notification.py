@@ -26,5 +26,9 @@ class NotificationRequestCreate(BaseModel):
     status: NotificationStatus = NotificationStatus.UNREAD
 
 
-class MarkAllAsRead(BaseModel):
+class NotificationStatusUpdate(BaseModel):
+    status: NotificationStatus
+
+
+class NotificationCount(BaseModel):
     count: int

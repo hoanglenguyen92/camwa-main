@@ -1,7 +1,7 @@
 """Write the API's OpenAPI schema to frontend/openapi.json for the TypeScript client generator.
 
 Run: python -m scripts.export_openapi
-Needs no database or identity credentials; placeholder settings are used only when unset.
+Needs no database or Keycloak; a placeholder DATABASE_URL is used when unset.
 """
 import json
 import os
@@ -9,12 +9,7 @@ from pathlib import Path
 
 OUTPUT = Path(__file__).resolve().parent.parent / "frontend" / "openapi.json"
 
-for name, placeholder in {
-    "DATABASE_URL": "postgresql+asyncpg://openapi:openapi@localhost/openapi",
-    "JWT_SECRET_KEY": "openapi-export-placeholder-secret-0000",
-    "JWT_REFRESH_SECRET_KEY": "openapi-export-placeholder-secret-0000",
-}.items():
-    os.environ.setdefault(name, placeholder)
+os.environ.setdefault("DATABASE_URL", "postgresql+asyncpg://openapi:openapi@localhost/openapi")
 
 from main import app  # noqa: E402  settings must be in the environment before import
 
