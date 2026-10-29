@@ -1,62 +1,82 @@
-from typing import Annotated, List
+from dataclasses import dataclass
+from typing import Annotated, Optional
 
-import jwt
 from fastapi import Depends, HTTPException
-from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
-from sqlalchemy import select
+from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 
-from backend.core.configs import settings
 from backend.core.db import AsyncSessionDep
-from backend.models import Iam
+from backend.core.keycloak import keycloak, unauthorized
+from backend.models import AcademicCoordinator, FacilityFaculty
+from backend.models.enums import AccountRole
 
-security = HTTPBearer()
-
-
-async def get_token_payload(
-        credentials: Annotated[HTTPAuthorizationCredentials, Depends(security)],
-) -> dict:
-    try:
-        payload = jwt.decode(credentials.credentials, settings.JWT_SECRET_KEY, algorithms=[settings.ALGORITHM])
-    except jwt.ExpiredSignatureError:
-        raise HTTPException(status_code=401, detail="Token expired")
-    except jwt.InvalidTokenError:
-        raise HTTPException(status_code=401, detail="Invalid token")
-    if payload.get("sub") is None or payload.get("token_version") is None:
-        raise HTTPException(status_code=401, detail="Invalid token")
-    return payload
+bearer = HTTPBearer(auto_error=False)
 
 
-TokenPayload = Annotated[dict, Depends(get_token_payload)]
+@dataclass(frozen=True)
+class Principal:
+    camwa_id: str
+    roles: frozenset[AccountRole]
+    acting: AccountRole
+    program_id: Optional[str]
+    claims: dict
+
+    @property
+    def is_admin(self) -> bool:
+        return self.acting == AccountRole.ADMIN
 
 
-async def get_current_user(payload: TokenPayload, db: AsyncSessionDep) -> Iam:
-    result = await db.execute(select(Iam).where(Iam.iam_id == payload["sub"]))
-    user = result.scalars().first()
-    if not user:
-        raise HTTPException(status_code=401, detail="User not found")
-
-    if user.token_version != payload["token_version"]:
-        raise HTTPException(status_code=401, detail="Token invalidated")
-
-    return user
+def _base_role(roles: frozenset[AccountRole]) -> AccountRole:
+    # AC is a composite of LECTURER, so an AC token carries both.
+    if AccountRole.AC in roles and roles <= {AccountRole.AC, AccountRole.LECTURER}:
+        return AccountRole.AC
+    if len(roles) == 1:
+        return next(iter(roles))
+    raise HTTPException(status_code=403, detail="Your account needs exactly one CAMWA role")
 
 
-def require_role(allowed_roles: List[str]):
-    def _role_checker(payload: TokenPayload, current_user: Iam = Depends(get_current_user)):
-        jwt_role = payload.get("role")
-        if jwt_role not in allowed_roles:
-            raise HTTPException(status_code=403, detail=f"Role '{jwt_role}' not authorized. Requires: {allowed_roles}")
-        return current_user
-    return _role_checker
+async def get_principal(
+    session: AsyncSessionDep,
+    credentials: Annotated[Optional[HTTPAuthorizationCredentials], Depends(bearer)],
+) -> Principal:
+    if credentials is None:
+        raise unauthorized("Not authenticated")
+    claims = await keycloak.verify_token(credentials.credentials)
+    known = {role.value for role in AccountRole}
+    roles = frozenset(AccountRole(r) for r in claims.get("realm_access", {}).get("roles", []) if r in known)
+    role = _base_role(roles)
+    camwa_id = claims["preferred_username"]
+    acting, program_id = role, None
+    if role == AccountRole.FA:
+        staff = await session.get(FacilityFaculty, camwa_id)
+        program_id = staff.program_id if staff else None
+    elif role == AccountRole.AC:
+        coordinator = await session.get(AcademicCoordinator, camwa_id)
+        if coordinator:
+            acting = AccountRole(coordinator.current_role.value)
+            program_id = coordinator.program_id
+    return Principal(camwa_id=camwa_id, roles=roles, acting=acting, program_id=program_id, claims=claims)
 
 
-AdminOnly = Annotated[Iam, Depends(require_role(["ADMIN"]))]
-AdminOrFA = Annotated[Iam, Depends(require_role(["ADMIN", "FA"]))]
-AdminOrFAOrAC = Annotated[Iam, Depends(require_role(["ADMIN", "FA", "AC"]))]
-AdminOrFAOrLecturer = Annotated[Iam, Depends(require_role(["ADMIN", "FA", "LECTURER"]))]
-AdminOrFAOrLecturerOrAC = Annotated[Iam, Depends(require_role(["ADMIN", "FA", "LECTURER", "AC"]))]
-LecturerOnly = Annotated[Iam, Depends(require_role(["LECTURER"]))]
-StudentOnly = Annotated[Iam, Depends(require_role(["STUDENT"]))]
-AllAuthenticated = Annotated[Iam, Depends(require_role(["ADMIN", "FA", "LECTURER", "STUDENT", "AC"]))]
+def require_role(*allowed: AccountRole):
+    async def checker(principal: Annotated[Principal, Depends(get_principal)]) -> Principal:
+        if principal.acting not in allowed:
+            raise HTTPException(status_code=403, detail="Permission denied")
+        if principal.acting in (AccountRole.FA, AccountRole.AC) and principal.program_id is None:
+            raise HTTPException(status_code=403, detail="No staff profile found for your account")
+        return principal
+    return checker
 
-CurrentUser = Annotated[Iam, Depends(get_current_user)]
+
+ADMIN, FA, LECTURER, AC, STUDENT = AccountRole
+
+CurrentUser = Annotated[Principal, Depends(get_principal)]
+AllAuthenticated = Annotated[Principal, Depends(require_role(ADMIN, FA, LECTURER, AC, STUDENT))]
+AdminOnly = Annotated[Principal, Depends(require_role(ADMIN))]
+AdminOrFA = Annotated[Principal, Depends(require_role(ADMIN, FA))]
+AdminOrFAOrAC = Annotated[Principal, Depends(require_role(ADMIN, FA, AC))]
+AdminOrFAOrLecturer = Annotated[Principal, Depends(require_role(ADMIN, FA, LECTURER))]
+AdminOrFAOrLecturerOrAC = Annotated[Principal, Depends(require_role(ADMIN, FA, LECTURER, AC))]
+AdminOrFAOrLecturerOrStudent = Annotated[Principal, Depends(require_role(ADMIN, FA, LECTURER, STUDENT))]
+AdminOrFAOrStudent = Annotated[Principal, Depends(require_role(ADMIN, FA, STUDENT))]
+LecturerOrAC = Annotated[Principal, Depends(require_role(LECTURER, AC))]
+StudentOnly = Annotated[Principal, Depends(require_role(STUDENT))]

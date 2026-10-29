@@ -4,8 +4,23 @@ from fastapi import FastAPI
 from fastapi.routing import APIRoute
 
 from backend.core.db import engine, init_db
-from backend.controllers import auth, account, intake, semester, student, program, module, module_registration, \
-    lecturer, facility_faculty, dashboard, notification, attendance
+from backend.controllers import (
+    attendance,
+    attendance_request,
+    auth,
+    dashboard,
+    exam_eligibility,
+    facility_faculty,
+    intake,
+    lecturer,
+    me,
+    module,
+    module_registration,
+    program,
+    semester,
+    student,
+    users,
+)
 
 
 @asynccontextmanager
@@ -27,25 +42,28 @@ app = FastAPI(
 )
 
 
-# register_exception_handlers(app)
+API_PREFIX = "/api/v1"
+ROUTERS = (
+    auth,
+    me,
+    users,
+    intake,
+    semester,
+    program,
+    facility_faculty,
+    student,
+    lecturer,
+    module,
+    module_registration,
+    attendance,
+    attendance_request,
+    exam_eligibility,
+    dashboard,
+)
+for controller in ROUTERS:
+    app.include_router(controller.router, prefix=API_PREFIX)
 
 
-api_prefix = "/api"
-app.include_router(account.router, prefix=api_prefix)
-app.include_router(auth.router, prefix=api_prefix)
-app.include_router(intake.router, prefix=api_prefix)
-app.include_router(semester.router, prefix=api_prefix)
-app.include_router(student.router, prefix=api_prefix)
-app.include_router(program.router, prefix=api_prefix)
-app.include_router(module.router, prefix=api_prefix)
-app.include_router(facility_faculty.router, prefix=api_prefix)
-app.include_router(lecturer.router, prefix=api_prefix)
-app.include_router(module_registration.router, prefix=api_prefix)
-app.include_router(notification.router, prefix=api_prefix)
-app.include_router(dashboard.router, prefix=api_prefix)
-app.include_router(attendance.router, prefix=api_prefix)
-
-
-@app.get("/api")
+@app.get(API_PREFIX)
 async def root():
     return {"message": "Welcome to the API"}

@@ -1,14 +1,16 @@
 import io
 from pathlib import Path
-from typing import List, Optional
+from typing import Optional
 
 import openpyxl
 from fastapi import HTTPException, status
-from sqlalchemy import select, func, or_
+from sqlalchemy import ColumnElement, select, func
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from backend.models import Student, ModuleRegistration, Attendance, Exam, Iam, Program, Intake, Module, ImageAsset
+from backend.helpers.http import reject_rows_outside_program
+from backend.helpers.pagination import Page, PageParams, paginate
+from backend.models import Student, ModuleRegistration, Attendance, Exam, Program, Intake, Module, ImageAsset
 from backend.models.enums import AttendanceStatus
 from backend.schemas.student import StudentCreate, StudentResponse, StudentUpdate
 
@@ -19,13 +21,9 @@ PRESENT_STATUSES = [
 ]
 async def _ensure_student_refs_exist(
     session: AsyncSession,
-    student_id: Optional[str] = None,
     program_id: Optional[str] = None,
     intake: Optional[int] = None,
 ) -> None:
-    if student_id and not await session.get(Iam, student_id):
-        raise HTTPException(status_code=404, detail="IAM user not found for student")
-
     if program_id and not await session.get(Program, program_id):
         raise HTTPException(status_code=404, detail="Program not found")
 
@@ -39,7 +37,6 @@ async def create_student(session: AsyncSession, data: StudentCreate) -> StudentR
         raise HTTPException(status_code=409, detail="Student already exists")
     await _ensure_student_refs_exist(
         session,
-        student_id=data.student_id,
         program_id=data.program_id,
         intake=data.intake,
     )
@@ -54,17 +51,19 @@ async def create_student(session: AsyncSession, data: StudentCreate) -> StudentR
     return StudentResponse.model_validate(student)
 
 
-async def get_all_students(session: AsyncSession) -> List[StudentResponse]:
-    result = await session.execute(select(Student))
-    students = result.scalars().all()
-    return [StudentResponse.model_validate(student) for student in students]
-
-
-async def find_student_by_id(session: AsyncSession, student_id: str) -> StudentResponse:
-    student = await session.get(Student, student_id)
-    if not student:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Student not found")
-    return StudentResponse.model_validate(student)
+async def list_students(
+    session: AsyncSession,
+    page: PageParams,
+    scope: ColumnElement[bool],
+    program_id: Optional[str] = None,
+    intake: Optional[int] = None,
+) -> Page[StudentResponse]:
+    stmt = select(Student).where(scope).order_by(Student.student_id)
+    if program_id:
+        stmt = stmt.where(Student.program_id == program_id)
+    if intake is not None:
+        stmt = stmt.where(Student.intake == intake)
+    return await paginate(session, stmt, StudentResponse, page)
 
 
 async def delete_student(session: AsyncSession, student_id: str) -> None:
@@ -192,11 +191,14 @@ async def get_student_exam_eligibility_status(session: AsyncSession, student_id:
     }
 
 
-async def _process_excel(session: AsyncSession, file_contents: bytes):
+async def create_multiple_student_from_excel(
+    session: AsyncSession, file_contents: bytes, allowed_program_id: Optional[str] = None
+):
     workbook = openpyxl.load_workbook(io.BytesIO(file_contents))
     sheet = workbook.active
     successful = []
     failed = []
+    outside_program = []
     seen_student_ids = set()
     for row_index, row in enumerate(sheet.iter_rows(min_row=2, values_only=True), start=2):
         student_id = str(row[0]).strip() if len(row) > 0 and row[0] else None
@@ -230,6 +232,9 @@ async def _process_excel(session: AsyncSession, file_contents: bytes):
                 "error": "Duplicate student in Excel file",
             })
             continue
+        if allowed_program_id and program_id != allowed_program_id:
+            outside_program.append(row_index)
+            continue
         seen_student_ids.add(student_id)
         if await session.get(Student, student_id):
             failed.append({
@@ -240,7 +245,7 @@ async def _process_excel(session: AsyncSession, file_contents: bytes):
             })
             continue
         try:
-            await _ensure_student_refs_exist(session, student_id, program_id, intake)
+            await _ensure_student_refs_exist(session, program_id, intake)
         except HTTPException as exc:
             failed.append({
                 "row": row_index,
@@ -266,12 +271,11 @@ async def _process_excel(session: AsyncSession, file_contents: bytes):
             "program_id": program_id,
             "intake": intake,
         })
+    if outside_program:
+        await session.rollback()
+        reject_rows_outside_program(outside_program)
     await session.commit()
     return {"successful": successful, "failed": failed}
-
-
-async def create_multiple_student_from_excel(session: AsyncSession, file_contents: bytes):
-    return await _process_excel(session, file_contents)
 
 
 async def get_student_images(session: AsyncSession, student_id: str):
@@ -279,7 +283,7 @@ async def get_student_images(session: AsyncSession, student_id: str):
     if not student:
         raise HTTPException(status_code=404, detail="Student not found")
     result = await session.execute(
-        select(ImageAsset).where(ImageAsset.iam_id == student_id)
+        select(ImageAsset).where(ImageAsset.camwa_id == student_id)
     )
     images = result.scalars().all()
     return {
@@ -288,7 +292,7 @@ async def get_student_images(session: AsyncSession, student_id: str):
         "images": [
             {
                 "image_id": image.image_id,
-                "username": image.iam_id,
+                "student_id": image.camwa_id,
                 "image_path": image.image_path,
                 "created_at": image.created_at,
                 "updated_at": image.updated_at,
@@ -307,7 +311,7 @@ async def create_student_image(
     if not student:
         raise HTTPException(status_code=404, detail="Student not found")
     image = ImageAsset(
-        iam_id=student_id,
+        camwa_id=student_id,
         image_path=image_path or f"image_assets/{student_id}.jpg",
     )
     session.add(image)
@@ -317,7 +321,7 @@ async def create_student_image(
         "message": "Image asset created successfully",
         "image": {
             "image_id": image.image_id,
-            "username": image.iam_id,
+            "student_id": image.camwa_id,
             "image_path": image.image_path,
             "created_at": image.created_at,
         },
@@ -327,7 +331,7 @@ async def create_student_image(
 async def get_student_image_file(session: AsyncSession, student_id: str, image_id: int):
     result = await session.execute(
         select(ImageAsset).where(
-            ImageAsset.iam_id == student_id,
+            ImageAsset.camwa_id == student_id,
             ImageAsset.image_id == image_id,
         )
     )
@@ -336,7 +340,7 @@ async def get_student_image_file(session: AsyncSession, student_id: str, image_i
         raise HTTPException(status_code=404, detail="Image not found for this student")
     return {
         "image_path": image.image_path,
-        "username": image.iam_id,
+        "student_id": image.camwa_id,
         "image_id": image.image_id,
     }
 
@@ -348,7 +352,7 @@ async def get_latest_student_image_path(session: AsyncSession, student_id: str) 
         raise HTTPException(status_code=404, detail="Student not found")
     result = await session.execute(
         select(ImageAsset)
-        .where(ImageAsset.iam_id == student_id)
+        .where(ImageAsset.camwa_id == student_id)
         .order_by(ImageAsset.created_at.desc())
     )
     image = result.scalars().first()

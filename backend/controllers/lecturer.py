@@ -1,100 +1,58 @@
-from fastapi import APIRouter, UploadFile, File, HTTPException, status
+from typing import Optional
+
+from fastapi import APIRouter, File, HTTPException, UploadFile
 
 from backend.core.db import AsyncSessionDep
 from backend.core.deps import AdminOrFA, AllAuthenticated
-from backend.helpers.response_wrapper import ApiResponse
-from backend.schemas.lecturer import LecturerResponse, LecturerCreate, LecturerUpdate
-
+from backend.core.policies import ensure_program_write
+from backend.helpers.http import SetLocation, read_upload
+from backend.helpers.pagination import Page, PageDep
+from backend.schemas.lecturer import LecturerCreate, LecturerResponse, LecturerUpdate
 from backend.services import lecturer_service
 
 router = APIRouter(
-    prefix="/lecturer",
-    tags=["Lecturer"],
+    prefix="/lecturers",
+    tags=["Lecturers"],
 )
 
 
-@router.post("/", response_model=ApiResponse[LecturerResponse], status_code=201)
-async def create_lecturer(
-        session: AsyncSessionDep,
-        data: LecturerCreate,
-        _: AdminOrFA = None
-):
+@router.get("", response_model=Page[LecturerResponse])
+async def list_lecturers(session: AsyncSessionDep, page: PageDep, _: AllAuthenticated, program_id: Optional[str] = None):
+    return await lecturer_service.list_lecturers(session, page, program_id)
+
+
+@router.post("", response_model=LecturerResponse, status_code=201)
+async def create_lecturer(session: AsyncSessionDep, data: LecturerCreate, user: AdminOrFA, location: SetLocation):
+    ensure_program_write(user, data.program_id)
     lecturer = await lecturer_service.create_lecturer(session, data)
-    return ApiResponse(
-        message="Lecturer created successfully",
-        meta_data=lecturer
+    location(lecturer.lecturer_id)
+    return lecturer
+
+
+@router.post("/imports")
+async def import_lecturers(session: AsyncSessionDep, user: AdminOrFA, file: UploadFile = File(...)):
+    contents = await read_upload(file, ".xlsx")
+    return await lecturer_service.create_multiple_lecturers_from_excel(
+        session, contents, None if user.is_admin else user.program_id
     )
 
 
-@router.post("/create-from-excel", response_model=ApiResponse)
-async def import_lecturers(
-    session: AsyncSessionDep,
-    file: UploadFile = File(...),
-    _: AdminOrFA = None,
-):
-    if not file.filename or not file.filename.lower().endswith(".xlsx"):
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Invalid file type. Only .xlsx files are allowed.",
-        )
-    contents = await file.read()
-    result = await lecturer_service.create_multiple_lecturers_from_excel(session, contents)
-    return ApiResponse(
-        message="Lecturers imported successfully",
-        meta_data={
-            "successful": len(result.get("successful", [])),
-            "failed": len(result.get("failed", [])),
-            "details": result,
-        },
-    )
+@router.get("/{lecturer_id}", response_model=LecturerResponse)
+async def get_lecturer(session: AsyncSessionDep, lecturer_id: str, _: AllAuthenticated):
+    return await lecturer_service.get_lecturer(session, lecturer_id)
 
 
-@router.get("/", response_model=ApiResponse[list[LecturerResponse]])
-async def get_all_lecturers(session: AsyncSessionDep, _: AllAuthenticated = None):
-    lecturers = await lecturer_service.get_all_lecturers(session)
-    return ApiResponse(
-        message="Lecturers retrieved successfully",
-        meta_data=lecturers
-    )
+@router.patch("/{lecturer_id}", response_model=LecturerResponse)
+async def update_lecturer(session: AsyncSessionDep, lecturer_id: str, data: LecturerUpdate, user: AdminOrFA):
+    lecturer = await lecturer_service.get_lecturer(session, lecturer_id)
+    ensure_program_write(user, lecturer.program_id)
+    if not user.is_admin and "program_id" in data.model_fields_set:
+        raise HTTPException(status_code=403, detail="Only ADMIN moves a lecturer between programs")
+    return await lecturer_service.update_lecturer(session, lecturer_id, data)
 
 
-@router.get("/{lecturer_id}", response_model=ApiResponse[LecturerResponse])
-async def get_lecturer_by_id(
-        session: AsyncSessionDep,
-        lecturer_id: str,
-        _: AllAuthenticated = None,
-):
-    lecturer = await lecturer_service.find_lecturer_by_id(session, lecturer_id)
-    return ApiResponse(
-        message="Lecturer retrieved successfully",
-        meta_data=lecturer
-    )
-
-
-@router.put("/{lecturer_id}", response_model=ApiResponse[LecturerResponse])
-async def update_lecturer(
-        session: AsyncSessionDep,
-        lecturer_id: str,
-        data: LecturerUpdate,
-        _: AdminOrFA = None,
-):
-    lecturer = await lecturer_service.update_lecturer(session, lecturer_id, data)
-    return ApiResponse(
-        message="Lecturer updated successfully",
-        meta_data=lecturer
-    )
-
-
-@router.delete("/{lecturer_id}", response_model=ApiResponse[None])
-async def delete_lecturer(
-        session: AsyncSessionDep,
-        lecturer_id: str,
-        _: AdminOrFA = None,
-):
+@router.delete("/{lecturer_id}", status_code=204)
+async def delete_lecturer(session: AsyncSessionDep, lecturer_id: str, user: AdminOrFA):
+    lecturer = await lecturer_service.get_lecturer(session, lecturer_id)
+    ensure_program_write(user, lecturer.program_id)
     await lecturer_service.delete_lecturer(session, lecturer_id)
-    return ApiResponse(
-        message="Lecturer deleted successfully",
-        meta_data=None
-    )
-
-

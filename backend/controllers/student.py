@@ -1,199 +1,104 @@
-from fastapi import APIRouter, UploadFile, File, HTTPException, status
-from starlette.responses import FileResponse
+from typing import Optional
+
+from fastapi import APIRouter, File, HTTPException, UploadFile
 
 from backend.core.db import AsyncSessionDep
-from backend.core.deps import CurrentUser, AdminOrFA, StudentOnly, AllAuthenticated
-from backend.helpers.response_wrapper import ApiResponse
-from backend.schemas.student import StudentResponse, StudentCreate, StudentUpdate, StudentImageCreate
-from backend.services import student_service
+from backend.core.deps import AdminOrFA, AdminOrFAOrAC, AdminOrFAOrStudent, AllAuthenticated
+from backend.core.policies import ensure_module_access, ensure_program_write, ensure_student_access, student_scope
+from backend.helpers.http import SetLocation, read_upload
+from backend.helpers.pagination import Page, PageDep
+from backend.models import Student
+from backend.schemas.student import StudentCreate, StudentImageCreate, StudentResponse, StudentUpdate
+from backend.services import attendance_service, student_service
 
 router = APIRouter(
-    prefix="/student",
-    tags=["Student"],
+    prefix="/students",
+    tags=["Students"],
 )
 
-def _ensure_student_self_access(user, student_id: str) -> None:
-    if user.role == "STUDENT" and user.iam_id != student_id:
-        raise HTTPException(
-            status_code=status.HTTP_403_FORBIDDEN,
-            detail="Students can only access their own data",
-        )
 
-
-
-@router.post("/create", response_model=ApiResponse[StudentResponse], status_code=201)
-async def create_student(
-        session: AsyncSessionDep,
-        data: StudentCreate,
-        _: AdminOrFA = None,
+@router.get("", response_model=Page[StudentResponse])
+async def list_students(
+    session: AsyncSessionDep,
+    page: PageDep,
+    user: AdminOrFAOrAC,
+    program_id: Optional[str] = None,
+    intake: Optional[int] = None,
 ):
+    return await student_service.list_students(session, page, student_scope(user, Student.student_id), program_id, intake)
+
+
+@router.post("", response_model=StudentResponse, status_code=201)
+async def create_student(session: AsyncSessionDep, data: StudentCreate, user: AdminOrFA, location: SetLocation):
+    ensure_program_write(user, data.program_id)
     student = await student_service.create_student(session, data)
-    return ApiResponse(
-        message="Student created successfully",
-        meta_data=student
+    location(student.student_id)
+    return student
+
+
+@router.post("/imports")
+async def import_students(session: AsyncSessionDep, user: AdminOrFA, file: UploadFile = File(...)):
+    contents = await read_upload(file, ".xlsx", ".xls")
+    return await student_service.create_multiple_student_from_excel(
+        session, contents, None if user.is_admin else user.program_id
     )
 
 
-@router.post("/{student_id}/images", response_model=ApiResponse)
-async def create_student_image(
-    session: AsyncSessionDep,
-    student_id: str,
-    data: StudentImageCreate,
-    _: AdminOrFA = None,
-):
-    result = await student_service.create_student_image(session, student_id, data.image_path)
-    return ApiResponse(
-        message="Student image created successfully",
-        meta_data=result
-    )
+@router.get("/{student_id}", response_model=StudentResponse)
+async def get_student(session: AsyncSessionDep, student_id: str, user: AllAuthenticated):
+    return await ensure_student_access(user, session, student_id)
 
 
-@router.post("/create-from-excel", response_model=ApiResponse)
-async def import_students(
-        session: AsyncSessionDep,
-        file: UploadFile = File(...),
-        _: AdminOrFA = None,
-):
-    if not file.filename or not any(file.filename.lower().endswith(ext) for ext in [".xlsx", ".xls"]):
-        raise HTTPException(status_code=400, detail="Invalid file type. Only Excel files are allowed.")
-
-    contents = await file.read()
-    result = await student_service.create_multiple_student_from_excel(session, contents)
-    return ApiResponse(
-        message="Students imported successfully",
-        meta_data=result
-    )
+@router.patch("/{student_id}", response_model=StudentResponse)
+async def update_student(session: AsyncSessionDep, student_id: str, data: StudentUpdate, user: AdminOrFA):
+    if not user.is_admin:
+        # An FA may also claim a student that has no program yet.
+        student = await session.get(Student, student_id)
+        if student is None or student.program_id not in (None, user.program_id):
+            raise HTTPException(status_code=404, detail="Student not found")
+        if "program_id" in data.model_fields_set:
+            ensure_program_write(user, data.program_id)
+    return await student_service.update_student(session, student_id, data)
 
 
-@router.get("/all", response_model=ApiResponse[list[StudentResponse]])
-async def get_all_students(session: AsyncSessionDep):
-    students = await student_service.get_all_students(session)
-    return ApiResponse(
-        message="Students retrieved successfully",
-        meta_data=students
-    )
-
-
-@router.get("/{student_id}", response_model=ApiResponse[StudentResponse])
-async def get_student_by_id(session: AsyncSessionDep, student_id: str):
-    student = await student_service.find_student_by_id(session, student_id)
-    return ApiResponse(
-        message="Student retrieved successfully",
-        meta_data=student
-    )
-
-
-
-@router.get("/my/modules-with-attendance", response_model=ApiResponse)
-async def get_my_modules_with_attendance(
-    session: AsyncSessionDep,
-    user: StudentOnly,
-):
-    result = await student_service.get_student_modules_with_attendance_rate(
-        session,
-        user.iam_id,
-    )
-    return ApiResponse(
-        message="My modules with attendance rates retrieved successfully",
-        meta_data=result,
-    )
-
-
-@router.get("/my/exam-eligibility-status", response_model=ApiResponse)
-async def get_my_exam_eligibility(
-    session: AsyncSessionDep,
-    user: StudentOnly,
-):
-    result = await student_service.get_student_exam_eligibility_status(
-        session,
-        user.iam_id,
-    )
-    return ApiResponse(
-        message="My exam eligibility status retrieved successfully",
-        meta_data=result,
-    )
-
-
-@router.get("/my/images")
-async def get_my_images(
-    session: AsyncSessionDep,
-    user: StudentOnly,
-):
-    file_path = await student_service.get_latest_student_image_path(session, user.iam_id)
-    return FileResponse(file_path)
-
-
-@router.get("/{student_id}/modules-with-attendance", response_model=ApiResponse)
-async def get_student_modules_with_attendance(
-    session: AsyncSessionDep,
-    student_id: str,
-    _: AdminOrFA = None,
-):
-
-    result = await student_service.get_student_modules_with_attendance_rate(session, student_id)
-    return ApiResponse(
-        message="Student modules with attendance rates retrieved successfully",
-        meta_data=result
-    )
-
-
-@router.get("/{student_id}/exam-eligibility-status", response_model=ApiResponse)
-async def get_student_exam_eligibility(
-    session: AsyncSessionDep,
-    student_id: str,
-    user: AllAuthenticated,
-):
-    _ensure_student_self_access(user, student_id)
-
-    result = await student_service.get_student_exam_eligibility_status(session, student_id)
-    return ApiResponse(
-        message="Student exam eligibility status retrieved successfully",
-        meta_data=result
-    )
-
-
-@router.get("/{student_id}/images/{image_id}/info", response_model=ApiResponse)
-async def get_student_image_info(
-    session: AsyncSessionDep,
-    student_id: str,
-    image_id: int,
-    user: AllAuthenticated,
-):
-    _ensure_student_self_access(user, student_id)
-
-    result = await student_service.get_student_image_file(session, student_id, image_id)
-    return ApiResponse(
-        message="Student image file info retrieved successfully",
-        meta_data=result
-    )
-
-
-@router.put("/{student_id}", response_model=ApiResponse[StudentResponse])
-async def update_student(
-        session: AsyncSessionDep,
-        student_id: str,
-        data: StudentUpdate,
-        _: AdminOrFA = None,
-):
-    student = await student_service.update_student(session, student_id, data)
-    return ApiResponse(
-        message="Student updated successfully",
-        meta_data=student
-    )
-
-
-@router.delete("/{student_id}", response_model=ApiResponse[None])
-async def delete_student(
-        session: AsyncSessionDep,
-        student_id: str,
-        _: AdminOrFA = None,
-):
+@router.delete("/{student_id}", status_code=204)
+async def delete_student(session: AsyncSessionDep, student_id: str, user: AdminOrFA):
+    await ensure_student_access(user, session, student_id)
     await student_service.delete_student(session, student_id)
-    return ApiResponse(
-        message="Student deleted successfully",
-        meta_data=None
-    )
 
 
+@router.get("/{student_id}/attendance-summary")
+async def get_student_attendance_summary(session: AsyncSessionDep, student_id: str, user: AdminOrFAOrAC):
+    await ensure_student_access(user, session, student_id)
+    return await student_service.get_student_modules_with_attendance_rate(session, student_id)
 
 
+@router.get("/{student_id}/exam-eligibility")
+async def get_student_exam_eligibility(session: AsyncSessionDep, student_id: str, user: AllAuthenticated):
+    await ensure_student_access(user, session, student_id)
+    return await student_service.get_student_exam_eligibility_status(session, student_id)
+
+
+@router.get("/{student_id}/modules/{module_id}/exam-eligibility")
+async def get_student_module_exam_eligibility(
+    session: AsyncSessionDep, student_id: str, module_id: str, user: AllAuthenticated
+):
+    await ensure_student_access(user, session, student_id)
+    await ensure_module_access(user, session, module_id)
+    return await attendance_service.check_exam_eligibility(session, student_id, module_id)
+
+
+@router.post("/{student_id}/images", status_code=201)
+async def create_student_image(
+    session: AsyncSessionDep, student_id: str, data: StudentImageCreate, user: AdminOrFA, location: SetLocation
+):
+    await ensure_student_access(user, session, student_id)
+    result = await student_service.create_student_image(session, student_id, data.image_path)
+    location(result["image"]["image_id"])
+    return result
+
+
+@router.get("/{student_id}/images/{image_id}")
+async def get_student_image(session: AsyncSessionDep, student_id: str, image_id: int, user: AdminOrFAOrStudent):
+    await ensure_student_access(user, session, student_id)
+    return await student_service.get_student_image_file(session, student_id, image_id)

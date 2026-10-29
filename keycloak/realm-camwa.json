@@ -1,0 +1,177 @@
+{
+  "realm": "camwa",
+  "enabled": true,
+  "registrationAllowed": false,
+  "loginWithEmailAllowed": true,
+  "duplicateEmailsAllowed": false,
+  "editUsernameAllowed": false,
+  "resetPasswordAllowed": true,
+  "bruteForceProtected": true,
+  "permanentLockout": false,
+  "failureFactor": 10,
+  "passwordPolicy": "length(12) and notEmail and passwordHistory(3)",
+  "accessTokenLifespan": 300,
+  "ssoSessionIdleTimeout": 1800,
+  "ssoSessionMaxLifespan": 36000,
+  "revokeRefreshToken": true,
+  "refreshTokenMaxReuse": 0,
+  "smtpServer": {
+    "host": "${MAIL_SERVER}",
+    "port": "${MAIL_PORT}",
+    "from": "${MAIL_FROM}",
+    "user": "${MAIL_USERNAME}",
+    "password": "${MAIL_PASSWORD}",
+    "auth": "true",
+    "starttls": "${MAIL_STARTTLS}",
+    "ssl": "${MAIL_SSL_TLS}"
+  },
+  "roles": {
+    "realm": [
+      {
+        "name": "ADMIN",
+        "description": "CAMWA system administrator"
+      },
+      {
+        "name": "FA",
+        "description": "Facility faculty staff, own program"
+      },
+      {
+        "name": "LECTURER",
+        "description": "Teaching staff, own modules"
+      },
+      {
+        "name": "AC",
+        "description": "Academic coordinator, also a lecturer",
+        "composite": true,
+        "composites": {
+          "realm": [
+            "LECTURER"
+          ]
+        }
+      },
+      {
+        "name": "STUDENT",
+        "description": "Enrolled student"
+      }
+    ]
+  },
+  "requiredActions": [
+    {
+      "alias": "UPDATE_PASSWORD",
+      "name": "Update Password",
+      "providerId": "UPDATE_PASSWORD",
+      "enabled": true,
+      "defaultAction": false,
+      "priority": 30
+    },
+    {
+      "alias": "delete_account",
+      "name": "Delete Account",
+      "providerId": "delete_account",
+      "enabled": false,
+      "defaultAction": false,
+      "priority": 60
+    }
+  ],
+  "clients": [
+    {
+      "clientId": "camwa-backend",
+      "name": "CAMWA backend",
+      "enabled": true,
+      "protocol": "openid-connect",
+      "publicClient": false,
+      "clientAuthenticatorType": "client-secret",
+      "secret": "${KEYCLOAK_CLIENT_SECRET}",
+      "standardFlowEnabled": false,
+      "implicitFlowEnabled": false,
+      "directAccessGrantsEnabled": true,
+      "serviceAccountsEnabled": true,
+      "defaultClientScopes": [
+        "roles",
+        "email",
+        "profile",
+        "basic"
+      ],
+      "optionalClientScopes": [],
+      "protocolMappers": [
+        {
+          "name": "camwa-backend audience",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-audience-mapper",
+          "config": {
+            "included.client.audience": "camwa-backend",
+            "access.token.claim": "true",
+            "id.token.claim": "false",
+            "introspection.token.claim": "true"
+          }
+        },
+        {
+          "name": "phone_number",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usermodel-attribute-mapper",
+          "config": {
+            "user.attribute": "phone_number",
+            "claim.name": "phone_number",
+            "jsonType.label": "String",
+            "access.token.claim": "true",
+            "id.token.claim": "true",
+            "userinfo.token.claim": "true",
+            "introspection.token.claim": "true"
+          }
+        }
+      ]
+    }
+  ],
+  "users": [
+    {
+      "username": "service-account-camwa-backend",
+      "enabled": true,
+      "serviceAccountClientId": "camwa-backend",
+      "clientRoles": {
+        "realm-management": [
+          "manage-users",
+          "view-users",
+          "query-users",
+          "view-realm"
+        ]
+      }
+    },
+    {
+      "username": "${SEED_ADMIN_ID}",
+      "email": "${SEED_ADMIN_EMAIL}",
+      "firstName": "CAMWA",
+      "lastName": "Admin",
+      "enabled": true,
+      "emailVerified": true,
+      "credentials": [
+        {
+          "type": "password",
+          "value": "${SEED_ADMIN_PASSWORD}",
+          "temporary": false
+        }
+      ],
+      "realmRoles": [
+        "ADMIN"
+      ],
+      "clientRoles": {
+        "realm-management": [
+          "manage-users",
+          "view-users"
+        ]
+      }
+    }
+  ],
+  "components": {
+    "org.keycloak.userprofile.UserProfileProvider": [
+      {
+        "providerId": "declarative-user-profile",
+        "subComponents": {},
+        "config": {
+          "kc.user.profile.config": [
+            "{\"unmanagedAttributePolicy\": \"ADMIN_VIEW\", \"attributes\": [{\"name\": \"username\", \"displayName\": \"CAMWA id\", \"validations\": {\"length\": {\"min\": 1, \"max\": 20}, \"pattern\": {\"pattern\": \"^[0-9]{1,20}$\", \"error-message\": \"The username must be the CAMWA id: 1 to 20 digits\"}}, \"permissions\": {\"view\": [\"admin\", \"user\"], \"edit\": [\"admin\"]}, \"multivalued\": false}, {\"name\": \"email\", \"displayName\": \"Email\", \"required\": {\"roles\": [\"user\"]}, \"validations\": {\"email\": {}, \"length\": {\"max\": 255}}, \"permissions\": {\"view\": [\"admin\", \"user\"], \"edit\": [\"admin\"]}, \"multivalued\": false}, {\"name\": \"firstName\", \"displayName\": \"First name\", \"required\": {\"roles\": [\"user\"]}, \"validations\": {\"length\": {\"max\": 255}}, \"permissions\": {\"view\": [\"admin\", \"user\"], \"edit\": [\"admin\"]}, \"multivalued\": false}, {\"name\": \"lastName\", \"displayName\": \"Last name\", \"required\": {\"roles\": [\"user\"]}, \"validations\": {\"length\": {\"max\": 255}}, \"permissions\": {\"view\": [\"admin\", \"user\"], \"edit\": [\"admin\"]}, \"multivalued\": false}, {\"name\": \"phone_number\", \"displayName\": \"Phone number\", \"validations\": {\"pattern\": {\"pattern\": \"^\\\\+[1-9][0-9]{6,14}$\", \"error-message\": \"Use E.164, for example +84901234567\"}}, \"permissions\": {\"view\": [\"admin\", \"user\"], \"edit\": [\"admin\"]}, \"multivalued\": false}], \"groups\": []}"
+          ]
+        }
+      }
+    ]
+  }
+}

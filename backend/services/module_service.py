@@ -1,12 +1,14 @@
 import io
-from typing import List, Optional
+from typing import Optional
 
 import openpyxl
 from fastapi import HTTPException, status
-from sqlalchemy import select, or_
+from sqlalchemy import ColumnElement, select
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from backend.helpers.http import reject_rows_outside_program
+from backend.helpers.pagination import Page, PageParams, paginate
 from backend.models import Module, Lecturer, Program, Intake, Semester
 from backend.schemas.module import ModuleResponse, ModuleCreate, ModuleUpdate
 
@@ -53,10 +55,22 @@ async def create_module(session: AsyncSession, data: ModuleCreate) -> ModuleResp
     return ModuleResponse.model_validate(module)
 
 
-async def view_modules(session: AsyncSession) -> List[ModuleResponse]:
-    result = await session.execute(select(Module))
-    modules = result.scalars().all()
-    return [ModuleResponse.model_validate(module) for module in modules]
+async def list_modules(
+    session: AsyncSession,
+    page: PageParams,
+    scope: ColumnElement[bool],
+    program_id: Optional[str] = None,
+    semester_id: Optional[str] = None,
+    lecturer_id: Optional[str] = None,
+) -> Page[ModuleResponse]:
+    stmt = select(Module).where(scope).order_by(Module.module_id)
+    if program_id:
+        stmt = stmt.where(Module.program_id == program_id)
+    if semester_id:
+        stmt = stmt.where(Module.semester_id == semester_id)
+    if lecturer_id:
+        stmt = stmt.where(Module.lecturer_id == lecturer_id)
+    return await paginate(session, stmt, ModuleResponse, page)
 
 
 async def check_module_exists(
@@ -127,12 +141,15 @@ async def delete_module(session: AsyncSession, module_id: str) -> None:
     await session.commit()
 
 
-async def _process_excel(session: AsyncSession, file_contents: bytes):
+async def create_multiple_module_from_excel(
+    session: AsyncSession, file_contents: bytes, allowed_program_id: Optional[str] = None
+):
     workbook = openpyxl.load_workbook(io.BytesIO(file_contents))
     sheet = workbook.active
 
     successful = []
     failed = []
+    outside_program = []
     seen_module_ids = set()
 
     for row_index, row in enumerate(sheet.iter_rows(min_row=2, values_only=True), start=2):
@@ -156,8 +173,10 @@ async def _process_excel(session: AsyncSession, file_contents: bytes):
                 "error": "Missing required fields",
             })
             continue
+        if allowed_program_id and program_id != allowed_program_id:
+            outside_program.append(row_index)
+            continue
 
-        # Check duplicates
         try:
             intake = int(intake_raw)
         except ValueError:
@@ -218,6 +237,9 @@ async def _process_excel(session: AsyncSession, file_contents: bytes):
             continue
         session.add(Module(**module_data))
         successful.append(module_data)
+    if outside_program:
+        await session.rollback()
+        reject_rows_outside_program(outside_program)
     try:
         await session.commit()
     except IntegrityError:
@@ -227,10 +249,6 @@ async def _process_excel(session: AsyncSession, file_contents: bytes):
             detail="Could not import modules due to duplicate or invalid data",
         )
     return {"successful": successful, "failed": failed}
-
-
-async def create_multiple_module_from_excel(session: AsyncSession, file_contents: bytes):
-    return await _process_excel(session, file_contents)
 
 
 async def get_camera_path(session: AsyncSession, module_id: str) -> dict:

@@ -10,733 +10,10 @@ export type ClientOptions = {
 export type AccountRole = 'ADMIN' | 'FA' | 'LECTURER' | 'AC' | 'STUDENT';
 
 /**
- * ApiResponse
+ * ActingRole
  */
-export type ApiResponse = {
-    /**
-     * Status
-     */
-    status?: string;
-    /**
-     * Code
-     */
-    code?: number;
-    /**
-     * Message
-     */
-    message?: string;
-    /**
-     * Meta Data
-     */
-    meta_data?: unknown | null;
-};
-
-/**
- * ApiResponse[AttendanceRequestResponse]
- */
-export type ApiResponseAttendanceRequestResponse = {
-    /**
-     * Status
-     */
-    status?: string;
-    /**
-     * Code
-     */
-    code?: number;
-    /**
-     * Message
-     */
-    message?: string;
-    meta_data?: AttendanceRequestResponse | null;
-};
-
-/**
- * ApiResponse[AttendanceResponse]
- */
-export type ApiResponseAttendanceResponse = {
-    /**
-     * Status
-     */
-    status?: string;
-    /**
-     * Code
-     */
-    code?: number;
-    /**
-     * Message
-     */
-    message?: string;
-    meta_data?: AttendanceResponse | null;
-};
-
-/**
- * ApiResponse[DashboardStats]
- */
-export type ApiResponseDashboardStats = {
-    /**
-     * Status
-     */
-    status?: string;
-    /**
-     * Code
-     */
-    code?: number;
-    /**
-     * Message
-     */
-    message?: string;
-    meta_data?: DashboardStats | null;
-};
-
-/**
- * ApiResponse[Dict[str, Any]]
- */
-export type ApiResponseDictStrAny = {
-    /**
-     * Status
-     */
-    status?: string;
-    /**
-     * Code
-     */
-    code?: number;
-    /**
-     * Message
-     */
-    message?: string;
-    /**
-     * Meta Data
-     */
-    meta_data?: {
-        [key: string]: unknown;
-    } | null;
-};
-
-/**
- * ApiResponse[FacilityFacultyResponse]
- */
-export type ApiResponseFacilityFacultyResponse = {
-    /**
-     * Status
-     */
-    status?: string;
-    /**
-     * Code
-     */
-    code?: number;
-    /**
-     * Message
-     */
-    message?: string;
-    meta_data?: FacilityFacultyResponse | null;
-};
-
-/**
- * ApiResponse[IntakeResponse]
- */
-export type ApiResponseIntakeResponse = {
-    /**
-     * Status
-     */
-    status?: string;
-    /**
-     * Code
-     */
-    code?: number;
-    /**
-     * Message
-     */
-    message?: string;
-    meta_data?: IntakeResponse | null;
-};
-
-/**
- * ApiResponse[LecturerResponse]
- */
-export type ApiResponseLecturerResponse = {
-    /**
-     * Status
-     */
-    status?: string;
-    /**
-     * Code
-     */
-    code?: number;
-    /**
-     * Message
-     */
-    message?: string;
-    meta_data?: LecturerResponse | null;
-};
-
-/**
- * ApiResponse[LecturerStudentsAttendanceResponse]
- */
-export type ApiResponseLecturerStudentsAttendanceResponse = {
-    /**
-     * Status
-     */
-    status?: string;
-    /**
-     * Code
-     */
-    code?: number;
-    /**
-     * Message
-     */
-    message?: string;
-    meta_data?: LecturerStudentsAttendanceResponse | null;
-};
-
-/**
- * ApiResponse[List[AttendanceRequestResponse]]
- */
-export type ApiResponseListAttendanceRequestResponse = {
-    /**
-     * Status
-     */
-    status?: string;
-    /**
-     * Code
-     */
-    code?: number;
-    /**
-     * Message
-     */
-    message?: string;
-    /**
-     * Meta Data
-     */
-    meta_data?: Array<AttendanceRequestResponse> | null;
-};
-
-/**
- * ApiResponse[List[AttendanceResponse]]
- */
-export type ApiResponseListAttendanceResponse = {
-    /**
-     * Status
-     */
-    status?: string;
-    /**
-     * Code
-     */
-    code?: number;
-    /**
-     * Message
-     */
-    message?: string;
-    /**
-     * Meta Data
-     */
-    meta_data?: Array<AttendanceResponse> | null;
-};
-
-/**
- * ApiResponse[List[Dict[str, Any]]]
- */
-export type ApiResponseListDictStrAny = {
-    /**
-     * Status
-     */
-    status?: string;
-    /**
-     * Code
-     */
-    code?: number;
-    /**
-     * Message
-     */
-    message?: string;
-    /**
-     * Meta Data
-     */
-    meta_data?: Array<{
-        [key: string]: unknown;
-    }> | null;
-};
-
-/**
- * ApiResponse[List[ExamEligibilityResponse]]
- */
-export type ApiResponseListExamEligibilityResponse = {
-    /**
-     * Status
-     */
-    status?: string;
-    /**
-     * Code
-     */
-    code?: number;
-    /**
-     * Message
-     */
-    message?: string;
-    /**
-     * Meta Data
-     */
-    meta_data?: Array<ExamEligibilityResponse> | null;
-};
-
-/**
- * ApiResponse[List[FacilityFacultyResponse]]
- */
-export type ApiResponseListFacilityFacultyResponse = {
-    /**
-     * Status
-     */
-    status?: string;
-    /**
-     * Code
-     */
-    code?: number;
-    /**
-     * Message
-     */
-    message?: string;
-    /**
-     * Meta Data
-     */
-    meta_data?: Array<FacilityFacultyResponse> | null;
-};
-
-/**
- * ApiResponse[List[ModuleRegistrationResponse]]
- */
-export type ApiResponseListModuleRegistrationResponse = {
-    /**
-     * Status
-     */
-    status?: string;
-    /**
-     * Code
-     */
-    code?: number;
-    /**
-     * Message
-     */
-    message?: string;
-    /**
-     * Meta Data
-     */
-    meta_data?: Array<ModuleRegistrationResponse> | null;
-};
-
-/**
- * ApiResponse[List[ModuleResponse]]
- */
-export type ApiResponseListModuleResponse = {
-    /**
-     * Status
-     */
-    status?: string;
-    /**
-     * Code
-     */
-    code?: number;
-    /**
-     * Message
-     */
-    message?: string;
-    /**
-     * Meta Data
-     */
-    meta_data?: Array<ModuleResponse> | null;
-};
-
-/**
- * ApiResponse[List[UserResponse]]
- */
-export type ApiResponseListUserResponse = {
-    /**
-     * Status
-     */
-    status?: string;
-    /**
-     * Code
-     */
-    code?: number;
-    /**
-     * Message
-     */
-    message?: string;
-    /**
-     * Meta Data
-     */
-    meta_data?: Array<UserResponse> | null;
-};
-
-/**
- * ApiResponse[ModuleRegistrationResponse]
- */
-export type ApiResponseModuleRegistrationResponse = {
-    /**
-     * Status
-     */
-    status?: string;
-    /**
-     * Code
-     */
-    code?: number;
-    /**
-     * Message
-     */
-    message?: string;
-    meta_data?: ModuleRegistrationResponse | null;
-};
-
-/**
- * ApiResponse[ModuleResponse]
- */
-export type ApiResponseModuleResponse = {
-    /**
-     * Status
-     */
-    status?: string;
-    /**
-     * Code
-     */
-    code?: number;
-    /**
-     * Message
-     */
-    message?: string;
-    meta_data?: ModuleResponse | null;
-};
-
-/**
- * ApiResponse[NoneType]
- */
-export type ApiResponseNoneType = {
-    /**
-     * Status
-     */
-    status?: string;
-    /**
-     * Code
-     */
-    code?: number;
-    /**
-     * Message
-     */
-    message?: string;
-    /**
-     * Meta Data
-     */
-    meta_data?: null;
-};
-
-/**
- * ApiResponse[NotificationResponse]
- */
-export type ApiResponseNotificationResponse = {
-    /**
-     * Status
-     */
-    status?: string;
-    /**
-     * Code
-     */
-    code?: number;
-    /**
-     * Message
-     */
-    message?: string;
-    meta_data?: NotificationResponse | null;
-};
-
-/**
- * ApiResponse[ProgramResponse]
- */
-export type ApiResponseProgramResponse = {
-    /**
-     * Status
-     */
-    status?: string;
-    /**
-     * Code
-     */
-    code?: number;
-    /**
-     * Message
-     */
-    message?: string;
-    meta_data?: ProgramResponse | null;
-};
-
-/**
- * ApiResponse[RefreshResponse]
- */
-export type ApiResponseRefreshResponse = {
-    /**
-     * Status
-     */
-    status?: string;
-    /**
-     * Code
-     */
-    code?: number;
-    /**
-     * Message
-     */
-    message?: string;
-    meta_data?: RefreshResponse | null;
-};
-
-/**
- * ApiResponse[SemesterResponse]
- */
-export type ApiResponseSemesterResponse = {
-    /**
-     * Status
-     */
-    status?: string;
-    /**
-     * Code
-     */
-    code?: number;
-    /**
-     * Message
-     */
-    message?: string;
-    meta_data?: SemesterResponse | null;
-};
-
-/**
- * ApiResponse[StudentResponse]
- */
-export type ApiResponseStudentResponse = {
-    /**
-     * Status
-     */
-    status?: string;
-    /**
-     * Code
-     */
-    code?: number;
-    /**
-     * Message
-     */
-    message?: string;
-    meta_data?: StudentResponse | null;
-};
-
-/**
- * ApiResponse[TokenResponse]
- */
-export type ApiResponseTokenResponse = {
-    /**
-     * Status
-     */
-    status?: string;
-    /**
-     * Code
-     */
-    code?: number;
-    /**
-     * Message
-     */
-    message?: string;
-    meta_data?: TokenResponse | null;
-};
-
-/**
- * ApiResponse[UserResponse]
- */
-export type ApiResponseUserResponse = {
-    /**
-     * Status
-     */
-    status?: string;
-    /**
-     * Code
-     */
-    code?: number;
-    /**
-     * Message
-     */
-    message?: string;
-    meta_data?: UserResponse | null;
-};
-
-/**
- * ApiResponse[dict]
- */
-export type ApiResponseDict = {
-    /**
-     * Status
-     */
-    status?: string;
-    /**
-     * Code
-     */
-    code?: number;
-    /**
-     * Message
-     */
-    message?: string;
-    /**
-     * Meta Data
-     */
-    meta_data?: {
-        [key: string]: unknown;
-    } | null;
-};
-
-/**
- * ApiResponse[list[IntakeResponse]]
- */
-export type ApiResponseListIntakeResponse = {
-    /**
-     * Status
-     */
-    status?: string;
-    /**
-     * Code
-     */
-    code?: number;
-    /**
-     * Message
-     */
-    message?: string;
-    /**
-     * Meta Data
-     */
-    meta_data?: Array<IntakeResponse> | null;
-};
-
-/**
- * ApiResponse[list[LecturerResponse]]
- */
-export type ApiResponseListLecturerResponse = {
-    /**
-     * Status
-     */
-    status?: string;
-    /**
-     * Code
-     */
-    code?: number;
-    /**
-     * Message
-     */
-    message?: string;
-    /**
-     * Meta Data
-     */
-    meta_data?: Array<LecturerResponse> | null;
-};
-
-/**
- * ApiResponse[list[NotificationResponse]]
- */
-export type ApiResponseListNotificationResponse = {
-    /**
-     * Status
-     */
-    status?: string;
-    /**
-     * Code
-     */
-    code?: number;
-    /**
-     * Message
-     */
-    message?: string;
-    /**
-     * Meta Data
-     */
-    meta_data?: Array<NotificationResponse> | null;
-};
-
-/**
- * ApiResponse[list[ProgramResponse]]
- */
-export type ApiResponseListProgramResponse = {
-    /**
-     * Status
-     */
-    status?: string;
-    /**
-     * Code
-     */
-    code?: number;
-    /**
-     * Message
-     */
-    message?: string;
-    /**
-     * Meta Data
-     */
-    meta_data?: Array<ProgramResponse> | null;
-};
-
-/**
- * ApiResponse[list[SemesterResponse]]
- */
-export type ApiResponseListSemesterResponse = {
-    /**
-     * Status
-     */
-    status?: string;
-    /**
-     * Code
-     */
-    code?: number;
-    /**
-     * Message
-     */
-    message?: string;
-    /**
-     * Meta Data
-     */
-    meta_data?: Array<SemesterResponse> | null;
-};
-
-/**
- * ApiResponse[list[StudentResponse]]
- */
-export type ApiResponseListStudentResponse = {
-    /**
-     * Status
-     */
-    status?: string;
-    /**
-     * Code
-     */
-    code?: number;
-    /**
-     * Message
-     */
-    message?: string;
-    /**
-     * Meta Data
-     */
-    meta_data?: Array<StudentResponse> | null;
-};
-
-/**
- * ApiResponse[list[dict]]
- */
-export type ApiResponseListDict = {
-    /**
-     * Status
-     */
-    status?: string;
-    /**
-     * Code
-     */
-    code?: number;
-    /**
-     * Message
-     */
-    message?: string;
-    /**
-     * Meta Data
-     */
-    meta_data?: Array<{
-        [key: string]: unknown;
-    }> | null;
+export type ActingRole = {
+    role: CoordinatorRole;
 };
 
 /**
@@ -868,14 +145,19 @@ export type CameraPathUpdate = {
 };
 
 /**
- * CorrectionApproval
+ * CoordinatorRole
  */
-export type CorrectionApproval = {
-    approved_status: AttendanceStatus;
+export type CoordinatorRole = 'LECTURER' | 'AC';
+
+/**
+ * CorrectionDecision
+ */
+export type CorrectionDecision = {
     /**
-     * Processed By
+     * Status
      */
-    processed_by: string;
+    status: 'APPROVED' | 'REJECTED';
+    approved_status?: AttendanceStatus | null;
 };
 
 /**
@@ -890,6 +172,22 @@ export type DashboardStats = {
      * Students With Present Status
      */
     students_with_present_status: number;
+};
+
+/**
+ * EligibilityRecalculation
+ *
+ * Leave both empty to recalculate every module in reach.
+ */
+export type EligibilityRecalculation = {
+    /**
+     * Module Id
+     */
+    module_id?: string | null;
+    /**
+     * Lecturer Id
+     */
+    lecturer_id?: string | null;
 };
 
 /**
@@ -962,16 +260,6 @@ export type FacilityFacultyUpdate = {
      * Program Id
      */
     program_id?: string | null;
-};
-
-/**
- * ForgotPasswordRequest
- */
-export type ForgotPasswordRequest = {
-    /**
-     * Email
-     */
-    email: string;
 };
 
 /**
@@ -1134,6 +422,45 @@ export type LoginRequest = {
      * Password
      */
     password: string;
+};
+
+/**
+ * MeResponse
+ */
+export type MeResponse = {
+    /**
+     * Camwa Id
+     */
+    camwa_id: string;
+    /**
+     * Email
+     */
+    email?: string | null;
+    /**
+     * First Name
+     */
+    first_name?: string | null;
+    /**
+     * Last Name
+     */
+    last_name?: string | null;
+    /**
+     * Phone Number
+     */
+    phone_number?: string | null;
+    /**
+     * Roles
+     */
+    roles: Array<AccountRole>;
+    acting_role: AccountRole;
+    /**
+     * Program Id
+     */
+    program_id?: string | null;
+    /**
+     * Has Profile
+     */
+    has_profile: boolean;
 };
 
 /**
@@ -1301,6 +628,16 @@ export type ModuleUpdate = {
 };
 
 /**
+ * NotificationCount
+ */
+export type NotificationCount = {
+    /**
+     * Count
+     */
+    count: number;
+};
+
+/**
  * NotificationResponse
  */
 export type NotificationResponse = {
@@ -1338,9 +675,170 @@ export type NotificationResponse = {
 export type NotificationStatus = 'UNREAD' | 'READ';
 
 /**
+ * NotificationStatusUpdate
+ */
+export type NotificationStatusUpdate = {
+    status: NotificationStatus;
+};
+
+/**
  * NotificationType
  */
 export type NotificationType = 'NEW_REQUEST' | 'REQUEST_APPROVED' | 'REQUEST_REJECTED';
+
+/**
+ * Page[AttendanceRequestResponse]
+ */
+export type PageAttendanceRequestResponse = {
+    /**
+     * Items
+     */
+    items: Array<AttendanceRequestResponse>;
+    /**
+     * Total
+     */
+    total: number;
+};
+
+/**
+ * Page[AttendanceResponse]
+ */
+export type PageAttendanceResponse = {
+    /**
+     * Items
+     */
+    items: Array<AttendanceResponse>;
+    /**
+     * Total
+     */
+    total: number;
+};
+
+/**
+ * Page[FacilityFacultyResponse]
+ */
+export type PageFacilityFacultyResponse = {
+    /**
+     * Items
+     */
+    items: Array<FacilityFacultyResponse>;
+    /**
+     * Total
+     */
+    total: number;
+};
+
+/**
+ * Page[IntakeResponse]
+ */
+export type PageIntakeResponse = {
+    /**
+     * Items
+     */
+    items: Array<IntakeResponse>;
+    /**
+     * Total
+     */
+    total: number;
+};
+
+/**
+ * Page[LecturerResponse]
+ */
+export type PageLecturerResponse = {
+    /**
+     * Items
+     */
+    items: Array<LecturerResponse>;
+    /**
+     * Total
+     */
+    total: number;
+};
+
+/**
+ * Page[ModuleRegistrationResponse]
+ */
+export type PageModuleRegistrationResponse = {
+    /**
+     * Items
+     */
+    items: Array<ModuleRegistrationResponse>;
+    /**
+     * Total
+     */
+    total: number;
+};
+
+/**
+ * Page[ModuleResponse]
+ */
+export type PageModuleResponse = {
+    /**
+     * Items
+     */
+    items: Array<ModuleResponse>;
+    /**
+     * Total
+     */
+    total: number;
+};
+
+/**
+ * Page[NotificationResponse]
+ */
+export type PageNotificationResponse = {
+    /**
+     * Items
+     */
+    items: Array<NotificationResponse>;
+    /**
+     * Total
+     */
+    total: number;
+};
+
+/**
+ * Page[ProgramResponse]
+ */
+export type PageProgramResponse = {
+    /**
+     * Items
+     */
+    items: Array<ProgramResponse>;
+    /**
+     * Total
+     */
+    total: number;
+};
+
+/**
+ * Page[SemesterResponse]
+ */
+export type PageSemesterResponse = {
+    /**
+     * Items
+     */
+    items: Array<SemesterResponse>;
+    /**
+     * Total
+     */
+    total: number;
+};
+
+/**
+ * Page[StudentResponse]
+ */
+export type PageStudentResponse = {
+    /**
+     * Items
+     */
+    items: Array<StudentResponse>;
+    /**
+     * Total
+     */
+    total: number;
+};
 
 /**
  * PasswordChange
@@ -1354,6 +852,16 @@ export type PasswordChange = {
      * New Password
      */
     new_password: string;
+};
+
+/**
+ * PasswordResetRequest
+ */
+export type PasswordResetRequest = {
+    /**
+     * Email
+     */
+    email: string;
 };
 
 /**
@@ -1402,16 +910,6 @@ export type RefreshRequest = {
      * Refresh Token
      */
     refresh_token: string;
-};
-
-/**
- * RefreshResponse
- */
-export type RefreshResponse = {
-    /**
-     * Access Token
-     */
-    access_token: string;
 };
 
 /**
@@ -1554,16 +1052,6 @@ export type StudentUpdate = {
 };
 
 /**
- * TokenLoginRequest
- */
-export type TokenLoginRequest = {
-    /**
-     * Id Token
-     */
-    id_token: string;
-};
-
-/**
  * TokenResponse
  */
 export type TokenResponse = {
@@ -1576,86 +1064,101 @@ export type TokenResponse = {
      */
     refresh_token: string;
     /**
-     * Role
+     * Expires In
      */
-    role: string;
+    expires_in: number;
     /**
-     * Username
+     * Refresh Expires In
      */
-    username: string;
+    refresh_expires_in: number;
+    /**
+     * Token Type
+     */
+    token_type?: string;
 };
 
 /**
- * UserCreate
+ * UserAccountResponse
  */
-export type UserCreate = {
+export type UserAccountResponse = {
     /**
-     * Iam Id
+     * Camwa Id
      */
-    iam_id: string;
-    /**
-     * Username
-     */
-    username: string;
-    /**
-     * Email
-     */
-    email: string;
-    /**
-     * Password
-     */
-    password: string;
-    /**
-     * Phone Number
-     */
-    phone_number?: string | null;
-    role: AccountRole;
-};
-
-/**
- * UserResponse
- */
-export type UserResponse = {
-    /**
-     * Iam Id
-     */
-    iam_id: string;
-    /**
-     * Username
-     */
-    username: string;
-    /**
-     * Email
-     */
-    email: string;
-    role: AccountRole;
-    /**
-     * Phone Number
-     */
-    phone_number?: string | null;
-};
-
-/**
- * UserUpdate
- */
-export type UserUpdate = {
-    /**
-     * Username
-     */
-    username?: string | null;
+    camwa_id: string;
     /**
      * Email
      */
     email?: string | null;
     /**
-     * Password
+     * First Name
      */
-    password?: string | null;
+    first_name?: string | null;
+    /**
+     * Last Name
+     */
+    last_name?: string | null;
     /**
      * Phone Number
      */
     phone_number?: string | null;
-    role?: AccountRole | null;
+    /**
+     * Active
+     */
+    active: boolean;
+};
+
+/**
+ * UserImportReport
+ */
+export type UserImportReport = {
+    /**
+     * Created
+     */
+    created: number;
+    /**
+     * Skipped
+     */
+    skipped: number;
+    /**
+     * Failed
+     */
+    failed: number;
+    /**
+     * Rows
+     */
+    rows: Array<UserImportRowResult>;
+};
+
+/**
+ * UserImportRowResult
+ */
+export type UserImportRowResult = {
+    /**
+     * Row
+     */
+    row: number;
+    /**
+     * Camwa Id
+     */
+    camwa_id: string;
+    /**
+     * Outcome
+     */
+    outcome: 'created' | 'skipped' | 'failed';
+    /**
+     * Reason
+     */
+    reason?: string | null;
+};
+
+/**
+ * UserStatusUpdate
+ */
+export type UserStatusUpdate = {
+    /**
+     * Active
+     */
+    active: boolean;
 };
 
 /**
@@ -1687,9 +1190,9 @@ export type ValidationError = {
 };
 
 /**
- * Body_Module.delete_modules_from_excel
+ * Body_Modules.delete_modules
  */
-export type DeleteModulesFromExcel = {
+export type DeleteModules = {
     /**
      * File
      */
@@ -1697,9 +1200,9 @@ export type DeleteModulesFromExcel = {
 };
 
 /**
- * Body_Account.import_lecturers
+ * Body_Attendance.import_attendance
  */
-export type FastapiCompatV2BodyAccountImportLecturers = {
+export type ImportAttendance = {
     /**
      * File
      */
@@ -1707,49 +1210,9 @@ export type FastapiCompatV2BodyAccountImportLecturers = {
 };
 
 /**
- * Body_Account.import_students
+ * Body_Lecturers.import_lecturers
  */
-export type FastapiCompatV2BodyAccountImportStudents = {
-    /**
-     * File
-     */
-    file: Blob | File;
-};
-
-/**
- * Body_Lecturer.import_lecturers
- */
-export type FastapiCompatV2BodyLecturerImportLecturers = {
-    /**
-     * File
-     */
-    file: Blob | File;
-};
-
-/**
- * Body_Student.import_students
- */
-export type FastapiCompatV2BodyStudentImportStudents = {
-    /**
-     * File
-     */
-    file: Blob | File;
-};
-
-/**
- * Body_Attendance.import_attendance_from_excel
- */
-export type ImportAttendanceFromExcel = {
-    /**
-     * File
-     */
-    file: Blob | File;
-};
-
-/**
- * Body_Module.import_module
- */
-export type ImportModule = {
+export type ImportLecturers = {
     /**
      * File
      */
@@ -1766,220 +1229,41 @@ export type ImportModuleRegistrations = {
     file: Blob | File;
 };
 
-export type AccountCreateUserData = {
-    body: UserCreate;
-    path?: never;
-    query?: never;
-    url: '/api/account/create';
-};
-
-export type AccountCreateUserErrors = {
+/**
+ * Body_Modules.import_modules
+ */
+export type ImportModules = {
     /**
-     * Validation Error
+     * File
      */
-    422: HttpValidationError;
+    file: Blob | File;
 };
 
-export type AccountCreateUserError = AccountCreateUserErrors[keyof AccountCreateUserErrors];
-
-export type AccountCreateUserResponses = {
+/**
+ * Body_Students.import_students
+ */
+export type ImportStudents = {
     /**
-     * Successful Response
+     * File
      */
-    201: ApiResponseUserResponse;
+    file: Blob | File;
 };
 
-export type AccountCreateUserResponse = AccountCreateUserResponses[keyof AccountCreateUserResponses];
-
-export type AccountImportStudentsData = {
-    body: FastapiCompatV2BodyAccountImportStudents;
-    path?: never;
-    query?: never;
-    url: '/api/account/students/create-from-excel';
-};
-
-export type AccountImportStudentsErrors = {
+/**
+ * Body_Users.import_users
+ */
+export type ImportUsers = {
     /**
-     * Validation Error
+     * File
      */
-    422: HttpValidationError;
+    file: Blob | File;
 };
-
-export type AccountImportStudentsError = AccountImportStudentsErrors[keyof AccountImportStudentsErrors];
-
-export type AccountImportStudentsResponses = {
-    /**
-     * Successful Response
-     */
-    200: ApiResponseDict;
-};
-
-export type AccountImportStudentsResponse = AccountImportStudentsResponses[keyof AccountImportStudentsResponses];
-
-export type AccountImportLecturersData = {
-    body: FastapiCompatV2BodyAccountImportLecturers;
-    path?: never;
-    query?: never;
-    url: '/api/account/lecturers/create-from-excel';
-};
-
-export type AccountImportLecturersErrors = {
-    /**
-     * Validation Error
-     */
-    422: HttpValidationError;
-};
-
-export type AccountImportLecturersError = AccountImportLecturersErrors[keyof AccountImportLecturersErrors];
-
-export type AccountImportLecturersResponses = {
-    /**
-     * Successful Response
-     */
-    200: ApiResponseDict;
-};
-
-export type AccountImportLecturersResponse = AccountImportLecturersResponses[keyof AccountImportLecturersResponses];
-
-export type AccountGetAllUsersData = {
-    body?: never;
-    path?: never;
-    query?: never;
-    url: '/api/account/';
-};
-
-export type AccountGetAllUsersResponses = {
-    /**
-     * Successful Response
-     */
-    200: ApiResponseListUserResponse;
-};
-
-export type AccountGetAllUsersResponse = AccountGetAllUsersResponses[keyof AccountGetAllUsersResponses];
-
-export type AccountDeleteUserData = {
-    body?: never;
-    path: {
-        /**
-         * Iam Id
-         */
-        iam_id: string;
-    };
-    query?: never;
-    url: '/api/account/{iam_id}';
-};
-
-export type AccountDeleteUserErrors = {
-    /**
-     * Validation Error
-     */
-    422: HttpValidationError;
-};
-
-export type AccountDeleteUserError = AccountDeleteUserErrors[keyof AccountDeleteUserErrors];
-
-export type AccountDeleteUserResponses = {
-    /**
-     * Successful Response
-     */
-    200: unknown;
-};
-
-export type AccountGetUserByIdData = {
-    body?: never;
-    path: {
-        /**
-         * Iam Id
-         */
-        iam_id: string;
-    };
-    query?: never;
-    url: '/api/account/{iam_id}';
-};
-
-export type AccountGetUserByIdErrors = {
-    /**
-     * Validation Error
-     */
-    422: HttpValidationError;
-};
-
-export type AccountGetUserByIdError = AccountGetUserByIdErrors[keyof AccountGetUserByIdErrors];
-
-export type AccountGetUserByIdResponses = {
-    /**
-     * Successful Response
-     */
-    200: ApiResponseUserResponse;
-};
-
-export type AccountGetUserByIdResponse = AccountGetUserByIdResponses[keyof AccountGetUserByIdResponses];
-
-export type AccountUpdateUserData = {
-    body: UserUpdate;
-    path: {
-        /**
-         * Iam Id
-         */
-        iam_id: string;
-    };
-    query?: never;
-    url: '/api/account/{iam_id}';
-};
-
-export type AccountUpdateUserErrors = {
-    /**
-     * Validation Error
-     */
-    422: HttpValidationError;
-};
-
-export type AccountUpdateUserError = AccountUpdateUserErrors[keyof AccountUpdateUserErrors];
-
-export type AccountUpdateUserResponses = {
-    /**
-     * Successful Response
-     */
-    200: ApiResponseUserResponse;
-};
-
-export type AccountUpdateUserResponse = AccountUpdateUserResponses[keyof AccountUpdateUserResponses];
-
-export type AccountChangePasswordData = {
-    body: PasswordChange;
-    path: {
-        /**
-         * Iam Id
-         */
-        iam_id: string;
-    };
-    query?: never;
-    url: '/api/account/{iam_id}/change-password';
-};
-
-export type AccountChangePasswordErrors = {
-    /**
-     * Validation Error
-     */
-    422: HttpValidationError;
-};
-
-export type AccountChangePasswordError = AccountChangePasswordErrors[keyof AccountChangePasswordErrors];
-
-export type AccountChangePasswordResponses = {
-    /**
-     * Successful Response
-     */
-    200: ApiResponseNoneType;
-};
-
-export type AccountChangePasswordResponse = AccountChangePasswordResponses[keyof AccountChangePasswordResponses];
 
 export type AuthenticationLoginData = {
     body: LoginRequest;
     path?: never;
     query?: never;
-    url: '/api/auth/login';
+    url: '/api/v1/auth/login';
 };
 
 export type AuthenticationLoginErrors = {
@@ -1995,144 +1279,554 @@ export type AuthenticationLoginResponses = {
     /**
      * Successful Response
      */
-    200: ApiResponseTokenResponse;
+    200: TokenResponse;
 };
 
 export type AuthenticationLoginResponse = AuthenticationLoginResponses[keyof AuthenticationLoginResponses];
 
-export type AuthenticationTokenLoginData = {
-    body: TokenLoginRequest;
-    path?: never;
-    query?: never;
-    url: '/api/auth/token-login';
-};
-
-export type AuthenticationTokenLoginErrors = {
-    /**
-     * Validation Error
-     */
-    422: HttpValidationError;
-};
-
-export type AuthenticationTokenLoginError = AuthenticationTokenLoginErrors[keyof AuthenticationTokenLoginErrors];
-
-export type AuthenticationTokenLoginResponses = {
-    /**
-     * Successful Response
-     */
-    200: ApiResponseTokenResponse;
-};
-
-export type AuthenticationTokenLoginResponse = AuthenticationTokenLoginResponses[keyof AuthenticationTokenLoginResponses];
-
-export type AuthenticationForgotPasswordData = {
-    body: ForgotPasswordRequest;
-    path?: never;
-    query?: never;
-    url: '/api/auth/forgot-password';
-};
-
-export type AuthenticationForgotPasswordErrors = {
-    /**
-     * Validation Error
-     */
-    422: HttpValidationError;
-};
-
-export type AuthenticationForgotPasswordError = AuthenticationForgotPasswordErrors[keyof AuthenticationForgotPasswordErrors];
-
-export type AuthenticationForgotPasswordResponses = {
-    /**
-     * Successful Response
-     */
-    200: ApiResponseNoneType;
-};
-
-export type AuthenticationForgotPasswordResponse = AuthenticationForgotPasswordResponses[keyof AuthenticationForgotPasswordResponses];
-
-export type AuthenticationRefreshTokenData = {
+export type AuthenticationRefreshData = {
     body: RefreshRequest;
     path?: never;
     query?: never;
-    url: '/api/auth/refresh-token';
+    url: '/api/v1/auth/refresh';
 };
 
-export type AuthenticationRefreshTokenErrors = {
+export type AuthenticationRefreshErrors = {
     /**
      * Validation Error
      */
     422: HttpValidationError;
 };
 
-export type AuthenticationRefreshTokenError = AuthenticationRefreshTokenErrors[keyof AuthenticationRefreshTokenErrors];
+export type AuthenticationRefreshError = AuthenticationRefreshErrors[keyof AuthenticationRefreshErrors];
 
-export type AuthenticationRefreshTokenResponses = {
+export type AuthenticationRefreshResponses = {
     /**
      * Successful Response
      */
-    200: ApiResponseRefreshResponse;
+    200: TokenResponse;
 };
 
-export type AuthenticationRefreshTokenResponse = AuthenticationRefreshTokenResponses[keyof AuthenticationRefreshTokenResponses];
+export type AuthenticationRefreshResponse = AuthenticationRefreshResponses[keyof AuthenticationRefreshResponses];
 
 export type AuthenticationLogoutData = {
-    body?: never;
+    body: RefreshRequest;
     path?: never;
     query?: never;
-    url: '/api/auth/logout';
+    url: '/api/v1/auth/logout';
 };
+
+export type AuthenticationLogoutErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type AuthenticationLogoutError = AuthenticationLogoutErrors[keyof AuthenticationLogoutErrors];
 
 export type AuthenticationLogoutResponses = {
     /**
      * Successful Response
      */
-    200: ApiResponse;
+    204: void;
 };
 
 export type AuthenticationLogoutResponse = AuthenticationLogoutResponses[keyof AuthenticationLogoutResponses];
 
-export type IntakeGetAllIntakesData = {
-    body?: never;
+export type AuthenticationRequestPasswordResetData = {
+    body: PasswordResetRequest;
     path?: never;
     query?: never;
-    url: '/api/intake/';
+    url: '/api/v1/auth/password-reset';
 };
 
-export type IntakeGetAllIntakesResponses = {
+export type AuthenticationRequestPasswordResetErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type AuthenticationRequestPasswordResetError = AuthenticationRequestPasswordResetErrors[keyof AuthenticationRequestPasswordResetErrors];
+
+export type AuthenticationRequestPasswordResetResponses = {
     /**
      * Successful Response
      */
-    200: ApiResponseListIntakeResponse;
+    202: unknown;
 };
 
-export type IntakeGetAllIntakesResponse = IntakeGetAllIntakesResponses[keyof IntakeGetAllIntakesResponses];
+export type MeGetMeData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/api/v1/me';
+};
 
-export type IntakeCreateIntakeData = {
+export type MeGetMeResponses = {
+    /**
+     * Successful Response
+     */
+    200: MeResponse;
+};
+
+export type MeGetMeResponse = MeGetMeResponses[keyof MeGetMeResponses];
+
+export type MeChangePasswordData = {
+    body: PasswordChange;
+    path?: never;
+    query?: never;
+    url: '/api/v1/me/password';
+};
+
+export type MeChangePasswordErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type MeChangePasswordError = MeChangePasswordErrors[keyof MeChangePasswordErrors];
+
+export type MeChangePasswordResponses = {
+    /**
+     * Successful Response
+     */
+    200: TokenResponse;
+};
+
+export type MeChangePasswordResponse = MeChangePasswordResponses[keyof MeChangePasswordResponses];
+
+export type MeSetActingRoleData = {
+    body: ActingRole;
+    path?: never;
+    query?: never;
+    url: '/api/v1/me/acting-role';
+};
+
+export type MeSetActingRoleErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type MeSetActingRoleError = MeSetActingRoleErrors[keyof MeSetActingRoleErrors];
+
+export type MeSetActingRoleResponses = {
+    /**
+     * Successful Response
+     */
+    200: ActingRole;
+};
+
+export type MeSetActingRoleResponse = MeSetActingRoleResponses[keyof MeSetActingRoleResponses];
+
+export type MeListMyRegistrationsData = {
+    body?: never;
+    path?: never;
+    query?: {
+        /**
+         * Limit
+         */
+        limit?: number;
+        /**
+         * Offset
+         */
+        offset?: number;
+    };
+    url: '/api/v1/me/registrations';
+};
+
+export type MeListMyRegistrationsErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type MeListMyRegistrationsError = MeListMyRegistrationsErrors[keyof MeListMyRegistrationsErrors];
+
+export type MeListMyRegistrationsResponses = {
+    /**
+     * Successful Response
+     */
+    200: PageModuleRegistrationResponse;
+};
+
+export type MeListMyRegistrationsResponse = MeListMyRegistrationsResponses[keyof MeListMyRegistrationsResponses];
+
+export type MeGetMyAttendanceSummaryData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/api/v1/me/attendance-summary';
+};
+
+export type MeGetMyAttendanceSummaryResponses = {
+    /**
+     * Successful Response
+     */
+    200: unknown;
+};
+
+export type MeGetMyExamEligibilityData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/api/v1/me/exam-eligibility';
+};
+
+export type MeGetMyExamEligibilityResponses = {
+    /**
+     * Successful Response
+     */
+    200: unknown;
+};
+
+export type MeListMyImagesData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/api/v1/me/images';
+};
+
+export type MeListMyImagesResponses = {
+    /**
+     * Successful Response
+     */
+    200: unknown;
+};
+
+export type MeListMyModulesData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/api/v1/me/modules';
+};
+
+export type MeListMyModulesResponses = {
+    /**
+     * Successful Response
+     */
+    200: unknown;
+};
+
+export type MeGetMyModulesAttendanceData = {
+    body?: never;
+    path?: never;
+    query?: {
+        /**
+         * Module Id
+         */
+        module_id?: string | null;
+    };
+    url: '/api/v1/me/modules/attendance';
+};
+
+export type MeGetMyModulesAttendanceErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type MeGetMyModulesAttendanceError = MeGetMyModulesAttendanceErrors[keyof MeGetMyModulesAttendanceErrors];
+
+export type MeGetMyModulesAttendanceResponses = {
+    /**
+     * Successful Response
+     */
+    200: LecturerStudentsAttendanceResponse;
+};
+
+export type MeGetMyModulesAttendanceResponse = MeGetMyModulesAttendanceResponses[keyof MeGetMyModulesAttendanceResponses];
+
+export type MeListMyNotificationsData = {
+    body?: never;
+    path?: never;
+    query?: {
+        /**
+         * Status
+         */
+        status?: NotificationStatus | null;
+        /**
+         * Limit
+         */
+        limit?: number;
+        /**
+         * Offset
+         */
+        offset?: number;
+    };
+    url: '/api/v1/me/notifications';
+};
+
+export type MeListMyNotificationsErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type MeListMyNotificationsError = MeListMyNotificationsErrors[keyof MeListMyNotificationsErrors];
+
+export type MeListMyNotificationsResponses = {
+    /**
+     * Successful Response
+     */
+    200: PageNotificationResponse;
+};
+
+export type MeListMyNotificationsResponse = MeListMyNotificationsResponses[keyof MeListMyNotificationsResponses];
+
+export type MeUpdateAllMyNotificationsData = {
+    body: NotificationStatusUpdate;
+    path?: never;
+    query?: never;
+    url: '/api/v1/me/notifications';
+};
+
+export type MeUpdateAllMyNotificationsErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type MeUpdateAllMyNotificationsError = MeUpdateAllMyNotificationsErrors[keyof MeUpdateAllMyNotificationsErrors];
+
+export type MeUpdateAllMyNotificationsResponses = {
+    /**
+     * Successful Response
+     */
+    200: NotificationCount;
+};
+
+export type MeUpdateAllMyNotificationsResponse = MeUpdateAllMyNotificationsResponses[keyof MeUpdateAllMyNotificationsResponses];
+
+export type MeCountMyUnreadNotificationsData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/api/v1/me/notifications/unread-count';
+};
+
+export type MeCountMyUnreadNotificationsResponses = {
+    /**
+     * Successful Response
+     */
+    200: NotificationCount;
+};
+
+export type MeCountMyUnreadNotificationsResponse = MeCountMyUnreadNotificationsResponses[keyof MeCountMyUnreadNotificationsResponses];
+
+export type MeDeleteMyNotificationData = {
+    body?: never;
+    path: {
+        /**
+         * Notification Id
+         */
+        notification_id: number;
+    };
+    query?: never;
+    url: '/api/v1/me/notifications/{notification_id}';
+};
+
+export type MeDeleteMyNotificationErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type MeDeleteMyNotificationError = MeDeleteMyNotificationErrors[keyof MeDeleteMyNotificationErrors];
+
+export type MeDeleteMyNotificationResponses = {
+    /**
+     * Successful Response
+     */
+    204: void;
+};
+
+export type MeDeleteMyNotificationResponse = MeDeleteMyNotificationResponses[keyof MeDeleteMyNotificationResponses];
+
+export type MeUpdateMyNotificationData = {
+    body: NotificationStatusUpdate;
+    path: {
+        /**
+         * Notification Id
+         */
+        notification_id: number;
+    };
+    query?: never;
+    url: '/api/v1/me/notifications/{notification_id}';
+};
+
+export type MeUpdateMyNotificationErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type MeUpdateMyNotificationError = MeUpdateMyNotificationErrors[keyof MeUpdateMyNotificationErrors];
+
+export type MeUpdateMyNotificationResponses = {
+    /**
+     * Successful Response
+     */
+    200: NotificationResponse;
+};
+
+export type MeUpdateMyNotificationResponse = MeUpdateMyNotificationResponses[keyof MeUpdateMyNotificationResponses];
+
+export type UsersImportUsersData = {
+    body: ImportUsers;
+    path?: never;
+    query?: never;
+    url: '/api/v1/users/imports';
+};
+
+export type UsersImportUsersErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type UsersImportUsersError = UsersImportUsersErrors[keyof UsersImportUsersErrors];
+
+export type UsersImportUsersResponses = {
+    /**
+     * Successful Response
+     */
+    200: UserImportReport;
+};
+
+export type UsersImportUsersResponse = UsersImportUsersResponses[keyof UsersImportUsersResponses];
+
+export type UsersGetUserData = {
+    body?: never;
+    path: {
+        /**
+         * Camwa Id
+         */
+        camwa_id: string;
+    };
+    query?: never;
+    url: '/api/v1/users/{camwa_id}';
+};
+
+export type UsersGetUserErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type UsersGetUserError = UsersGetUserErrors[keyof UsersGetUserErrors];
+
+export type UsersGetUserResponses = {
+    /**
+     * Successful Response
+     */
+    200: UserAccountResponse;
+};
+
+export type UsersGetUserResponse = UsersGetUserResponses[keyof UsersGetUserResponses];
+
+export type UsersUpdateUserData = {
+    body: UserStatusUpdate;
+    path: {
+        /**
+         * Camwa Id
+         */
+        camwa_id: string;
+    };
+    query?: never;
+    url: '/api/v1/users/{camwa_id}';
+};
+
+export type UsersUpdateUserErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type UsersUpdateUserError = UsersUpdateUserErrors[keyof UsersUpdateUserErrors];
+
+export type UsersUpdateUserResponses = {
+    /**
+     * Successful Response
+     */
+    200: UserAccountResponse;
+};
+
+export type UsersUpdateUserResponse = UsersUpdateUserResponses[keyof UsersUpdateUserResponses];
+
+export type IntakesListIntakesData = {
+    body?: never;
+    path?: never;
+    query?: {
+        /**
+         * Limit
+         */
+        limit?: number;
+        /**
+         * Offset
+         */
+        offset?: number;
+    };
+    url: '/api/v1/intakes';
+};
+
+export type IntakesListIntakesErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type IntakesListIntakesError = IntakesListIntakesErrors[keyof IntakesListIntakesErrors];
+
+export type IntakesListIntakesResponses = {
+    /**
+     * Successful Response
+     */
+    200: PageIntakeResponse;
+};
+
+export type IntakesListIntakesResponse = IntakesListIntakesResponses[keyof IntakesListIntakesResponses];
+
+export type IntakesCreateIntakeData = {
     body: IntakeCreate;
     path?: never;
     query?: never;
-    url: '/api/intake/';
+    url: '/api/v1/intakes';
 };
 
-export type IntakeCreateIntakeErrors = {
+export type IntakesCreateIntakeErrors = {
     /**
      * Validation Error
      */
     422: HttpValidationError;
 };
 
-export type IntakeCreateIntakeError = IntakeCreateIntakeErrors[keyof IntakeCreateIntakeErrors];
+export type IntakesCreateIntakeError = IntakesCreateIntakeErrors[keyof IntakesCreateIntakeErrors];
 
-export type IntakeCreateIntakeResponses = {
+export type IntakesCreateIntakeResponses = {
     /**
      * Successful Response
      */
-    201: ApiResponseIntakeResponse;
+    201: IntakeResponse;
 };
 
-export type IntakeCreateIntakeResponse = IntakeCreateIntakeResponses[keyof IntakeCreateIntakeResponses];
+export type IntakesCreateIntakeResponse = IntakesCreateIntakeResponses[keyof IntakesCreateIntakeResponses];
 
-export type IntakeDeleteIntakeData = {
+export type IntakesDeleteIntakeData = {
     body?: never;
     path: {
         /**
@@ -2141,28 +1835,28 @@ export type IntakeDeleteIntakeData = {
         year: number;
     };
     query?: never;
-    url: '/api/intake/{year}';
+    url: '/api/v1/intakes/{year}';
 };
 
-export type IntakeDeleteIntakeErrors = {
+export type IntakesDeleteIntakeErrors = {
     /**
      * Validation Error
      */
     422: HttpValidationError;
 };
 
-export type IntakeDeleteIntakeError = IntakeDeleteIntakeErrors[keyof IntakeDeleteIntakeErrors];
+export type IntakesDeleteIntakeError = IntakesDeleteIntakeErrors[keyof IntakesDeleteIntakeErrors];
 
-export type IntakeDeleteIntakeResponses = {
+export type IntakesDeleteIntakeResponses = {
     /**
      * Successful Response
      */
-    200: ApiResponseNoneType;
+    204: void;
 };
 
-export type IntakeDeleteIntakeResponse = IntakeDeleteIntakeResponses[keyof IntakeDeleteIntakeResponses];
+export type IntakesDeleteIntakeResponse = IntakesDeleteIntakeResponses[keyof IntakesDeleteIntakeResponses];
 
-export type IntakeGetIntakeByYearData = {
+export type IntakesGetIntakeData = {
     body?: never;
     path: {
         /**
@@ -2171,28 +1865,28 @@ export type IntakeGetIntakeByYearData = {
         year: number;
     };
     query?: never;
-    url: '/api/intake/{year}';
+    url: '/api/v1/intakes/{year}';
 };
 
-export type IntakeGetIntakeByYearErrors = {
+export type IntakesGetIntakeErrors = {
     /**
      * Validation Error
      */
     422: HttpValidationError;
 };
 
-export type IntakeGetIntakeByYearError = IntakeGetIntakeByYearErrors[keyof IntakeGetIntakeByYearErrors];
+export type IntakesGetIntakeError = IntakesGetIntakeErrors[keyof IntakesGetIntakeErrors];
 
-export type IntakeGetIntakeByYearResponses = {
+export type IntakesGetIntakeResponses = {
     /**
      * Successful Response
      */
-    200: ApiResponseIntakeResponse;
+    200: IntakeResponse;
 };
 
-export type IntakeGetIntakeByYearResponse = IntakeGetIntakeByYearResponses[keyof IntakeGetIntakeByYearResponses];
+export type IntakesGetIntakeResponse = IntakesGetIntakeResponses[keyof IntakesGetIntakeResponses];
 
-export type IntakeUpdateIntakeData = {
+export type IntakesUpdateIntakeData = {
     body: IntakeUpdate;
     path: {
         /**
@@ -2201,85 +1895,103 @@ export type IntakeUpdateIntakeData = {
         year: number;
     };
     query?: never;
-    url: '/api/intake/{year}';
+    url: '/api/v1/intakes/{year}';
 };
 
-export type IntakeUpdateIntakeErrors = {
+export type IntakesUpdateIntakeErrors = {
     /**
      * Validation Error
      */
     422: HttpValidationError;
 };
 
-export type IntakeUpdateIntakeError = IntakeUpdateIntakeErrors[keyof IntakeUpdateIntakeErrors];
+export type IntakesUpdateIntakeError = IntakesUpdateIntakeErrors[keyof IntakesUpdateIntakeErrors];
 
-export type IntakeUpdateIntakeResponses = {
+export type IntakesUpdateIntakeResponses = {
     /**
      * Successful Response
      */
-    200: ApiResponseIntakeResponse;
+    200: IntakeResponse;
 };
 
-export type IntakeUpdateIntakeResponse = IntakeUpdateIntakeResponses[keyof IntakeUpdateIntakeResponses];
+export type IntakesUpdateIntakeResponse = IntakesUpdateIntakeResponses[keyof IntakesUpdateIntakeResponses];
 
-export type SemesterGetAllSemesterData = {
+export type SemestersListSemestersData = {
     body?: never;
     path?: never;
-    query?: never;
-    url: '/api/semester/';
+    query?: {
+        /**
+         * Limit
+         */
+        limit?: number;
+        /**
+         * Offset
+         */
+        offset?: number;
+    };
+    url: '/api/v1/semesters';
 };
 
-export type SemesterGetAllSemesterResponses = {
+export type SemestersListSemestersErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type SemestersListSemestersError = SemestersListSemestersErrors[keyof SemestersListSemestersErrors];
+
+export type SemestersListSemestersResponses = {
     /**
      * Successful Response
      */
-    200: ApiResponseListSemesterResponse;
+    200: PageSemesterResponse;
 };
 
-export type SemesterGetAllSemesterResponse = SemesterGetAllSemesterResponses[keyof SemesterGetAllSemesterResponses];
+export type SemestersListSemestersResponse = SemestersListSemestersResponses[keyof SemestersListSemestersResponses];
 
-export type SemesterCreateSemesterData = {
+export type SemestersCreateSemesterData = {
     body: SemesterCreate;
     path?: never;
     query?: never;
-    url: '/api/semester/';
+    url: '/api/v1/semesters';
 };
 
-export type SemesterCreateSemesterErrors = {
+export type SemestersCreateSemesterErrors = {
     /**
      * Validation Error
      */
     422: HttpValidationError;
 };
 
-export type SemesterCreateSemesterError = SemesterCreateSemesterErrors[keyof SemesterCreateSemesterErrors];
+export type SemestersCreateSemesterError = SemestersCreateSemesterErrors[keyof SemestersCreateSemesterErrors];
 
-export type SemesterCreateSemesterResponses = {
+export type SemestersCreateSemesterResponses = {
     /**
      * Successful Response
      */
-    201: ApiResponseSemesterResponse;
+    201: SemesterResponse;
 };
 
-export type SemesterCreateSemesterResponse = SemesterCreateSemesterResponses[keyof SemesterCreateSemesterResponses];
+export type SemestersCreateSemesterResponse = SemestersCreateSemesterResponses[keyof SemestersCreateSemesterResponses];
 
-export type SemesterGetCurrentSemesterData = {
+export type SemestersGetCurrentSemesterData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/api/semester/current';
+    url: '/api/v1/semesters/current';
 };
 
-export type SemesterGetCurrentSemesterResponses = {
+export type SemestersGetCurrentSemesterResponses = {
     /**
      * Successful Response
      */
-    200: ApiResponseSemesterResponse;
+    200: SemesterResponse;
 };
 
-export type SemesterGetCurrentSemesterResponse = SemesterGetCurrentSemesterResponses[keyof SemesterGetCurrentSemesterResponses];
+export type SemestersGetCurrentSemesterResponse = SemestersGetCurrentSemesterResponses[keyof SemestersGetCurrentSemesterResponses];
 
-export type SemesterDeleteSemesterData = {
+export type SemestersDeleteSemesterData = {
     body?: never;
     path: {
         /**
@@ -2288,28 +2000,28 @@ export type SemesterDeleteSemesterData = {
         sem_id: string;
     };
     query?: never;
-    url: '/api/semester/{sem_id}';
+    url: '/api/v1/semesters/{sem_id}';
 };
 
-export type SemesterDeleteSemesterErrors = {
+export type SemestersDeleteSemesterErrors = {
     /**
      * Validation Error
      */
     422: HttpValidationError;
 };
 
-export type SemesterDeleteSemesterError = SemesterDeleteSemesterErrors[keyof SemesterDeleteSemesterErrors];
+export type SemestersDeleteSemesterError = SemestersDeleteSemesterErrors[keyof SemestersDeleteSemesterErrors];
 
-export type SemesterDeleteSemesterResponses = {
+export type SemestersDeleteSemesterResponses = {
     /**
      * Successful Response
      */
-    200: ApiResponseNoneType;
+    204: void;
 };
 
-export type SemesterDeleteSemesterResponse = SemesterDeleteSemesterResponses[keyof SemesterDeleteSemesterResponses];
+export type SemestersDeleteSemesterResponse = SemestersDeleteSemesterResponses[keyof SemestersDeleteSemesterResponses];
 
-export type SemesterGetSemesterByIdData = {
+export type SemestersGetSemesterData = {
     body?: never;
     path: {
         /**
@@ -2318,28 +2030,28 @@ export type SemesterGetSemesterByIdData = {
         sem_id: string;
     };
     query?: never;
-    url: '/api/semester/{sem_id}';
+    url: '/api/v1/semesters/{sem_id}';
 };
 
-export type SemesterGetSemesterByIdErrors = {
+export type SemestersGetSemesterErrors = {
     /**
      * Validation Error
      */
     422: HttpValidationError;
 };
 
-export type SemesterGetSemesterByIdError = SemesterGetSemesterByIdErrors[keyof SemesterGetSemesterByIdErrors];
+export type SemestersGetSemesterError = SemestersGetSemesterErrors[keyof SemestersGetSemesterErrors];
 
-export type SemesterGetSemesterByIdResponses = {
+export type SemestersGetSemesterResponses = {
     /**
      * Successful Response
      */
-    200: ApiResponseSemesterResponse;
+    200: SemesterResponse;
 };
 
-export type SemesterGetSemesterByIdResponse = SemesterGetSemesterByIdResponses[keyof SemesterGetSemesterByIdResponses];
+export type SemestersGetSemesterResponse = SemestersGetSemesterResponses[keyof SemestersGetSemesterResponses];
 
-export type SemesterUpdateSemesterData = {
+export type SemestersUpdateSemesterData = {
     body: SemesterUpdate;
     path: {
         /**
@@ -2348,124 +2060,416 @@ export type SemesterUpdateSemesterData = {
         sem_id: string;
     };
     query?: never;
-    url: '/api/semester/{sem_id}';
+    url: '/api/v1/semesters/{sem_id}';
 };
 
-export type SemesterUpdateSemesterErrors = {
+export type SemestersUpdateSemesterErrors = {
     /**
      * Validation Error
      */
     422: HttpValidationError;
 };
 
-export type SemesterUpdateSemesterError = SemesterUpdateSemesterErrors[keyof SemesterUpdateSemesterErrors];
+export type SemestersUpdateSemesterError = SemestersUpdateSemesterErrors[keyof SemestersUpdateSemesterErrors];
 
-export type SemesterUpdateSemesterResponses = {
+export type SemestersUpdateSemesterResponses = {
     /**
      * Successful Response
      */
-    200: ApiResponseSemesterResponse;
+    200: SemesterResponse;
 };
 
-export type SemesterUpdateSemesterResponse = SemesterUpdateSemesterResponses[keyof SemesterUpdateSemesterResponses];
+export type SemestersUpdateSemesterResponse = SemestersUpdateSemesterResponses[keyof SemestersUpdateSemesterResponses];
 
-export type StudentCreateStudentData = {
+export type ProgramsListProgramsData = {
+    body?: never;
+    path?: never;
+    query?: {
+        /**
+         * Limit
+         */
+        limit?: number;
+        /**
+         * Offset
+         */
+        offset?: number;
+    };
+    url: '/api/v1/programs';
+};
+
+export type ProgramsListProgramsErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type ProgramsListProgramsError = ProgramsListProgramsErrors[keyof ProgramsListProgramsErrors];
+
+export type ProgramsListProgramsResponses = {
+    /**
+     * Successful Response
+     */
+    200: PageProgramResponse;
+};
+
+export type ProgramsListProgramsResponse = ProgramsListProgramsResponses[keyof ProgramsListProgramsResponses];
+
+export type ProgramsCreateProgramData = {
+    body: ProgramCreate;
+    path?: never;
+    query?: never;
+    url: '/api/v1/programs';
+};
+
+export type ProgramsCreateProgramErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type ProgramsCreateProgramError = ProgramsCreateProgramErrors[keyof ProgramsCreateProgramErrors];
+
+export type ProgramsCreateProgramResponses = {
+    /**
+     * Successful Response
+     */
+    201: ProgramResponse;
+};
+
+export type ProgramsCreateProgramResponse = ProgramsCreateProgramResponses[keyof ProgramsCreateProgramResponses];
+
+export type ProgramsDeleteProgramData = {
+    body?: never;
+    path: {
+        /**
+         * Program Id
+         */
+        program_id: string;
+    };
+    query?: never;
+    url: '/api/v1/programs/{program_id}';
+};
+
+export type ProgramsDeleteProgramErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type ProgramsDeleteProgramError = ProgramsDeleteProgramErrors[keyof ProgramsDeleteProgramErrors];
+
+export type ProgramsDeleteProgramResponses = {
+    /**
+     * Successful Response
+     */
+    204: void;
+};
+
+export type ProgramsDeleteProgramResponse = ProgramsDeleteProgramResponses[keyof ProgramsDeleteProgramResponses];
+
+export type ProgramsGetProgramData = {
+    body?: never;
+    path: {
+        /**
+         * Program Id
+         */
+        program_id: string;
+    };
+    query?: never;
+    url: '/api/v1/programs/{program_id}';
+};
+
+export type ProgramsGetProgramErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type ProgramsGetProgramError = ProgramsGetProgramErrors[keyof ProgramsGetProgramErrors];
+
+export type ProgramsGetProgramResponses = {
+    /**
+     * Successful Response
+     */
+    200: ProgramResponse;
+};
+
+export type ProgramsGetProgramResponse = ProgramsGetProgramResponses[keyof ProgramsGetProgramResponses];
+
+export type ProgramsUpdateProgramData = {
+    body: ProgramUpdate;
+    path: {
+        /**
+         * Program Id
+         */
+        program_id: string;
+    };
+    query?: never;
+    url: '/api/v1/programs/{program_id}';
+};
+
+export type ProgramsUpdateProgramErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type ProgramsUpdateProgramError = ProgramsUpdateProgramErrors[keyof ProgramsUpdateProgramErrors];
+
+export type ProgramsUpdateProgramResponses = {
+    /**
+     * Successful Response
+     */
+    200: ProgramResponse;
+};
+
+export type ProgramsUpdateProgramResponse = ProgramsUpdateProgramResponses[keyof ProgramsUpdateProgramResponses];
+
+export type FacultyStaffListFacultyStaffData = {
+    body?: never;
+    path?: never;
+    query?: {
+        /**
+         * Limit
+         */
+        limit?: number;
+        /**
+         * Offset
+         */
+        offset?: number;
+    };
+    url: '/api/v1/faculty-staff';
+};
+
+export type FacultyStaffListFacultyStaffErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type FacultyStaffListFacultyStaffError = FacultyStaffListFacultyStaffErrors[keyof FacultyStaffListFacultyStaffErrors];
+
+export type FacultyStaffListFacultyStaffResponses = {
+    /**
+     * Successful Response
+     */
+    200: PageFacilityFacultyResponse;
+};
+
+export type FacultyStaffListFacultyStaffResponse = FacultyStaffListFacultyStaffResponses[keyof FacultyStaffListFacultyStaffResponses];
+
+export type FacultyStaffCreateFacultyStaffData = {
+    body: FacilityFacultyCreate;
+    path?: never;
+    query?: never;
+    url: '/api/v1/faculty-staff';
+};
+
+export type FacultyStaffCreateFacultyStaffErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type FacultyStaffCreateFacultyStaffError = FacultyStaffCreateFacultyStaffErrors[keyof FacultyStaffCreateFacultyStaffErrors];
+
+export type FacultyStaffCreateFacultyStaffResponses = {
+    /**
+     * Successful Response
+     */
+    201: FacilityFacultyResponse;
+};
+
+export type FacultyStaffCreateFacultyStaffResponse = FacultyStaffCreateFacultyStaffResponses[keyof FacultyStaffCreateFacultyStaffResponses];
+
+export type FacultyStaffDeleteFacultyStaffData = {
+    body?: never;
+    path: {
+        /**
+         * Staff Id
+         */
+        staff_id: string;
+    };
+    query?: never;
+    url: '/api/v1/faculty-staff/{staff_id}';
+};
+
+export type FacultyStaffDeleteFacultyStaffErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type FacultyStaffDeleteFacultyStaffError = FacultyStaffDeleteFacultyStaffErrors[keyof FacultyStaffDeleteFacultyStaffErrors];
+
+export type FacultyStaffDeleteFacultyStaffResponses = {
+    /**
+     * Successful Response
+     */
+    204: void;
+};
+
+export type FacultyStaffDeleteFacultyStaffResponse = FacultyStaffDeleteFacultyStaffResponses[keyof FacultyStaffDeleteFacultyStaffResponses];
+
+export type FacultyStaffGetFacultyStaffData = {
+    body?: never;
+    path: {
+        /**
+         * Staff Id
+         */
+        staff_id: string;
+    };
+    query?: never;
+    url: '/api/v1/faculty-staff/{staff_id}';
+};
+
+export type FacultyStaffGetFacultyStaffErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type FacultyStaffGetFacultyStaffError = FacultyStaffGetFacultyStaffErrors[keyof FacultyStaffGetFacultyStaffErrors];
+
+export type FacultyStaffGetFacultyStaffResponses = {
+    /**
+     * Successful Response
+     */
+    200: FacilityFacultyResponse;
+};
+
+export type FacultyStaffGetFacultyStaffResponse = FacultyStaffGetFacultyStaffResponses[keyof FacultyStaffGetFacultyStaffResponses];
+
+export type FacultyStaffUpdateFacultyStaffData = {
+    body: FacilityFacultyUpdate;
+    path: {
+        /**
+         * Staff Id
+         */
+        staff_id: string;
+    };
+    query?: never;
+    url: '/api/v1/faculty-staff/{staff_id}';
+};
+
+export type FacultyStaffUpdateFacultyStaffErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type FacultyStaffUpdateFacultyStaffError = FacultyStaffUpdateFacultyStaffErrors[keyof FacultyStaffUpdateFacultyStaffErrors];
+
+export type FacultyStaffUpdateFacultyStaffResponses = {
+    /**
+     * Successful Response
+     */
+    200: FacilityFacultyResponse;
+};
+
+export type FacultyStaffUpdateFacultyStaffResponse = FacultyStaffUpdateFacultyStaffResponses[keyof FacultyStaffUpdateFacultyStaffResponses];
+
+export type StudentsListStudentsData = {
+    body?: never;
+    path?: never;
+    query?: {
+        /**
+         * Program Id
+         */
+        program_id?: string | null;
+        /**
+         * Intake
+         */
+        intake?: number | null;
+        /**
+         * Limit
+         */
+        limit?: number;
+        /**
+         * Offset
+         */
+        offset?: number;
+    };
+    url: '/api/v1/students';
+};
+
+export type StudentsListStudentsErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type StudentsListStudentsError = StudentsListStudentsErrors[keyof StudentsListStudentsErrors];
+
+export type StudentsListStudentsResponses = {
+    /**
+     * Successful Response
+     */
+    200: PageStudentResponse;
+};
+
+export type StudentsListStudentsResponse = StudentsListStudentsResponses[keyof StudentsListStudentsResponses];
+
+export type StudentsCreateStudentData = {
     body: StudentCreate;
     path?: never;
     query?: never;
-    url: '/api/student/create';
+    url: '/api/v1/students';
 };
 
-export type StudentCreateStudentErrors = {
+export type StudentsCreateStudentErrors = {
     /**
      * Validation Error
      */
     422: HttpValidationError;
 };
 
-export type StudentCreateStudentError = StudentCreateStudentErrors[keyof StudentCreateStudentErrors];
+export type StudentsCreateStudentError = StudentsCreateStudentErrors[keyof StudentsCreateStudentErrors];
 
-export type StudentCreateStudentResponses = {
+export type StudentsCreateStudentResponses = {
     /**
      * Successful Response
      */
-    201: ApiResponseStudentResponse;
+    201: StudentResponse;
 };
 
-export type StudentCreateStudentResponse = StudentCreateStudentResponses[keyof StudentCreateStudentResponses];
+export type StudentsCreateStudentResponse = StudentsCreateStudentResponses[keyof StudentsCreateStudentResponses];
 
-export type StudentCreateStudentImageData = {
-    body: StudentImageCreate;
-    path: {
-        /**
-         * Student Id
-         */
-        student_id: string;
-    };
-    query?: never;
-    url: '/api/student/{student_id}/images';
-};
-
-export type StudentCreateStudentImageErrors = {
-    /**
-     * Validation Error
-     */
-    422: HttpValidationError;
-};
-
-export type StudentCreateStudentImageError = StudentCreateStudentImageErrors[keyof StudentCreateStudentImageErrors];
-
-export type StudentCreateStudentImageResponses = {
-    /**
-     * Successful Response
-     */
-    200: ApiResponse;
-};
-
-export type StudentCreateStudentImageResponse = StudentCreateStudentImageResponses[keyof StudentCreateStudentImageResponses];
-
-export type StudentImportStudentsData = {
-    body: FastapiCompatV2BodyStudentImportStudents;
+export type StudentsImportStudentsData = {
+    body: ImportStudents;
     path?: never;
     query?: never;
-    url: '/api/student/create-from-excel';
+    url: '/api/v1/students/imports';
 };
 
-export type StudentImportStudentsErrors = {
+export type StudentsImportStudentsErrors = {
     /**
      * Validation Error
      */
     422: HttpValidationError;
 };
 
-export type StudentImportStudentsError = StudentImportStudentsErrors[keyof StudentImportStudentsErrors];
+export type StudentsImportStudentsError = StudentsImportStudentsErrors[keyof StudentsImportStudentsErrors];
 
-export type StudentImportStudentsResponses = {
+export type StudentsImportStudentsResponses = {
     /**
      * Successful Response
      */
-    200: ApiResponse;
+    200: unknown;
 };
 
-export type StudentImportStudentsResponse = StudentImportStudentsResponses[keyof StudentImportStudentsResponses];
-
-export type StudentGetAllStudentsData = {
-    body?: never;
-    path?: never;
-    query?: never;
-    url: '/api/student/all';
-};
-
-export type StudentGetAllStudentsResponses = {
-    /**
-     * Successful Response
-     */
-    200: ApiResponseListStudentResponse;
-};
-
-export type StudentGetAllStudentsResponse = StudentGetAllStudentsResponses[keyof StudentGetAllStudentsResponses];
-
-export type StudentDeleteStudentData = {
+export type StudentsDeleteStudentData = {
     body?: never;
     path: {
         /**
@@ -2474,28 +2478,28 @@ export type StudentDeleteStudentData = {
         student_id: string;
     };
     query?: never;
-    url: '/api/student/{student_id}';
+    url: '/api/v1/students/{student_id}';
 };
 
-export type StudentDeleteStudentErrors = {
+export type StudentsDeleteStudentErrors = {
     /**
      * Validation Error
      */
     422: HttpValidationError;
 };
 
-export type StudentDeleteStudentError = StudentDeleteStudentErrors[keyof StudentDeleteStudentErrors];
+export type StudentsDeleteStudentError = StudentsDeleteStudentErrors[keyof StudentsDeleteStudentErrors];
 
-export type StudentDeleteStudentResponses = {
+export type StudentsDeleteStudentResponses = {
     /**
      * Successful Response
      */
-    200: ApiResponseNoneType;
+    204: void;
 };
 
-export type StudentDeleteStudentResponse = StudentDeleteStudentResponses[keyof StudentDeleteStudentResponses];
+export type StudentsDeleteStudentResponse = StudentsDeleteStudentResponses[keyof StudentsDeleteStudentResponses];
 
-export type StudentGetStudentByIdData = {
+export type StudentsGetStudentData = {
     body?: never;
     path: {
         /**
@@ -2504,28 +2508,28 @@ export type StudentGetStudentByIdData = {
         student_id: string;
     };
     query?: never;
-    url: '/api/student/{student_id}';
+    url: '/api/v1/students/{student_id}';
 };
 
-export type StudentGetStudentByIdErrors = {
+export type StudentsGetStudentErrors = {
     /**
      * Validation Error
      */
     422: HttpValidationError;
 };
 
-export type StudentGetStudentByIdError = StudentGetStudentByIdErrors[keyof StudentGetStudentByIdErrors];
+export type StudentsGetStudentError = StudentsGetStudentErrors[keyof StudentsGetStudentErrors];
 
-export type StudentGetStudentByIdResponses = {
+export type StudentsGetStudentResponses = {
     /**
      * Successful Response
      */
-    200: ApiResponseStudentResponse;
+    200: StudentResponse;
 };
 
-export type StudentGetStudentByIdResponse = StudentGetStudentByIdResponses[keyof StudentGetStudentByIdResponses];
+export type StudentsGetStudentResponse = StudentsGetStudentResponses[keyof StudentsGetStudentResponses];
 
-export type StudentUpdateStudentData = {
+export type StudentsUpdateStudentData = {
     body: StudentUpdate;
     path: {
         /**
@@ -2534,74 +2538,56 @@ export type StudentUpdateStudentData = {
         student_id: string;
     };
     query?: never;
-    url: '/api/student/{student_id}';
+    url: '/api/v1/students/{student_id}';
 };
 
-export type StudentUpdateStudentErrors = {
+export type StudentsUpdateStudentErrors = {
     /**
      * Validation Error
      */
     422: HttpValidationError;
 };
 
-export type StudentUpdateStudentError = StudentUpdateStudentErrors[keyof StudentUpdateStudentErrors];
+export type StudentsUpdateStudentError = StudentsUpdateStudentErrors[keyof StudentsUpdateStudentErrors];
 
-export type StudentUpdateStudentResponses = {
+export type StudentsUpdateStudentResponses = {
     /**
      * Successful Response
      */
-    200: ApiResponseStudentResponse;
+    200: StudentResponse;
 };
 
-export type StudentUpdateStudentResponse = StudentUpdateStudentResponses[keyof StudentUpdateStudentResponses];
+export type StudentsUpdateStudentResponse = StudentsUpdateStudentResponses[keyof StudentsUpdateStudentResponses];
 
-export type StudentGetMyModulesWithAttendanceData = {
+export type StudentsGetStudentAttendanceSummaryData = {
     body?: never;
-    path?: never;
+    path: {
+        /**
+         * Student Id
+         */
+        student_id: string;
+    };
     query?: never;
-    url: '/api/student/my/modules-with-attendance';
+    url: '/api/v1/students/{student_id}/attendance-summary';
 };
 
-export type StudentGetMyModulesWithAttendanceResponses = {
+export type StudentsGetStudentAttendanceSummaryErrors = {
     /**
-     * Successful Response
+     * Validation Error
      */
-    200: ApiResponse;
+    422: HttpValidationError;
 };
 
-export type StudentGetMyModulesWithAttendanceResponse = StudentGetMyModulesWithAttendanceResponses[keyof StudentGetMyModulesWithAttendanceResponses];
+export type StudentsGetStudentAttendanceSummaryError = StudentsGetStudentAttendanceSummaryErrors[keyof StudentsGetStudentAttendanceSummaryErrors];
 
-export type StudentGetMyExamEligibilityData = {
-    body?: never;
-    path?: never;
-    query?: never;
-    url: '/api/student/my/exam-eligibility-status';
-};
-
-export type StudentGetMyExamEligibilityResponses = {
-    /**
-     * Successful Response
-     */
-    200: ApiResponse;
-};
-
-export type StudentGetMyExamEligibilityResponse = StudentGetMyExamEligibilityResponses[keyof StudentGetMyExamEligibilityResponses];
-
-export type StudentGetMyImagesData = {
-    body?: never;
-    path?: never;
-    query?: never;
-    url: '/api/student/my/images';
-};
-
-export type StudentGetMyImagesResponses = {
+export type StudentsGetStudentAttendanceSummaryResponses = {
     /**
      * Successful Response
      */
     200: unknown;
 };
 
-export type StudentGetStudentModulesWithAttendanceData = {
+export type StudentsGetStudentExamEligibilityData = {
     body?: never;
     path: {
         /**
@@ -2610,29 +2596,59 @@ export type StudentGetStudentModulesWithAttendanceData = {
         student_id: string;
     };
     query?: never;
-    url: '/api/student/{student_id}/modules-with-attendance';
+    url: '/api/v1/students/{student_id}/exam-eligibility';
 };
 
-export type StudentGetStudentModulesWithAttendanceErrors = {
+export type StudentsGetStudentExamEligibilityErrors = {
     /**
      * Validation Error
      */
     422: HttpValidationError;
 };
 
-export type StudentGetStudentModulesWithAttendanceError = StudentGetStudentModulesWithAttendanceErrors[keyof StudentGetStudentModulesWithAttendanceErrors];
+export type StudentsGetStudentExamEligibilityError = StudentsGetStudentExamEligibilityErrors[keyof StudentsGetStudentExamEligibilityErrors];
 
-export type StudentGetStudentModulesWithAttendanceResponses = {
+export type StudentsGetStudentExamEligibilityResponses = {
     /**
      * Successful Response
      */
-    200: ApiResponse;
+    200: unknown;
 };
 
-export type StudentGetStudentModulesWithAttendanceResponse = StudentGetStudentModulesWithAttendanceResponses[keyof StudentGetStudentModulesWithAttendanceResponses];
-
-export type StudentGetStudentExamEligibilityData = {
+export type StudentsGetStudentModuleExamEligibilityData = {
     body?: never;
+    path: {
+        /**
+         * Student Id
+         */
+        student_id: string;
+        /**
+         * Module Id
+         */
+        module_id: string;
+    };
+    query?: never;
+    url: '/api/v1/students/{student_id}/modules/{module_id}/exam-eligibility';
+};
+
+export type StudentsGetStudentModuleExamEligibilityErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type StudentsGetStudentModuleExamEligibilityError = StudentsGetStudentModuleExamEligibilityErrors[keyof StudentsGetStudentModuleExamEligibilityErrors];
+
+export type StudentsGetStudentModuleExamEligibilityResponses = {
+    /**
+     * Successful Response
+     */
+    200: unknown;
+};
+
+export type StudentsCreateStudentImageData = {
+    body: StudentImageCreate;
     path: {
         /**
          * Student Id
@@ -2640,28 +2656,26 @@ export type StudentGetStudentExamEligibilityData = {
         student_id: string;
     };
     query?: never;
-    url: '/api/student/{student_id}/exam-eligibility-status';
+    url: '/api/v1/students/{student_id}/images';
 };
 
-export type StudentGetStudentExamEligibilityErrors = {
+export type StudentsCreateStudentImageErrors = {
     /**
      * Validation Error
      */
     422: HttpValidationError;
 };
 
-export type StudentGetStudentExamEligibilityError = StudentGetStudentExamEligibilityErrors[keyof StudentGetStudentExamEligibilityErrors];
+export type StudentsCreateStudentImageError = StudentsCreateStudentImageErrors[keyof StudentsCreateStudentImageErrors];
 
-export type StudentGetStudentExamEligibilityResponses = {
+export type StudentsCreateStudentImageResponses = {
     /**
      * Successful Response
      */
-    200: ApiResponse;
+    201: unknown;
 };
 
-export type StudentGetStudentExamEligibilityResponse = StudentGetStudentExamEligibilityResponses[keyof StudentGetStudentExamEligibilityResponses];
-
-export type StudentGetStudentImageInfoData = {
+export type StudentsGetStudentImageData = {
     body?: never;
     path: {
         /**
@@ -2674,759 +2688,112 @@ export type StudentGetStudentImageInfoData = {
         image_id: number;
     };
     query?: never;
-    url: '/api/student/{student_id}/images/{image_id}/info';
+    url: '/api/v1/students/{student_id}/images/{image_id}';
 };
 
-export type StudentGetStudentImageInfoErrors = {
+export type StudentsGetStudentImageErrors = {
     /**
      * Validation Error
      */
     422: HttpValidationError;
 };
 
-export type StudentGetStudentImageInfoError = StudentGetStudentImageInfoErrors[keyof StudentGetStudentImageInfoErrors];
+export type StudentsGetStudentImageError = StudentsGetStudentImageErrors[keyof StudentsGetStudentImageErrors];
 
-export type StudentGetStudentImageInfoResponses = {
+export type StudentsGetStudentImageResponses = {
     /**
      * Successful Response
      */
-    200: ApiResponse;
+    200: unknown;
 };
 
-export type StudentGetStudentImageInfoResponse = StudentGetStudentImageInfoResponses[keyof StudentGetStudentImageInfoResponses];
-
-export type ProgramGetAllProgramsData = {
+export type LecturersListLecturersData = {
     body?: never;
     path?: never;
-    query?: never;
-    url: '/api/program/';
-};
-
-export type ProgramGetAllProgramsResponses = {
-    /**
-     * Successful Response
-     */
-    200: ApiResponseListProgramResponse;
-};
-
-export type ProgramGetAllProgramsResponse = ProgramGetAllProgramsResponses[keyof ProgramGetAllProgramsResponses];
-
-export type ProgramCreateProgramData = {
-    body: ProgramCreate;
-    path?: never;
-    query?: never;
-    url: '/api/program/';
-};
-
-export type ProgramCreateProgramErrors = {
-    /**
-     * Validation Error
-     */
-    422: HttpValidationError;
-};
-
-export type ProgramCreateProgramError = ProgramCreateProgramErrors[keyof ProgramCreateProgramErrors];
-
-export type ProgramCreateProgramResponses = {
-    /**
-     * Successful Response
-     */
-    201: ApiResponseProgramResponse;
-};
-
-export type ProgramCreateProgramResponse = ProgramCreateProgramResponses[keyof ProgramCreateProgramResponses];
-
-export type ProgramAssignStudentToProgramData = {
-    body?: never;
-    path: {
+    query?: {
         /**
          * Program Id
          */
-        program_id: string;
+        program_id?: string | null;
         /**
-         * Student Id
+         * Limit
          */
-        student_id: string;
+        limit?: number;
+        /**
+         * Offset
+         */
+        offset?: number;
     };
-    query?: never;
-    url: '/api/program/{program_id}/students/{student_id}';
+    url: '/api/v1/lecturers';
 };
 
-export type ProgramAssignStudentToProgramErrors = {
+export type LecturersListLecturersErrors = {
     /**
      * Validation Error
      */
     422: HttpValidationError;
 };
 
-export type ProgramAssignStudentToProgramError = ProgramAssignStudentToProgramErrors[keyof ProgramAssignStudentToProgramErrors];
+export type LecturersListLecturersError = LecturersListLecturersErrors[keyof LecturersListLecturersErrors];
 
-export type ProgramAssignStudentToProgramResponses = {
+export type LecturersListLecturersResponses = {
     /**
      * Successful Response
      */
-    200: ApiResponseDict;
+    200: PageLecturerResponse;
 };
 
-export type ProgramAssignStudentToProgramResponse = ProgramAssignStudentToProgramResponses[keyof ProgramAssignStudentToProgramResponses];
+export type LecturersListLecturersResponse = LecturersListLecturersResponses[keyof LecturersListLecturersResponses];
 
-export type ProgramAssignLecturerToProgramData = {
-    body?: never;
-    path: {
-        /**
-         * Program Id
-         */
-        program_id: string;
-        /**
-         * Lecturer Id
-         */
-        lecturer_id: string;
-    };
-    query?: never;
-    url: '/api/program/{program_id}/lecturers/{lecturer_id}';
-};
-
-export type ProgramAssignLecturerToProgramErrors = {
-    /**
-     * Validation Error
-     */
-    422: HttpValidationError;
-};
-
-export type ProgramAssignLecturerToProgramError = ProgramAssignLecturerToProgramErrors[keyof ProgramAssignLecturerToProgramErrors];
-
-export type ProgramAssignLecturerToProgramResponses = {
-    /**
-     * Successful Response
-     */
-    200: ApiResponseDict;
-};
-
-export type ProgramAssignLecturerToProgramResponse = ProgramAssignLecturerToProgramResponses[keyof ProgramAssignLecturerToProgramResponses];
-
-export type ProgramAssignModuleToProgramData = {
-    body?: never;
-    path: {
-        /**
-         * Program Id
-         */
-        program_id: string;
-        /**
-         * Module Id
-         */
-        module_id: string;
-    };
-    query?: never;
-    url: '/api/program/{program_id}/modules/{module_id}';
-};
-
-export type ProgramAssignModuleToProgramErrors = {
-    /**
-     * Validation Error
-     */
-    422: HttpValidationError;
-};
-
-export type ProgramAssignModuleToProgramError = ProgramAssignModuleToProgramErrors[keyof ProgramAssignModuleToProgramErrors];
-
-export type ProgramAssignModuleToProgramResponses = {
-    /**
-     * Successful Response
-     */
-    200: ApiResponseDict;
-};
-
-export type ProgramAssignModuleToProgramResponse = ProgramAssignModuleToProgramResponses[keyof ProgramAssignModuleToProgramResponses];
-
-export type ProgramDeleteProgramData = {
-    body?: never;
-    path: {
-        /**
-         * Program Id
-         */
-        program_id: string;
-    };
-    query?: never;
-    url: '/api/program/{program_id}';
-};
-
-export type ProgramDeleteProgramErrors = {
-    /**
-     * Validation Error
-     */
-    422: HttpValidationError;
-};
-
-export type ProgramDeleteProgramError = ProgramDeleteProgramErrors[keyof ProgramDeleteProgramErrors];
-
-export type ProgramDeleteProgramResponses = {
-    /**
-     * Successful Response
-     */
-    200: ApiResponseNoneType;
-};
-
-export type ProgramDeleteProgramResponse = ProgramDeleteProgramResponses[keyof ProgramDeleteProgramResponses];
-
-export type ProgramFindProgramByIdData = {
-    body?: never;
-    path: {
-        /**
-         * Program Id
-         */
-        program_id: string;
-    };
-    query?: never;
-    url: '/api/program/{program_id}';
-};
-
-export type ProgramFindProgramByIdErrors = {
-    /**
-     * Validation Error
-     */
-    422: HttpValidationError;
-};
-
-export type ProgramFindProgramByIdError = ProgramFindProgramByIdErrors[keyof ProgramFindProgramByIdErrors];
-
-export type ProgramFindProgramByIdResponses = {
-    /**
-     * Successful Response
-     */
-    200: ApiResponseProgramResponse;
-};
-
-export type ProgramFindProgramByIdResponse = ProgramFindProgramByIdResponses[keyof ProgramFindProgramByIdResponses];
-
-export type ProgramUpdateProgramData = {
-    body: ProgramUpdate;
-    path: {
-        /**
-         * Program Id
-         */
-        program_id: string;
-    };
-    query?: never;
-    url: '/api/program/{program_id}';
-};
-
-export type ProgramUpdateProgramErrors = {
-    /**
-     * Validation Error
-     */
-    422: HttpValidationError;
-};
-
-export type ProgramUpdateProgramError = ProgramUpdateProgramErrors[keyof ProgramUpdateProgramErrors];
-
-export type ProgramUpdateProgramResponses = {
-    /**
-     * Successful Response
-     */
-    200: ApiResponseProgramResponse;
-};
-
-export type ProgramUpdateProgramResponse = ProgramUpdateProgramResponses[keyof ProgramUpdateProgramResponses];
-
-export type ProgramViewModulesInProgramData = {
-    body?: never;
-    path: {
-        /**
-         * Program Id
-         */
-        program_id: string;
-    };
-    query?: never;
-    url: '/api/program/{program_id}/modules';
-};
-
-export type ProgramViewModulesInProgramErrors = {
-    /**
-     * Validation Error
-     */
-    422: HttpValidationError;
-};
-
-export type ProgramViewModulesInProgramError = ProgramViewModulesInProgramErrors[keyof ProgramViewModulesInProgramErrors];
-
-export type ProgramViewModulesInProgramResponses = {
-    /**
-     * Successful Response
-     */
-    200: ApiResponse;
-};
-
-export type ProgramViewModulesInProgramResponse = ProgramViewModulesInProgramResponses[keyof ProgramViewModulesInProgramResponses];
-
-export type ProgramViewLecturersInProgramData = {
-    body?: never;
-    path: {
-        /**
-         * Program Id
-         */
-        program_id: string;
-    };
-    query?: never;
-    url: '/api/program/{program_id}/lecturers';
-};
-
-export type ProgramViewLecturersInProgramErrors = {
-    /**
-     * Validation Error
-     */
-    422: HttpValidationError;
-};
-
-export type ProgramViewLecturersInProgramError = ProgramViewLecturersInProgramErrors[keyof ProgramViewLecturersInProgramErrors];
-
-export type ProgramViewLecturersInProgramResponses = {
-    /**
-     * Successful Response
-     */
-    200: ApiResponse;
-};
-
-export type ProgramViewLecturersInProgramResponse = ProgramViewLecturersInProgramResponses[keyof ProgramViewLecturersInProgramResponses];
-
-export type ProgramViewStudentsInProgramData = {
-    body?: never;
-    path: {
-        /**
-         * Program Id
-         */
-        program_id: string;
-    };
-    query?: never;
-    url: '/api/program/{program_id}/students';
-};
-
-export type ProgramViewStudentsInProgramErrors = {
-    /**
-     * Validation Error
-     */
-    422: HttpValidationError;
-};
-
-export type ProgramViewStudentsInProgramError = ProgramViewStudentsInProgramErrors[keyof ProgramViewStudentsInProgramErrors];
-
-export type ProgramViewStudentsInProgramResponses = {
-    /**
-     * Successful Response
-     */
-    200: ApiResponse;
-};
-
-export type ProgramViewStudentsInProgramResponse = ProgramViewStudentsInProgramResponses[keyof ProgramViewStudentsInProgramResponses];
-
-export type ModuleCreateModuleData = {
-    body: ModuleCreate;
-    path?: never;
-    query?: never;
-    url: '/api/module/create';
-};
-
-export type ModuleCreateModuleErrors = {
-    /**
-     * Validation Error
-     */
-    422: HttpValidationError;
-};
-
-export type ModuleCreateModuleError = ModuleCreateModuleErrors[keyof ModuleCreateModuleErrors];
-
-export type ModuleCreateModuleResponses = {
-    /**
-     * Successful Response
-     */
-    201: ApiResponseModuleResponse;
-};
-
-export type ModuleCreateModuleResponse = ModuleCreateModuleResponses[keyof ModuleCreateModuleResponses];
-
-export type ModuleDeleteModulesFromExcelData = {
-    body: DeleteModulesFromExcel;
-    path?: never;
-    query?: never;
-    url: '/api/module/delete-from-excel';
-};
-
-export type ModuleDeleteModulesFromExcelErrors = {
-    /**
-     * Validation Error
-     */
-    422: HttpValidationError;
-};
-
-export type ModuleDeleteModulesFromExcelError = ModuleDeleteModulesFromExcelErrors[keyof ModuleDeleteModulesFromExcelErrors];
-
-export type ModuleDeleteModulesFromExcelResponses = {
-    /**
-     * Successful Response
-     */
-    200: ApiResponse;
-};
-
-export type ModuleDeleteModulesFromExcelResponse = ModuleDeleteModulesFromExcelResponses[keyof ModuleDeleteModulesFromExcelResponses];
-
-export type ModuleImportModuleData = {
-    body: ImportModule;
-    path?: never;
-    query?: never;
-    url: '/api/module/create-from-excel';
-};
-
-export type ModuleImportModuleErrors = {
-    /**
-     * Validation Error
-     */
-    422: HttpValidationError;
-};
-
-export type ModuleImportModuleError = ModuleImportModuleErrors[keyof ModuleImportModuleErrors];
-
-export type ModuleImportModuleResponses = {
-    /**
-     * Successful Response
-     */
-    200: ApiResponse;
-};
-
-export type ModuleImportModuleResponse = ModuleImportModuleResponses[keyof ModuleImportModuleResponses];
-
-export type ModuleViewModulesData = {
-    body?: never;
-    path?: never;
-    query?: never;
-    url: '/api/module/view';
-};
-
-export type ModuleViewModulesResponses = {
-    /**
-     * Successful Response
-     */
-    200: ApiResponseListModuleResponse;
-};
-
-export type ModuleViewModulesResponse = ModuleViewModulesResponses[keyof ModuleViewModulesResponses];
-
-export type ModuleGetCameraPathData = {
-    body?: never;
-    path: {
-        /**
-         * Module Id
-         */
-        module_id: string;
-    };
-    query?: never;
-    url: '/api/module/camera-path/{module_id}';
-};
-
-export type ModuleGetCameraPathErrors = {
-    /**
-     * Validation Error
-     */
-    422: HttpValidationError;
-};
-
-export type ModuleGetCameraPathError = ModuleGetCameraPathErrors[keyof ModuleGetCameraPathErrors];
-
-export type ModuleGetCameraPathResponses = {
-    /**
-     * Successful Response
-     */
-    200: ApiResponseDict;
-};
-
-export type ModuleGetCameraPathResponse = ModuleGetCameraPathResponses[keyof ModuleGetCameraPathResponses];
-
-export type ModuleSetCameraPathData = {
-    body: CameraPathUpdate;
-    path: {
-        /**
-         * Module Id
-         */
-        module_id: string;
-    };
-    query?: never;
-    url: '/api/module/set-camera-path/{module_id}';
-};
-
-export type ModuleSetCameraPathErrors = {
-    /**
-     * Validation Error
-     */
-    422: HttpValidationError;
-};
-
-export type ModuleSetCameraPathError = ModuleSetCameraPathErrors[keyof ModuleSetCameraPathErrors];
-
-export type ModuleSetCameraPathResponses = {
-    /**
-     * Successful Response
-     */
-    200: ApiResponseDict;
-};
-
-export type ModuleSetCameraPathResponse = ModuleSetCameraPathResponses[keyof ModuleSetCameraPathResponses];
-
-export type ModuleUpdateModuleData = {
-    body: ModuleUpdate;
-    path: {
-        /**
-         * Module Id
-         */
-        module_id: string;
-    };
-    query?: never;
-    url: '/api/module/update/{module_id}';
-};
-
-export type ModuleUpdateModuleErrors = {
-    /**
-     * Validation Error
-     */
-    422: HttpValidationError;
-};
-
-export type ModuleUpdateModuleError = ModuleUpdateModuleErrors[keyof ModuleUpdateModuleErrors];
-
-export type ModuleUpdateModuleResponses = {
-    /**
-     * Successful Response
-     */
-    200: ApiResponseModuleResponse;
-};
-
-export type ModuleUpdateModuleResponse = ModuleUpdateModuleResponses[keyof ModuleUpdateModuleResponses];
-
-export type ModuleDeleteModuleData = {
-    body?: never;
-    path: {
-        /**
-         * Module Id
-         */
-        module_id: string;
-    };
-    query?: never;
-    url: '/api/module/delete/{module_id}';
-};
-
-export type ModuleDeleteModuleErrors = {
-    /**
-     * Validation Error
-     */
-    422: HttpValidationError;
-};
-
-export type ModuleDeleteModuleError = ModuleDeleteModuleErrors[keyof ModuleDeleteModuleErrors];
-
-export type ModuleDeleteModuleResponses = {
-    /**
-     * Successful Response
-     */
-    200: ApiResponseNoneType;
-};
-
-export type ModuleDeleteModuleResponse = ModuleDeleteModuleResponses[keyof ModuleDeleteModuleResponses];
-
-export type FacilityFacultyGetAllFacultiesData = {
-    body?: never;
-    path?: never;
-    query?: never;
-    url: '/api/facility-faculty/';
-};
-
-export type FacilityFacultyGetAllFacultiesResponses = {
-    /**
-     * Successful Response
-     */
-    200: ApiResponseListFacilityFacultyResponse;
-};
-
-export type FacilityFacultyGetAllFacultiesResponse = FacilityFacultyGetAllFacultiesResponses[keyof FacilityFacultyGetAllFacultiesResponses];
-
-export type FacilityFacultyCreateFacultyData = {
-    body: FacilityFacultyCreate;
-    path?: never;
-    query?: never;
-    url: '/api/facility-faculty/';
-};
-
-export type FacilityFacultyCreateFacultyErrors = {
-    /**
-     * Validation Error
-     */
-    422: HttpValidationError;
-};
-
-export type FacilityFacultyCreateFacultyError = FacilityFacultyCreateFacultyErrors[keyof FacilityFacultyCreateFacultyErrors];
-
-export type FacilityFacultyCreateFacultyResponses = {
-    /**
-     * Successful Response
-     */
-    201: ApiResponseFacilityFacultyResponse;
-};
-
-export type FacilityFacultyCreateFacultyResponse = FacilityFacultyCreateFacultyResponses[keyof FacilityFacultyCreateFacultyResponses];
-
-export type FacilityFacultyDeleteFacultyData = {
-    body?: never;
-    path: {
-        /**
-         * Staff Id
-         */
-        staff_id: string;
-    };
-    query?: never;
-    url: '/api/facility-faculty/{staff_id}';
-};
-
-export type FacilityFacultyDeleteFacultyErrors = {
-    /**
-     * Validation Error
-     */
-    422: HttpValidationError;
-};
-
-export type FacilityFacultyDeleteFacultyError = FacilityFacultyDeleteFacultyErrors[keyof FacilityFacultyDeleteFacultyErrors];
-
-export type FacilityFacultyDeleteFacultyResponses = {
-    /**
-     * Successful Response
-     */
-    200: ApiResponseNoneType;
-};
-
-export type FacilityFacultyDeleteFacultyResponse = FacilityFacultyDeleteFacultyResponses[keyof FacilityFacultyDeleteFacultyResponses];
-
-export type FacilityFacultyGetFacultyData = {
-    body?: never;
-    path: {
-        /**
-         * Staff Id
-         */
-        staff_id: string;
-    };
-    query?: never;
-    url: '/api/facility-faculty/{staff_id}';
-};
-
-export type FacilityFacultyGetFacultyErrors = {
-    /**
-     * Validation Error
-     */
-    422: HttpValidationError;
-};
-
-export type FacilityFacultyGetFacultyError = FacilityFacultyGetFacultyErrors[keyof FacilityFacultyGetFacultyErrors];
-
-export type FacilityFacultyGetFacultyResponses = {
-    /**
-     * Successful Response
-     */
-    200: ApiResponseFacilityFacultyResponse;
-};
-
-export type FacilityFacultyGetFacultyResponse = FacilityFacultyGetFacultyResponses[keyof FacilityFacultyGetFacultyResponses];
-
-export type FacilityFacultyUpdateFacultyData = {
-    body: FacilityFacultyUpdate;
-    path: {
-        /**
-         * Staff Id
-         */
-        staff_id: string;
-    };
-    query?: never;
-    url: '/api/facility-faculty/{staff_id}';
-};
-
-export type FacilityFacultyUpdateFacultyErrors = {
-    /**
-     * Validation Error
-     */
-    422: HttpValidationError;
-};
-
-export type FacilityFacultyUpdateFacultyError = FacilityFacultyUpdateFacultyErrors[keyof FacilityFacultyUpdateFacultyErrors];
-
-export type FacilityFacultyUpdateFacultyResponses = {
-    /**
-     * Successful Response
-     */
-    200: ApiResponseFacilityFacultyResponse;
-};
-
-export type FacilityFacultyUpdateFacultyResponse = FacilityFacultyUpdateFacultyResponses[keyof FacilityFacultyUpdateFacultyResponses];
-
-export type LecturerGetAllLecturersData = {
-    body?: never;
-    path?: never;
-    query?: never;
-    url: '/api/lecturer/';
-};
-
-export type LecturerGetAllLecturersResponses = {
-    /**
-     * Successful Response
-     */
-    200: ApiResponseListLecturerResponse;
-};
-
-export type LecturerGetAllLecturersResponse = LecturerGetAllLecturersResponses[keyof LecturerGetAllLecturersResponses];
-
-export type LecturerCreateLecturerData = {
+export type LecturersCreateLecturerData = {
     body: LecturerCreate;
     path?: never;
     query?: never;
-    url: '/api/lecturer/';
+    url: '/api/v1/lecturers';
 };
 
-export type LecturerCreateLecturerErrors = {
+export type LecturersCreateLecturerErrors = {
     /**
      * Validation Error
      */
     422: HttpValidationError;
 };
 
-export type LecturerCreateLecturerError = LecturerCreateLecturerErrors[keyof LecturerCreateLecturerErrors];
+export type LecturersCreateLecturerError = LecturersCreateLecturerErrors[keyof LecturersCreateLecturerErrors];
 
-export type LecturerCreateLecturerResponses = {
+export type LecturersCreateLecturerResponses = {
     /**
      * Successful Response
      */
-    201: ApiResponseLecturerResponse;
+    201: LecturerResponse;
 };
 
-export type LecturerCreateLecturerResponse = LecturerCreateLecturerResponses[keyof LecturerCreateLecturerResponses];
+export type LecturersCreateLecturerResponse = LecturersCreateLecturerResponses[keyof LecturersCreateLecturerResponses];
 
-export type LecturerImportLecturersData = {
-    body: FastapiCompatV2BodyLecturerImportLecturers;
+export type LecturersImportLecturersData = {
+    body: ImportLecturers;
     path?: never;
     query?: never;
-    url: '/api/lecturer/create-from-excel';
+    url: '/api/v1/lecturers/imports';
 };
 
-export type LecturerImportLecturersErrors = {
+export type LecturersImportLecturersErrors = {
     /**
      * Validation Error
      */
     422: HttpValidationError;
 };
 
-export type LecturerImportLecturersError = LecturerImportLecturersErrors[keyof LecturerImportLecturersErrors];
+export type LecturersImportLecturersError = LecturersImportLecturersErrors[keyof LecturersImportLecturersErrors];
 
-export type LecturerImportLecturersResponses = {
+export type LecturersImportLecturersResponses = {
     /**
      * Successful Response
      */
-    200: ApiResponse;
+    200: unknown;
 };
 
-export type LecturerImportLecturersResponse = LecturerImportLecturersResponses[keyof LecturerImportLecturersResponses];
-
-export type LecturerDeleteLecturerData = {
+export type LecturersDeleteLecturerData = {
     body?: never;
     path: {
         /**
@@ -3435,28 +2802,28 @@ export type LecturerDeleteLecturerData = {
         lecturer_id: string;
     };
     query?: never;
-    url: '/api/lecturer/{lecturer_id}';
+    url: '/api/v1/lecturers/{lecturer_id}';
 };
 
-export type LecturerDeleteLecturerErrors = {
+export type LecturersDeleteLecturerErrors = {
     /**
      * Validation Error
      */
     422: HttpValidationError;
 };
 
-export type LecturerDeleteLecturerError = LecturerDeleteLecturerErrors[keyof LecturerDeleteLecturerErrors];
+export type LecturersDeleteLecturerError = LecturersDeleteLecturerErrors[keyof LecturersDeleteLecturerErrors];
 
-export type LecturerDeleteLecturerResponses = {
+export type LecturersDeleteLecturerResponses = {
     /**
      * Successful Response
      */
-    200: ApiResponseNoneType;
+    204: void;
 };
 
-export type LecturerDeleteLecturerResponse = LecturerDeleteLecturerResponses[keyof LecturerDeleteLecturerResponses];
+export type LecturersDeleteLecturerResponse = LecturersDeleteLecturerResponses[keyof LecturersDeleteLecturerResponses];
 
-export type LecturerGetLecturerByIdData = {
+export type LecturersGetLecturerData = {
     body?: never;
     path: {
         /**
@@ -3465,28 +2832,28 @@ export type LecturerGetLecturerByIdData = {
         lecturer_id: string;
     };
     query?: never;
-    url: '/api/lecturer/{lecturer_id}';
+    url: '/api/v1/lecturers/{lecturer_id}';
 };
 
-export type LecturerGetLecturerByIdErrors = {
+export type LecturersGetLecturerErrors = {
     /**
      * Validation Error
      */
     422: HttpValidationError;
 };
 
-export type LecturerGetLecturerByIdError = LecturerGetLecturerByIdErrors[keyof LecturerGetLecturerByIdErrors];
+export type LecturersGetLecturerError = LecturersGetLecturerErrors[keyof LecturersGetLecturerErrors];
 
-export type LecturerGetLecturerByIdResponses = {
+export type LecturersGetLecturerResponses = {
     /**
      * Successful Response
      */
-    200: ApiResponseLecturerResponse;
+    200: LecturerResponse;
 };
 
-export type LecturerGetLecturerByIdResponse = LecturerGetLecturerByIdResponses[keyof LecturerGetLecturerByIdResponses];
+export type LecturersGetLecturerResponse = LecturersGetLecturerResponses[keyof LecturersGetLecturerResponses];
 
-export type LecturerUpdateLecturerData = {
+export type LecturersUpdateLecturerData = {
     body: LecturerUpdate;
     path: {
         /**
@@ -3495,48 +2862,387 @@ export type LecturerUpdateLecturerData = {
         lecturer_id: string;
     };
     query?: never;
-    url: '/api/lecturer/{lecturer_id}';
+    url: '/api/v1/lecturers/{lecturer_id}';
 };
 
-export type LecturerUpdateLecturerErrors = {
+export type LecturersUpdateLecturerErrors = {
     /**
      * Validation Error
      */
     422: HttpValidationError;
 };
 
-export type LecturerUpdateLecturerError = LecturerUpdateLecturerErrors[keyof LecturerUpdateLecturerErrors];
+export type LecturersUpdateLecturerError = LecturersUpdateLecturerErrors[keyof LecturersUpdateLecturerErrors];
 
-export type LecturerUpdateLecturerResponses = {
+export type LecturersUpdateLecturerResponses = {
     /**
      * Successful Response
      */
-    200: ApiResponseLecturerResponse;
+    200: LecturerResponse;
 };
 
-export type LecturerUpdateLecturerResponse = LecturerUpdateLecturerResponses[keyof LecturerUpdateLecturerResponses];
+export type LecturersUpdateLecturerResponse = LecturersUpdateLecturerResponses[keyof LecturersUpdateLecturerResponses];
 
-export type ModuleRegistrationsGetAllModuleRegistrationsData = {
+export type ModulesListModulesData = {
+    body?: never;
+    path?: never;
+    query?: {
+        /**
+         * Program Id
+         */
+        program_id?: string | null;
+        /**
+         * Semester Id
+         */
+        semester_id?: string | null;
+        /**
+         * Lecturer Id
+         */
+        lecturer_id?: string | null;
+        /**
+         * Limit
+         */
+        limit?: number;
+        /**
+         * Offset
+         */
+        offset?: number;
+    };
+    url: '/api/v1/modules';
+};
+
+export type ModulesListModulesErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type ModulesListModulesError = ModulesListModulesErrors[keyof ModulesListModulesErrors];
+
+export type ModulesListModulesResponses = {
+    /**
+     * Successful Response
+     */
+    200: PageModuleResponse;
+};
+
+export type ModulesListModulesResponse = ModulesListModulesResponses[keyof ModulesListModulesResponses];
+
+export type ModulesCreateModuleData = {
+    body: ModuleCreate;
+    path?: never;
+    query?: never;
+    url: '/api/v1/modules';
+};
+
+export type ModulesCreateModuleErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type ModulesCreateModuleError = ModulesCreateModuleErrors[keyof ModulesCreateModuleErrors];
+
+export type ModulesCreateModuleResponses = {
+    /**
+     * Successful Response
+     */
+    201: ModuleResponse;
+};
+
+export type ModulesCreateModuleResponse = ModulesCreateModuleResponses[keyof ModulesCreateModuleResponses];
+
+export type ModulesImportModulesData = {
+    body: ImportModules;
+    path?: never;
+    query?: never;
+    url: '/api/v1/modules/imports';
+};
+
+export type ModulesImportModulesErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type ModulesImportModulesError = ModulesImportModulesErrors[keyof ModulesImportModulesErrors];
+
+export type ModulesImportModulesResponses = {
+    /**
+     * Successful Response
+     */
+    200: unknown;
+};
+
+export type ModulesDeleteModulesData = {
+    body: DeleteModules;
+    path?: never;
+    query?: never;
+    url: '/api/v1/modules/bulk-deletions';
+};
+
+export type ModulesDeleteModulesErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type ModulesDeleteModulesError = ModulesDeleteModulesErrors[keyof ModulesDeleteModulesErrors];
+
+export type ModulesDeleteModulesResponses = {
+    /**
+     * Successful Response
+     */
+    200: unknown;
+};
+
+export type ModulesGetModulesAttendanceSummaryData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/api/module-registrations/';
+    url: '/api/v1/modules/attendance-summary';
 };
 
-export type ModuleRegistrationsGetAllModuleRegistrationsResponses = {
+export type ModulesGetModulesAttendanceSummaryResponses = {
     /**
      * Successful Response
      */
-    200: ApiResponseListModuleRegistrationResponse;
+    200: unknown;
 };
 
-export type ModuleRegistrationsGetAllModuleRegistrationsResponse = ModuleRegistrationsGetAllModuleRegistrationsResponses[keyof ModuleRegistrationsGetAllModuleRegistrationsResponses];
+export type ModulesDeleteModuleData = {
+    body?: never;
+    path: {
+        /**
+         * Module Id
+         */
+        module_id: string;
+    };
+    query?: never;
+    url: '/api/v1/modules/{module_id}';
+};
+
+export type ModulesDeleteModuleErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type ModulesDeleteModuleError = ModulesDeleteModuleErrors[keyof ModulesDeleteModuleErrors];
+
+export type ModulesDeleteModuleResponses = {
+    /**
+     * Successful Response
+     */
+    204: void;
+};
+
+export type ModulesDeleteModuleResponse = ModulesDeleteModuleResponses[keyof ModulesDeleteModuleResponses];
+
+export type ModulesGetModuleData = {
+    body?: never;
+    path: {
+        /**
+         * Module Id
+         */
+        module_id: string;
+    };
+    query?: never;
+    url: '/api/v1/modules/{module_id}';
+};
+
+export type ModulesGetModuleErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type ModulesGetModuleError = ModulesGetModuleErrors[keyof ModulesGetModuleErrors];
+
+export type ModulesGetModuleResponses = {
+    /**
+     * Successful Response
+     */
+    200: ModuleResponse;
+};
+
+export type ModulesGetModuleResponse = ModulesGetModuleResponses[keyof ModulesGetModuleResponses];
+
+export type ModulesUpdateModuleData = {
+    body: ModuleUpdate;
+    path: {
+        /**
+         * Module Id
+         */
+        module_id: string;
+    };
+    query?: never;
+    url: '/api/v1/modules/{module_id}';
+};
+
+export type ModulesUpdateModuleErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type ModulesUpdateModuleError = ModulesUpdateModuleErrors[keyof ModulesUpdateModuleErrors];
+
+export type ModulesUpdateModuleResponses = {
+    /**
+     * Successful Response
+     */
+    200: ModuleResponse;
+};
+
+export type ModulesUpdateModuleResponse = ModulesUpdateModuleResponses[keyof ModulesUpdateModuleResponses];
+
+export type ModulesGetCameraPathData = {
+    body?: never;
+    path: {
+        /**
+         * Module Id
+         */
+        module_id: string;
+    };
+    query?: never;
+    url: '/api/v1/modules/{module_id}/camera-path';
+};
+
+export type ModulesGetCameraPathErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type ModulesGetCameraPathError = ModulesGetCameraPathErrors[keyof ModulesGetCameraPathErrors];
+
+export type ModulesGetCameraPathResponses = {
+    /**
+     * Successful Response
+     */
+    200: unknown;
+};
+
+export type ModulesSetCameraPathData = {
+    body: CameraPathUpdate;
+    path: {
+        /**
+         * Module Id
+         */
+        module_id: string;
+    };
+    query?: never;
+    url: '/api/v1/modules/{module_id}/camera-path';
+};
+
+export type ModulesSetCameraPathErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type ModulesSetCameraPathError = ModulesSetCameraPathErrors[keyof ModulesSetCameraPathErrors];
+
+export type ModulesSetCameraPathResponses = {
+    /**
+     * Successful Response
+     */
+    200: unknown;
+};
+
+export type ModulesGetModuleExamEligibilityData = {
+    body?: never;
+    path: {
+        /**
+         * Module Id
+         */
+        module_id: string;
+    };
+    query?: never;
+    url: '/api/v1/modules/{module_id}/exam-eligibility';
+};
+
+export type ModulesGetModuleExamEligibilityErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type ModulesGetModuleExamEligibilityError = ModulesGetModuleExamEligibilityErrors[keyof ModulesGetModuleExamEligibilityErrors];
+
+export type ModulesGetModuleExamEligibilityResponses = {
+    /**
+     * Response Modules.Get Module Exam Eligibility
+     *
+     * Successful Response
+     */
+    200: Array<ExamEligibilityResponse>;
+};
+
+export type ModulesGetModuleExamEligibilityResponse = ModulesGetModuleExamEligibilityResponses[keyof ModulesGetModuleExamEligibilityResponses];
+
+export type ModuleRegistrationsListModuleRegistrationsData = {
+    body?: never;
+    path?: never;
+    query?: {
+        /**
+         * Student Id
+         */
+        student_id?: string | null;
+        /**
+         * Module Id
+         */
+        module_id?: string | null;
+        /**
+         * Lecturer Id
+         */
+        lecturer_id?: string | null;
+        /**
+         * Limit
+         */
+        limit?: number;
+        /**
+         * Offset
+         */
+        offset?: number;
+    };
+    url: '/api/v1/module-registrations';
+};
+
+export type ModuleRegistrationsListModuleRegistrationsErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type ModuleRegistrationsListModuleRegistrationsError = ModuleRegistrationsListModuleRegistrationsErrors[keyof ModuleRegistrationsListModuleRegistrationsErrors];
+
+export type ModuleRegistrationsListModuleRegistrationsResponses = {
+    /**
+     * Successful Response
+     */
+    200: PageModuleRegistrationResponse;
+};
+
+export type ModuleRegistrationsListModuleRegistrationsResponse = ModuleRegistrationsListModuleRegistrationsResponses[keyof ModuleRegistrationsListModuleRegistrationsResponses];
 
 export type ModuleRegistrationsCreateModuleRegistrationData = {
     body: ModuleRegistrationCreate;
     path?: never;
     query?: never;
-    url: '/api/module-registrations/';
+    url: '/api/v1/module-registrations';
 };
 
 export type ModuleRegistrationsCreateModuleRegistrationErrors = {
@@ -3552,7 +3258,7 @@ export type ModuleRegistrationsCreateModuleRegistrationResponses = {
     /**
      * Successful Response
      */
-    201: ApiResponseModuleRegistrationResponse;
+    201: ModuleRegistrationResponse;
 };
 
 export type ModuleRegistrationsCreateModuleRegistrationResponse = ModuleRegistrationsCreateModuleRegistrationResponses[keyof ModuleRegistrationsCreateModuleRegistrationResponses];
@@ -3561,7 +3267,7 @@ export type ModuleRegistrationsImportModuleRegistrationsData = {
     body: ImportModuleRegistrations;
     path?: never;
     query?: never;
-    url: '/api/module-registrations/create-from-excel';
+    url: '/api/v1/module-registrations/imports';
 };
 
 export type ModuleRegistrationsImportModuleRegistrationsErrors = {
@@ -3577,178 +3283,8 @@ export type ModuleRegistrationsImportModuleRegistrationsResponses = {
     /**
      * Successful Response
      */
-    200: ApiResponse;
+    200: unknown;
 };
-
-export type ModuleRegistrationsImportModuleRegistrationsResponse = ModuleRegistrationsImportModuleRegistrationsResponses[keyof ModuleRegistrationsImportModuleRegistrationsResponses];
-
-export type ModuleRegistrationsGetByStudentData = {
-    body?: never;
-    path: {
-        /**
-         * Student Id
-         */
-        student_id: string;
-    };
-    query?: never;
-    url: '/api/module-registrations/student/{student_id}';
-};
-
-export type ModuleRegistrationsGetByStudentErrors = {
-    /**
-     * Validation Error
-     */
-    422: HttpValidationError;
-};
-
-export type ModuleRegistrationsGetByStudentError = ModuleRegistrationsGetByStudentErrors[keyof ModuleRegistrationsGetByStudentErrors];
-
-export type ModuleRegistrationsGetByStudentResponses = {
-    /**
-     * Successful Response
-     */
-    200: ApiResponseListModuleRegistrationResponse;
-};
-
-export type ModuleRegistrationsGetByStudentResponse = ModuleRegistrationsGetByStudentResponses[keyof ModuleRegistrationsGetByStudentResponses];
-
-export type ModuleRegistrationsGetByModuleData = {
-    body?: never;
-    path: {
-        /**
-         * Module Id
-         */
-        module_id: string;
-    };
-    query?: never;
-    url: '/api/module-registrations/module/{module_id}';
-};
-
-export type ModuleRegistrationsGetByModuleErrors = {
-    /**
-     * Validation Error
-     */
-    422: HttpValidationError;
-};
-
-export type ModuleRegistrationsGetByModuleError = ModuleRegistrationsGetByModuleErrors[keyof ModuleRegistrationsGetByModuleErrors];
-
-export type ModuleRegistrationsGetByModuleResponses = {
-    /**
-     * Successful Response
-     */
-    200: ApiResponseListModuleRegistrationResponse;
-};
-
-export type ModuleRegistrationsGetByModuleResponse = ModuleRegistrationsGetByModuleResponses[keyof ModuleRegistrationsGetByModuleResponses];
-
-export type ModuleRegistrationsGetByLecturerData = {
-    body?: never;
-    path: {
-        /**
-         * Lecturer Id
-         */
-        lecturer_id: string;
-    };
-    query?: never;
-    url: '/api/module-registrations/lecturer/{lecturer_id}';
-};
-
-export type ModuleRegistrationsGetByLecturerErrors = {
-    /**
-     * Validation Error
-     */
-    422: HttpValidationError;
-};
-
-export type ModuleRegistrationsGetByLecturerError = ModuleRegistrationsGetByLecturerErrors[keyof ModuleRegistrationsGetByLecturerErrors];
-
-export type ModuleRegistrationsGetByLecturerResponses = {
-    /**
-     * Successful Response
-     */
-    200: ApiResponseListDict;
-};
-
-export type ModuleRegistrationsGetByLecturerResponse = ModuleRegistrationsGetByLecturerResponses[keyof ModuleRegistrationsGetByLecturerResponses];
-
-export type ModuleRegistrationsGetMyModulesLecturerOnlyData = {
-    body?: never;
-    path?: never;
-    query?: never;
-    url: '/api/module-registrations/my-modules';
-};
-
-export type ModuleRegistrationsGetMyModulesLecturerOnlyResponses = {
-    /**
-     * Successful Response
-     */
-    200: ApiResponseListDict;
-};
-
-export type ModuleRegistrationsGetMyModulesLecturerOnlyResponse = ModuleRegistrationsGetMyModulesLecturerOnlyResponses[keyof ModuleRegistrationsGetMyModulesLecturerOnlyResponses];
-
-export type ModuleRegistrationsGetMyRegistrationsStudentOnlyData = {
-    body?: never;
-    path?: never;
-    query?: never;
-    url: '/api/module-registrations/my-registrations';
-};
-
-export type ModuleRegistrationsGetMyRegistrationsStudentOnlyResponses = {
-    /**
-     * Successful Response
-     */
-    200: ApiResponseListModuleRegistrationResponse;
-};
-
-export type ModuleRegistrationsGetMyRegistrationsStudentOnlyResponse = ModuleRegistrationsGetMyRegistrationsStudentOnlyResponses[keyof ModuleRegistrationsGetMyRegistrationsStudentOnlyResponses];
-
-export type ModuleRegistrationsGetAllModulesWithAttendanceData = {
-    body?: never;
-    path?: never;
-    query?: never;
-    url: '/api/module-registrations/all-modules-with-attendance';
-};
-
-export type ModuleRegistrationsGetAllModulesWithAttendanceResponses = {
-    /**
-     * Successful Response
-     */
-    200: ApiResponseListDict;
-};
-
-export type ModuleRegistrationsGetAllModulesWithAttendanceResponse = ModuleRegistrationsGetAllModulesWithAttendanceResponses[keyof ModuleRegistrationsGetAllModulesWithAttendanceResponses];
-
-export type ModuleRegistrationsGetMyModulesStudentsAttendanceLecturerOnlyData = {
-    body?: never;
-    path?: never;
-    query?: {
-        /**
-         * Module Id
-         */
-        module_id?: string | null;
-    };
-    url: '/api/module-registrations/my-modules/students-attendance';
-};
-
-export type ModuleRegistrationsGetMyModulesStudentsAttendanceLecturerOnlyErrors = {
-    /**
-     * Validation Error
-     */
-    422: HttpValidationError;
-};
-
-export type ModuleRegistrationsGetMyModulesStudentsAttendanceLecturerOnlyError = ModuleRegistrationsGetMyModulesStudentsAttendanceLecturerOnlyErrors[keyof ModuleRegistrationsGetMyModulesStudentsAttendanceLecturerOnlyErrors];
-
-export type ModuleRegistrationsGetMyModulesStudentsAttendanceLecturerOnlyResponses = {
-    /**
-     * Successful Response
-     */
-    200: ApiResponseLecturerStudentsAttendanceResponse;
-};
-
-export type ModuleRegistrationsGetMyModulesStudentsAttendanceLecturerOnlyResponse = ModuleRegistrationsGetMyModulesStudentsAttendanceLecturerOnlyResponses[keyof ModuleRegistrationsGetMyModulesStudentsAttendanceLecturerOnlyResponses];
 
 export type ModuleRegistrationsDeleteModuleRegistrationData = {
     body?: never;
@@ -3759,7 +3295,7 @@ export type ModuleRegistrationsDeleteModuleRegistrationData = {
         module_reg_id: number;
     };
     query?: never;
-    url: '/api/module-registrations/{module_reg_id}';
+    url: '/api/v1/module-registrations/{module_reg_id}';
 };
 
 export type ModuleRegistrationsDeleteModuleRegistrationErrors = {
@@ -3775,12 +3311,12 @@ export type ModuleRegistrationsDeleteModuleRegistrationResponses = {
     /**
      * Successful Response
      */
-    200: ApiResponseNoneType;
+    204: void;
 };
 
 export type ModuleRegistrationsDeleteModuleRegistrationResponse = ModuleRegistrationsDeleteModuleRegistrationResponses[keyof ModuleRegistrationsDeleteModuleRegistrationResponses];
 
-export type ModuleRegistrationsGetModuleRegistrationByIdData = {
+export type ModuleRegistrationsGetModuleRegistrationData = {
     body?: never;
     path: {
         /**
@@ -3789,26 +3325,26 @@ export type ModuleRegistrationsGetModuleRegistrationByIdData = {
         module_reg_id: number;
     };
     query?: never;
-    url: '/api/module-registrations/{module_reg_id}';
+    url: '/api/v1/module-registrations/{module_reg_id}';
 };
 
-export type ModuleRegistrationsGetModuleRegistrationByIdErrors = {
+export type ModuleRegistrationsGetModuleRegistrationErrors = {
     /**
      * Validation Error
      */
     422: HttpValidationError;
 };
 
-export type ModuleRegistrationsGetModuleRegistrationByIdError = ModuleRegistrationsGetModuleRegistrationByIdErrors[keyof ModuleRegistrationsGetModuleRegistrationByIdErrors];
+export type ModuleRegistrationsGetModuleRegistrationError = ModuleRegistrationsGetModuleRegistrationErrors[keyof ModuleRegistrationsGetModuleRegistrationErrors];
 
-export type ModuleRegistrationsGetModuleRegistrationByIdResponses = {
+export type ModuleRegistrationsGetModuleRegistrationResponses = {
     /**
      * Successful Response
      */
-    200: ApiResponseModuleRegistrationResponse;
+    200: ModuleRegistrationResponse;
 };
 
-export type ModuleRegistrationsGetModuleRegistrationByIdResponse = ModuleRegistrationsGetModuleRegistrationByIdResponses[keyof ModuleRegistrationsGetModuleRegistrationByIdResponses];
+export type ModuleRegistrationsGetModuleRegistrationResponse = ModuleRegistrationsGetModuleRegistrationResponses[keyof ModuleRegistrationsGetModuleRegistrationResponses];
 
 export type ModuleRegistrationsUpdateModuleRegistrationData = {
     body: ModuleRegistrationUpdate;
@@ -3819,7 +3355,7 @@ export type ModuleRegistrationsUpdateModuleRegistrationData = {
         module_reg_id: number;
     };
     query?: never;
-    url: '/api/module-registrations/{module_reg_id}';
+    url: '/api/v1/module-registrations/{module_reg_id}';
 };
 
 export type ModuleRegistrationsUpdateModuleRegistrationErrors = {
@@ -3835,154 +3371,58 @@ export type ModuleRegistrationsUpdateModuleRegistrationResponses = {
     /**
      * Successful Response
      */
-    200: ApiResponseModuleRegistrationResponse;
+    200: ModuleRegistrationResponse;
 };
 
 export type ModuleRegistrationsUpdateModuleRegistrationResponse = ModuleRegistrationsUpdateModuleRegistrationResponses[keyof ModuleRegistrationsUpdateModuleRegistrationResponses];
 
-export type NotificationGetAllNotificationsData = {
+export type AttendanceListAttendanceData = {
     body?: never;
     path?: never;
     query?: {
         /**
-         * Status
+         * Student Id
          */
-        status?: NotificationStatus | null;
-    };
-    url: '/api/notification/';
-};
-
-export type NotificationGetAllNotificationsErrors = {
-    /**
-     * Validation Error
-     */
-    422: HttpValidationError;
-};
-
-export type NotificationGetAllNotificationsError = NotificationGetAllNotificationsErrors[keyof NotificationGetAllNotificationsErrors];
-
-export type NotificationGetAllNotificationsResponses = {
-    /**
-     * Successful Response
-     */
-    200: ApiResponseListNotificationResponse;
-};
-
-export type NotificationGetAllNotificationsResponse = NotificationGetAllNotificationsResponses[keyof NotificationGetAllNotificationsResponses];
-
-export type NotificationGetUnreadCountData = {
-    body?: never;
-    path?: never;
-    query?: never;
-    url: '/api/notification/unread-count';
-};
-
-export type NotificationGetUnreadCountResponses = {
-    /**
-     * Successful Response
-     */
-    200: ApiResponse;
-};
-
-export type NotificationGetUnreadCountResponse = NotificationGetUnreadCountResponses[keyof NotificationGetUnreadCountResponses];
-
-export type NotificationMarkNotificationAsReadData = {
-    body?: never;
-    path: {
+        student_id?: string | null;
         /**
-         * Notification Id
+         * Module Id
          */
-        notification_id: number;
-    };
-    query?: never;
-    url: '/api/notification/{notification_id}/read';
-};
-
-export type NotificationMarkNotificationAsReadErrors = {
-    /**
-     * Validation Error
-     */
-    422: HttpValidationError;
-};
-
-export type NotificationMarkNotificationAsReadError = NotificationMarkNotificationAsReadErrors[keyof NotificationMarkNotificationAsReadErrors];
-
-export type NotificationMarkNotificationAsReadResponses = {
-    /**
-     * Successful Response
-     */
-    200: ApiResponseNotificationResponse;
-};
-
-export type NotificationMarkNotificationAsReadResponse = NotificationMarkNotificationAsReadResponses[keyof NotificationMarkNotificationAsReadResponses];
-
-export type NotificationMarkAllNotificationsAsReadData = {
-    body?: never;
-    path?: never;
-    query?: never;
-    url: '/api/notification/mark-all-read';
-};
-
-export type NotificationMarkAllNotificationsAsReadResponses = {
-    /**
-     * Successful Response
-     */
-    200: ApiResponse;
-};
-
-export type NotificationMarkAllNotificationsAsReadResponse = NotificationMarkAllNotificationsAsReadResponses[keyof NotificationMarkAllNotificationsAsReadResponses];
-
-export type NotificationDeleteNotificationData = {
-    body?: never;
-    path: {
+        module_id?: string | null;
         /**
-         * Notification Id
+         * Limit
          */
-        notification_id: number;
+        limit?: number;
+        /**
+         * Offset
+         */
+        offset?: number;
     };
-    query?: never;
-    url: '/api/notification/{notification_id}';
+    url: '/api/v1/attendance';
 };
 
-export type NotificationDeleteNotificationErrors = {
+export type AttendanceListAttendanceErrors = {
     /**
      * Validation Error
      */
     422: HttpValidationError;
 };
 
-export type NotificationDeleteNotificationError = NotificationDeleteNotificationErrors[keyof NotificationDeleteNotificationErrors];
+export type AttendanceListAttendanceError = AttendanceListAttendanceErrors[keyof AttendanceListAttendanceErrors];
 
-export type NotificationDeleteNotificationResponses = {
+export type AttendanceListAttendanceResponses = {
     /**
      * Successful Response
      */
-    200: ApiResponse;
+    200: PageAttendanceResponse;
 };
 
-export type NotificationDeleteNotificationResponse = NotificationDeleteNotificationResponses[keyof NotificationDeleteNotificationResponses];
-
-export type DashboardDashboardStatsData = {
-    body?: never;
-    path?: never;
-    query?: never;
-    url: '/api/dashboard/stats';
-};
-
-export type DashboardDashboardStatsResponses = {
-    /**
-     * Successful Response
-     */
-    200: ApiResponseDashboardStats;
-};
-
-export type DashboardDashboardStatsResponse = DashboardDashboardStatsResponses[keyof DashboardDashboardStatsResponses];
+export type AttendanceListAttendanceResponse = AttendanceListAttendanceResponses[keyof AttendanceListAttendanceResponses];
 
 export type AttendanceSubmitAttendanceData = {
     body: AttendanceCreate;
     path?: never;
     query?: never;
-    url: '/api/attendance/create';
+    url: '/api/v1/attendance';
 };
 
 export type AttendanceSubmitAttendanceErrors = {
@@ -3998,408 +3438,33 @@ export type AttendanceSubmitAttendanceResponses = {
     /**
      * Successful Response
      */
-    201: ApiResponseAttendanceResponse;
+    201: AttendanceResponse;
 };
 
 export type AttendanceSubmitAttendanceResponse = AttendanceSubmitAttendanceResponses[keyof AttendanceSubmitAttendanceResponses];
 
-export type AttendanceRequestCorrectionData = {
-    body: AttendanceRequestCreate;
+export type AttendanceImportAttendanceData = {
+    body: ImportAttendance;
     path?: never;
     query?: never;
-    url: '/api/attendance/request-correction';
+    url: '/api/v1/attendance/imports';
 };
 
-export type AttendanceRequestCorrectionErrors = {
+export type AttendanceImportAttendanceErrors = {
     /**
      * Validation Error
      */
     422: HttpValidationError;
 };
 
-export type AttendanceRequestCorrectionError = AttendanceRequestCorrectionErrors[keyof AttendanceRequestCorrectionErrors];
+export type AttendanceImportAttendanceError = AttendanceImportAttendanceErrors[keyof AttendanceImportAttendanceErrors];
 
-export type AttendanceRequestCorrectionResponses = {
+export type AttendanceImportAttendanceResponses = {
     /**
      * Successful Response
      */
-    201: ApiResponseAttendanceRequestResponse;
+    200: unknown;
 };
-
-export type AttendanceRequestCorrectionResponse = AttendanceRequestCorrectionResponses[keyof AttendanceRequestCorrectionResponses];
-
-export type AttendanceImportAttendanceFromExcelData = {
-    body: ImportAttendanceFromExcel;
-    path?: never;
-    query?: never;
-    url: '/api/attendance/create-from-excel';
-};
-
-export type AttendanceImportAttendanceFromExcelErrors = {
-    /**
-     * Validation Error
-     */
-    422: HttpValidationError;
-};
-
-export type AttendanceImportAttendanceFromExcelError = AttendanceImportAttendanceFromExcelErrors[keyof AttendanceImportAttendanceFromExcelErrors];
-
-export type AttendanceImportAttendanceFromExcelResponses = {
-    /**
-     * Successful Response
-     */
-    200: ApiResponseDict;
-};
-
-export type AttendanceImportAttendanceFromExcelResponse = AttendanceImportAttendanceFromExcelResponses[keyof AttendanceImportAttendanceFromExcelResponses];
-
-export type AttendanceUpdateExamEligibilityForModuleData = {
-    body?: never;
-    path: {
-        /**
-         * Module Id
-         */
-        module_id: string;
-    };
-    query?: never;
-    url: '/api/attendance/exam-eligibility/module/{module_id}';
-};
-
-export type AttendanceUpdateExamEligibilityForModuleErrors = {
-    /**
-     * Validation Error
-     */
-    422: HttpValidationError;
-};
-
-export type AttendanceUpdateExamEligibilityForModuleError = AttendanceUpdateExamEligibilityForModuleErrors[keyof AttendanceUpdateExamEligibilityForModuleErrors];
-
-export type AttendanceUpdateExamEligibilityForModuleResponses = {
-    /**
-     * Successful Response
-     */
-    200: ApiResponseListDictStrAny;
-};
-
-export type AttendanceUpdateExamEligibilityForModuleResponse = AttendanceUpdateExamEligibilityForModuleResponses[keyof AttendanceUpdateExamEligibilityForModuleResponses];
-
-export type AttendanceUpdateExamEligibilityForAllModulesData = {
-    body?: never;
-    path?: never;
-    query?: never;
-    url: '/api/attendance/exam-eligibility/update-all-modules';
-};
-
-export type AttendanceUpdateExamEligibilityForAllModulesResponses = {
-    /**
-     * Successful Response
-     */
-    200: ApiResponseDictStrAny;
-};
-
-export type AttendanceUpdateExamEligibilityForAllModulesResponse = AttendanceUpdateExamEligibilityForAllModulesResponses[keyof AttendanceUpdateExamEligibilityForAllModulesResponses];
-
-export type AttendanceUpdateExamEligibilityForLecturerData = {
-    body?: never;
-    path: {
-        /**
-         * Lecturer Id
-         */
-        lecturer_id: string;
-    };
-    query?: never;
-    url: '/api/attendance/exam-eligibility/lecturer/{lecturer_id}/update';
-};
-
-export type AttendanceUpdateExamEligibilityForLecturerErrors = {
-    /**
-     * Validation Error
-     */
-    422: HttpValidationError;
-};
-
-export type AttendanceUpdateExamEligibilityForLecturerError = AttendanceUpdateExamEligibilityForLecturerErrors[keyof AttendanceUpdateExamEligibilityForLecturerErrors];
-
-export type AttendanceUpdateExamEligibilityForLecturerResponses = {
-    /**
-     * Successful Response
-     */
-    200: ApiResponseDictStrAny;
-};
-
-export type AttendanceUpdateExamEligibilityForLecturerResponse = AttendanceUpdateExamEligibilityForLecturerResponses[keyof AttendanceUpdateExamEligibilityForLecturerResponses];
-
-export type AttendanceExportExamEligibilityForLecturerData = {
-    body?: never;
-    path: {
-        /**
-         * Lecturer Id
-         */
-        lecturer_id: string;
-    };
-    query?: never;
-    url: '/api/attendance/exam-eligibility/lecturer/{lecturer_id}/export';
-};
-
-export type AttendanceExportExamEligibilityForLecturerErrors = {
-    /**
-     * Validation Error
-     */
-    422: HttpValidationError;
-};
-
-export type AttendanceExportExamEligibilityForLecturerError = AttendanceExportExamEligibilityForLecturerErrors[keyof AttendanceExportExamEligibilityForLecturerErrors];
-
-export type AttendanceExportExamEligibilityForLecturerResponses = {
-    /**
-     * Successful Response
-     */
-    200: ApiResponseDictStrAny;
-};
-
-export type AttendanceExportExamEligibilityForLecturerResponse = AttendanceExportExamEligibilityForLecturerResponses[keyof AttendanceExportExamEligibilityForLecturerResponses];
-
-export type AttendanceExportExamEligibilityData = {
-    body?: never;
-    path?: never;
-    query?: never;
-    url: '/api/attendance/exam-eligibility/export';
-};
-
-export type AttendanceExportExamEligibilityResponses = {
-    /**
-     * Successful Response
-     */
-    200: ApiResponseDictStrAny;
-};
-
-export type AttendanceExportExamEligibilityResponse = AttendanceExportExamEligibilityResponses[keyof AttendanceExportExamEligibilityResponses];
-
-export type AttendanceViewAttendanceData = {
-    body?: never;
-    path?: never;
-    query?: {
-        /**
-         * Student Id
-         */
-        student_id?: string | null;
-        /**
-         * Module Id
-         */
-        module_id?: string | null;
-    };
-    url: '/api/attendance/view';
-};
-
-export type AttendanceViewAttendanceErrors = {
-    /**
-     * Validation Error
-     */
-    422: HttpValidationError;
-};
-
-export type AttendanceViewAttendanceError = AttendanceViewAttendanceErrors[keyof AttendanceViewAttendanceErrors];
-
-export type AttendanceViewAttendanceResponses = {
-    /**
-     * Successful Response
-     */
-    200: ApiResponseListAttendanceResponse;
-};
-
-export type AttendanceViewAttendanceResponse = AttendanceViewAttendanceResponses[keyof AttendanceViewAttendanceResponses];
-
-export type AttendanceGetAttendanceRequestsData = {
-    body?: never;
-    path?: never;
-    query?: {
-        /**
-         * Request Status
-         */
-        request_status?: RequestStatus | null;
-        /**
-         * Module Id
-         */
-        module_id?: string | null;
-    };
-    url: '/api/attendance/requests';
-};
-
-export type AttendanceGetAttendanceRequestsErrors = {
-    /**
-     * Validation Error
-     */
-    422: HttpValidationError;
-};
-
-export type AttendanceGetAttendanceRequestsError = AttendanceGetAttendanceRequestsErrors[keyof AttendanceGetAttendanceRequestsErrors];
-
-export type AttendanceGetAttendanceRequestsResponses = {
-    /**
-     * Successful Response
-     */
-    200: ApiResponseListAttendanceRequestResponse;
-};
-
-export type AttendanceGetAttendanceRequestsResponse = AttendanceGetAttendanceRequestsResponses[keyof AttendanceGetAttendanceRequestsResponses];
-
-export type AttendanceGetRequestsByStudentData = {
-    body?: never;
-    path: {
-        /**
-         * Student Id
-         */
-        student_id: string;
-    };
-    query?: never;
-    url: '/api/attendance/requests/student/{student_id}';
-};
-
-export type AttendanceGetRequestsByStudentErrors = {
-    /**
-     * Validation Error
-     */
-    422: HttpValidationError;
-};
-
-export type AttendanceGetRequestsByStudentError = AttendanceGetRequestsByStudentErrors[keyof AttendanceGetRequestsByStudentErrors];
-
-export type AttendanceGetRequestsByStudentResponses = {
-    /**
-     * Successful Response
-     */
-    200: ApiResponseListAttendanceRequestResponse;
-};
-
-export type AttendanceGetRequestsByStudentResponse = AttendanceGetRequestsByStudentResponses[keyof AttendanceGetRequestsByStudentResponses];
-
-export type AttendanceGetRequestsByModuleData = {
-    body?: never;
-    path: {
-        /**
-         * Module Id
-         */
-        module_id: string;
-    };
-    query?: never;
-    url: '/api/attendance/requests/module/{module_id}';
-};
-
-export type AttendanceGetRequestsByModuleErrors = {
-    /**
-     * Validation Error
-     */
-    422: HttpValidationError;
-};
-
-export type AttendanceGetRequestsByModuleError = AttendanceGetRequestsByModuleErrors[keyof AttendanceGetRequestsByModuleErrors];
-
-export type AttendanceGetRequestsByModuleResponses = {
-    /**
-     * Successful Response
-     */
-    200: ApiResponseListAttendanceRequestResponse;
-};
-
-export type AttendanceGetRequestsByModuleResponse = AttendanceGetRequestsByModuleResponses[keyof AttendanceGetRequestsByModuleResponses];
-
-export type AttendanceGetExamEligibilityData = {
-    body?: never;
-    path?: never;
-    query?: {
-        /**
-         * Student Id
-         */
-        student_id?: string | null;
-        /**
-         * Module Id
-         */
-        module_id?: string | null;
-    };
-    url: '/api/attendance/exam-eligibility';
-};
-
-export type AttendanceGetExamEligibilityErrors = {
-    /**
-     * Validation Error
-     */
-    422: HttpValidationError;
-};
-
-export type AttendanceGetExamEligibilityError = AttendanceGetExamEligibilityErrors[keyof AttendanceGetExamEligibilityErrors];
-
-export type AttendanceGetExamEligibilityResponses = {
-    /**
-     * Successful Response
-     */
-    200: ApiResponseListExamEligibilityResponse;
-};
-
-export type AttendanceGetExamEligibilityResponse = AttendanceGetExamEligibilityResponses[keyof AttendanceGetExamEligibilityResponses];
-
-export type AttendanceCheckExamEligibilityData = {
-    body?: never;
-    path?: never;
-    query: {
-        /**
-         * Student Id
-         */
-        student_id: string;
-        /**
-         * Module Id
-         */
-        module_id: string;
-    };
-    url: '/api/attendance/exam-eligibility/check';
-};
-
-export type AttendanceCheckExamEligibilityErrors = {
-    /**
-     * Validation Error
-     */
-    422: HttpValidationError;
-};
-
-export type AttendanceCheckExamEligibilityError = AttendanceCheckExamEligibilityErrors[keyof AttendanceCheckExamEligibilityErrors];
-
-export type AttendanceCheckExamEligibilityResponses = {
-    /**
-     * Successful Response
-     */
-    200: ApiResponseDictStrAny;
-};
-
-export type AttendanceCheckExamEligibilityResponse = AttendanceCheckExamEligibilityResponses[keyof AttendanceCheckExamEligibilityResponses];
-
-export type AttendanceHandleCorrectionData = {
-    body: CorrectionApproval;
-    path: {
-        /**
-         * Request Id
-         */
-        request_id: number;
-    };
-    query?: never;
-    url: '/api/attendance/correction/{request_id}';
-};
-
-export type AttendanceHandleCorrectionErrors = {
-    /**
-     * Validation Error
-     */
-    422: HttpValidationError;
-};
-
-export type AttendanceHandleCorrectionError = AttendanceHandleCorrectionErrors[keyof AttendanceHandleCorrectionErrors];
-
-export type AttendanceHandleCorrectionResponses = {
-    /**
-     * Successful Response
-     */
-    200: ApiResponseDict;
-};
-
-export type AttendanceHandleCorrectionResponse = AttendanceHandleCorrectionResponses[keyof AttendanceHandleCorrectionResponses];
 
 export type AttendanceDeleteAttendanceData = {
     body?: never;
@@ -4410,7 +3475,7 @@ export type AttendanceDeleteAttendanceData = {
         attendance_id: number;
     };
     query?: never;
-    url: '/api/attendance/{attendance_id}';
+    url: '/api/v1/attendance/{attendance_id}';
 };
 
 export type AttendanceDeleteAttendanceErrors = {
@@ -4426,7 +3491,7 @@ export type AttendanceDeleteAttendanceResponses = {
     /**
      * Successful Response
      */
-    200: ApiResponseNoneType;
+    204: void;
 };
 
 export type AttendanceDeleteAttendanceResponse = AttendanceDeleteAttendanceResponses[keyof AttendanceDeleteAttendanceResponses];
@@ -4440,7 +3505,7 @@ export type AttendanceUpdateAttendanceData = {
         attendance_id: number;
     };
     query?: never;
-    url: '/api/attendance/{attendance_id}';
+    url: '/api/v1/attendance/{attendance_id}';
 };
 
 export type AttendanceUpdateAttendanceErrors = {
@@ -4456,12 +3521,83 @@ export type AttendanceUpdateAttendanceResponses = {
     /**
      * Successful Response
      */
-    200: ApiResponseAttendanceResponse;
+    200: AttendanceResponse;
 };
 
 export type AttendanceUpdateAttendanceResponse = AttendanceUpdateAttendanceResponses[keyof AttendanceUpdateAttendanceResponses];
 
-export type AttendanceDeleteAttendanceRequestData = {
+export type AttendanceRequestsListAttendanceRequestsData = {
+    body?: never;
+    path?: never;
+    query?: {
+        /**
+         * Status
+         */
+        status?: RequestStatus | null;
+        /**
+         * Student Id
+         */
+        student_id?: string | null;
+        /**
+         * Module Id
+         */
+        module_id?: string | null;
+        /**
+         * Limit
+         */
+        limit?: number;
+        /**
+         * Offset
+         */
+        offset?: number;
+    };
+    url: '/api/v1/attendance-requests';
+};
+
+export type AttendanceRequestsListAttendanceRequestsErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type AttendanceRequestsListAttendanceRequestsError = AttendanceRequestsListAttendanceRequestsErrors[keyof AttendanceRequestsListAttendanceRequestsErrors];
+
+export type AttendanceRequestsListAttendanceRequestsResponses = {
+    /**
+     * Successful Response
+     */
+    200: PageAttendanceRequestResponse;
+};
+
+export type AttendanceRequestsListAttendanceRequestsResponse = AttendanceRequestsListAttendanceRequestsResponses[keyof AttendanceRequestsListAttendanceRequestsResponses];
+
+export type AttendanceRequestsCreateAttendanceRequestData = {
+    body: AttendanceRequestCreate;
+    path?: never;
+    query?: never;
+    url: '/api/v1/attendance-requests';
+};
+
+export type AttendanceRequestsCreateAttendanceRequestErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type AttendanceRequestsCreateAttendanceRequestError = AttendanceRequestsCreateAttendanceRequestErrors[keyof AttendanceRequestsCreateAttendanceRequestErrors];
+
+export type AttendanceRequestsCreateAttendanceRequestResponses = {
+    /**
+     * Successful Response
+     */
+    201: AttendanceRequestResponse;
+};
+
+export type AttendanceRequestsCreateAttendanceRequestResponse = AttendanceRequestsCreateAttendanceRequestResponses[keyof AttendanceRequestsCreateAttendanceRequestResponses];
+
+export type AttendanceRequestsDeleteAttendanceRequestData = {
     body?: never;
     path: {
         /**
@@ -4470,32 +3606,163 @@ export type AttendanceDeleteAttendanceRequestData = {
         request_id: number;
     };
     query?: never;
-    url: '/api/attendance/requests/{request_id}';
+    url: '/api/v1/attendance-requests/{request_id}';
 };
 
-export type AttendanceDeleteAttendanceRequestErrors = {
+export type AttendanceRequestsDeleteAttendanceRequestErrors = {
     /**
      * Validation Error
      */
     422: HttpValidationError;
 };
 
-export type AttendanceDeleteAttendanceRequestError = AttendanceDeleteAttendanceRequestErrors[keyof AttendanceDeleteAttendanceRequestErrors];
+export type AttendanceRequestsDeleteAttendanceRequestError = AttendanceRequestsDeleteAttendanceRequestErrors[keyof AttendanceRequestsDeleteAttendanceRequestErrors];
 
-export type AttendanceDeleteAttendanceRequestResponses = {
+export type AttendanceRequestsDeleteAttendanceRequestResponses = {
     /**
      * Successful Response
      */
-    200: ApiResponseNoneType;
+    204: void;
 };
 
-export type AttendanceDeleteAttendanceRequestResponse = AttendanceDeleteAttendanceRequestResponses[keyof AttendanceDeleteAttendanceRequestResponses];
+export type AttendanceRequestsDeleteAttendanceRequestResponse = AttendanceRequestsDeleteAttendanceRequestResponses[keyof AttendanceRequestsDeleteAttendanceRequestResponses];
+
+export type AttendanceRequestsGetAttendanceRequestData = {
+    body?: never;
+    path: {
+        /**
+         * Request Id
+         */
+        request_id: number;
+    };
+    query?: never;
+    url: '/api/v1/attendance-requests/{request_id}';
+};
+
+export type AttendanceRequestsGetAttendanceRequestErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type AttendanceRequestsGetAttendanceRequestError = AttendanceRequestsGetAttendanceRequestErrors[keyof AttendanceRequestsGetAttendanceRequestErrors];
+
+export type AttendanceRequestsGetAttendanceRequestResponses = {
+    /**
+     * Successful Response
+     */
+    200: AttendanceRequestResponse;
+};
+
+export type AttendanceRequestsGetAttendanceRequestResponse = AttendanceRequestsGetAttendanceRequestResponses[keyof AttendanceRequestsGetAttendanceRequestResponses];
+
+export type AttendanceRequestsDecideAttendanceRequestData = {
+    body: CorrectionDecision;
+    path: {
+        /**
+         * Request Id
+         */
+        request_id: number;
+    };
+    query?: never;
+    url: '/api/v1/attendance-requests/{request_id}';
+};
+
+export type AttendanceRequestsDecideAttendanceRequestErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type AttendanceRequestsDecideAttendanceRequestError = AttendanceRequestsDecideAttendanceRequestErrors[keyof AttendanceRequestsDecideAttendanceRequestErrors];
+
+export type AttendanceRequestsDecideAttendanceRequestResponses = {
+    /**
+     * Successful Response
+     */
+    200: AttendanceRequestResponse;
+};
+
+export type AttendanceRequestsDecideAttendanceRequestResponse = AttendanceRequestsDecideAttendanceRequestResponses[keyof AttendanceRequestsDecideAttendanceRequestResponses];
+
+export type ExamEligibilityRecalculateExamEligibilityData = {
+    body: EligibilityRecalculation;
+    path?: never;
+    query?: never;
+    url: '/api/v1/exam-eligibility/recalculations';
+};
+
+export type ExamEligibilityRecalculateExamEligibilityErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type ExamEligibilityRecalculateExamEligibilityError = ExamEligibilityRecalculateExamEligibilityErrors[keyof ExamEligibilityRecalculateExamEligibilityErrors];
+
+export type ExamEligibilityRecalculateExamEligibilityResponses = {
+    /**
+     * Successful Response
+     */
+    200: unknown;
+};
+
+export type ExamEligibilityExportExamEligibilityData = {
+    body?: never;
+    path?: never;
+    query?: {
+        /**
+         * Module Id
+         */
+        module_id?: string | null;
+        /**
+         * Lecturer Id
+         */
+        lecturer_id?: string | null;
+    };
+    url: '/api/v1/exam-eligibility/export';
+};
+
+export type ExamEligibilityExportExamEligibilityErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type ExamEligibilityExportExamEligibilityError = ExamEligibilityExportExamEligibilityErrors[keyof ExamEligibilityExportExamEligibilityErrors];
+
+export type ExamEligibilityExportExamEligibilityResponses = {
+    /**
+     * One sheet per module.
+     */
+    200: unknown;
+};
+
+export type DashboardGetDashboardStatsData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/api/v1/dashboard/stats';
+};
+
+export type DashboardGetDashboardStatsResponses = {
+    /**
+     * Successful Response
+     */
+    200: DashboardStats;
+};
+
+export type DashboardGetDashboardStatsResponse = DashboardGetDashboardStatsResponses[keyof DashboardGetDashboardStatsResponses];
 
 export type ApiRootData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/api';
+    url: '/api/v1';
 };
 
 export type ApiRootResponses = {
