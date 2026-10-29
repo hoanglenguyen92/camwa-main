@@ -7,7 +7,7 @@ endif
 PYTHON ?= $(VENV_PYTHON)
 
 .DEFAULT_GOAL := help
-.PHONY: help env install up run start seed seed-demo down logs ps psql test openapi reset
+.PHONY: help env install up run start seed seed-demo down logs ps psql test smoke openapi reset
 
 help:
 	@echo make env        Create .env from .env.example with generated secrets
@@ -21,6 +21,7 @@ help:
 	@echo make ps         Show container status
 	@echo make psql       Open psql on the app database
 	@echo make test       Run the backend tests
+	@echo make smoke      Smoke-test a running backend against Keycloak, after make seed-demo
 	@echo make openapi    Regenerate frontend/openapi.json and the TypeScript client
 	@echo make down       Stop the containers and keep their data
 	@echo make reset      Stop the containers and DELETE both databases
@@ -60,6 +61,9 @@ psql:
 
 test:
 	$(PYTHON) -m pytest tests -q
+
+smoke:
+	$(PYTHON) -m scripts.smoke_test
 
 openapi:
 	$(PYTHON) -m scripts.export_openapi
